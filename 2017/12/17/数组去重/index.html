@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="奔跑的牛">
 <meta property="og:description" content="摘要：JavaScript面试题数组去重，参考冴羽的博客再次修改">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-09-05T15:56:24.767Z">
+<meta property="og:updated_time" content="2018-09-05T16:52:06.595Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数组去重">
 <meta name="twitter:description" content="摘要：JavaScript面试题数组去重，参考冴羽的博客再次修改">
@@ -181,7 +181,7 @@
 <h4 id="方法四"><a href="#方法四" class="headerlink" title="方法四"></a>方法四</h4><p>利用Set结构的成员值不能重复的特点来实现数组去重的效果<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Array.prototype.unique4_1 = function()&#123;</span><br><span class="line">  // return this.from(new Set(this));</span><br><span class="line">  return [...new Set(this)];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>还可以利用Map的键名可以是各种类型的特点来实现<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Array.prototype.unique4_2 = function() &#123;</span><br><span class="line">  const map = new Map()</span><br><span class="line">  return this.filter((a) =&gt; !map.has(a) &amp;&amp; map.set(a, 1))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>使用这样一个数组array进行验证：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var array = [1, 1, &quot;1&quot;, &quot;1&quot;, null, null, undefined, undefined, new String(&quot;1&quot;), new String(&quot;1&quot;), /a/, /a/, NaN, NaN];</span><br></pre></td></tr></table></figure></p>
-<table><br>  <tbody><br>    <tr style="text-align:center;"><br>      <td>方法</td><br>      <td>结果</td><br>      <td>结论</td><br>    </tr><br>    <tr><br>      <td>1_1：for循环</td><br>      <td>[1, “1”, null, undefined, String, String, /a/, /a/, NaN, NaN]</td><br>      <td>对象和NaN不去重</td><br>    </tr><br>    <tr><br>      <td>1_2：indexOf</td><br>      <td>[1, “1”, null, undefined, String, String, /a/, /a/, NaN, NaN]</td><br>      <td>对象和 NaN 不去重</td><br>    </tr><br>    <tr><br>      <td>1_3：filter + indexOf</td><br>      <td>[1, “1”, null, undefined, String, String, /a/, /a/]</td><br>      <td>对象不去重NaN被忽略</td><br>    </tr><br>    <tr><br>      <td>2_1：sort</td><br>      <td>[/a/, /a/, “1”, 1, String, 1, String, NaN, NaN, null, undefined]</td><br>      <td>对象、NaN、数字1不去重</td><br>    </tr><br>    <tr><br>      <td>2_2：sort + filter</td><br>      <td>[/a/, /a/, “1”, 1, String, 1, String, NaN, NaN, null, undefined]</td><br>      <td>对象、NaN、数字1不去重</td><br>    </tr><br>    <tr><br>      <td>3_4：优化后的键值对</td><br>      <td>[1, “1”, null, undefined, String, /a/, NaN]</td><br>      <td>全部去重</td><br>    </tr><br>    <tr><br>      <td>4_1：Set（node）</td><br>      <td>[1, “1”, null, undefined, [String: “1”], [String: “1”], /a/, /a/, NaN]</td><br>      <td>对象不去重</td><br>    </tr><br>  </tbody><br></table>
+<table><tbody><tr style="text-align:center;"><td>方法</td><td>结果</td><td>结论</td></tr><tr><td>1_1：for循环</td><td>[1, “1”, null, undefined, String, String, /a/, /a/, NaN, NaN]</td><td>对象和NaN不去重</td></tr><tr><td>1_2：indexOf</td><td>[1, “1”, null, undefined, String, String, /a/, /a/, NaN, NaN]</td><td>对象和 NaN 不去重</td></tr><tr><td>1_3：filter + indexOf</td><td>[1, “1”, null, undefined, String, String, /a/, /a/]</td><td>对象不去重NaN被忽略</td></tr><tr><td>2_1：sort</td><td>[/a/, /a/, “1”, 1, String, 1, String, NaN, NaN, null, undefined]</td><td>对象、NaN、数字1不去重</td></tr><tr><td>2_2：sort + filter</td><td>[/a/, /a/, “1”, 1, String, 1, String, NaN, NaN, null, undefined]</td><td>对象、NaN、数字1不去重</td></tr><tr><td>3_4：优化后的键值对</td><td>[1, “1”, null, undefined, String, /a/, NaN]</td><td>全部去重</td></tr><tr><td>4_1：Set（node）</td><td>[1, “1”, null, undefined, [String: “1”], [String: “1”], /a/, /a/, NaN]</td><td>对象不去重</td></tr></tbody><br></table>
 
 <p>注意：<br>1.<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/indexOf" target="_blank" rel="noopener">indexOf</a>使用<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/Comparison_Operators#Using_the_Equality_Operators" target="_blank" rel="noopener">strict equality</a>(无论是===，还是triple-equals操作符都基于同样的方法)进行判断 searchElement与数组中包含的元素之间的关系<br>2.NaN和undefined都可以被存储在<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Set" target="_blank" rel="noopener">Set</a>中，尽管NaN !== NaN，但NaN之间仍被视为相同的值<br>3.优化后的计数：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">console.log(array.unique3_5(true));</span><br><span class="line">// &#123;</span><br><span class="line">//   number1:2,</span><br><span class="line">//   numbernull:2,</span><br><span class="line">//   object&quot;1&quot;:2,</span><br><span class="line">//   objectnull:2,</span><br><span class="line">//   object&#123;&#125;:2,</span><br><span class="line">//   string&quot;1&quot;:2,</span><br><span class="line">//   undefinedundefined:2,</span><br><span class="line">// &#125;</span><br></pre></td></tr></table></figure></p>
 
@@ -207,57 +207,6 @@
 
       
 
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
-        </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://niuxiaokui.github.io/2017/12/17/数组去重/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
@@ -504,19 +453,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">MongoDB</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">ES6</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Git</a>
               </li>
             
             <div class="clearfix"></div>
