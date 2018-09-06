@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="https://niuxiaokui.github.io">
   <title>XSS与XSRF | 奔跑的牛</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="XSSXSS是跨站脚本攻击(Cross Site Scripting)，简单的说就是让网站执行你想要的js1.攻击者在输入框中偷偷插入一段&amp;lt;script&amp;gt;xxx&amp;lt;/script&amp;gt;2.攻击代码xxx中获取cookie发送到攻击者的服务器3.发布文章后，如果有人查看文章，就会将查看者的cookie发送到攻击者的服务器 XSFR受害者必须有以下两步：1.登录受信任购物网站浏览商品">
+  <meta name="description" content="XSSXSS是跨站脚本攻击(Cross Site Scripting)，简单的说就是让网站执行你想要的js1.攻击者在输入框中偷偷插入一段&amp;lt;script&amp;gt;xxx&amp;lt;/script&amp;gt;2.攻击代码xxx中获取cookie发送到攻击者的服务器3.发布文章后，如果有人查看文章，就会将查看者的cookie发送到攻击者的服务器 XSRF受害者必须有以下两步：1.登录受信任购物网站浏览商品">
 <meta name="keywords" content="【安全】">
 <meta property="og:type" content="article">
 <meta property="og:title" content="XSS与XSRF">
 <meta property="og:url" content="https://niuxiaokui.github.io/2017/09/03/XSS与XSRF/index.html">
 <meta property="og:site_name" content="奔跑的牛">
-<meta property="og:description" content="XSSXSS是跨站脚本攻击(Cross Site Scripting)，简单的说就是让网站执行你想要的js1.攻击者在输入框中偷偷插入一段&amp;lt;script&amp;gt;xxx&amp;lt;/script&amp;gt;2.攻击代码xxx中获取cookie发送到攻击者的服务器3.发布文章后，如果有人查看文章，就会将查看者的cookie发送到攻击者的服务器 XSFR受害者必须有以下两步：1.登录受信任购物网站浏览商品">
+<meta property="og:description" content="XSSXSS是跨站脚本攻击(Cross Site Scripting)，简单的说就是让网站执行你想要的js1.攻击者在输入框中偷偷插入一段&amp;lt;script&amp;gt;xxx&amp;lt;/script&amp;gt;2.攻击代码xxx中获取cookie发送到攻击者的服务器3.发布文章后，如果有人查看文章，就会将查看者的cookie发送到攻击者的服务器 XSRF受害者必须有以下两步：1.登录受信任购物网站浏览商品">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-09-04T14:14:11.250Z">
+<meta property="og:updated_time" content="2018-09-06T08:48:39.380Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="XSS与XSRF">
-<meta name="twitter:description" content="XSSXSS是跨站脚本攻击(Cross Site Scripting)，简单的说就是让网站执行你想要的js1.攻击者在输入框中偷偷插入一段&amp;lt;script&amp;gt;xxx&amp;lt;/script&amp;gt;2.攻击代码xxx中获取cookie发送到攻击者的服务器3.发布文章后，如果有人查看文章，就会将查看者的cookie发送到攻击者的服务器 XSFR受害者必须有以下两步：1.登录受信任购物网站浏览商品">
+<meta name="twitter:description" content="XSSXSS是跨站脚本攻击(Cross Site Scripting)，简单的说就是让网站执行你想要的js1.攻击者在输入框中偷偷插入一段&amp;lt;script&amp;gt;xxx&amp;lt;/script&amp;gt;2.攻击代码xxx中获取cookie发送到攻击者的服务器3.发布文章后，如果有人查看文章，就会将查看者的cookie发送到攻击者的服务器 XSRF受害者必须有以下两步：1.登录受信任购物网站浏览商品">
   
     <link rel="alternative" href="/atom.xml" title="奔跑的牛" type="application/atom+xml">
   
@@ -166,7 +166,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h4 id="XSS"><a href="#XSS" class="headerlink" title="XSS"></a>XSS</h4><p>XSS是跨站脚本攻击(Cross Site Scripting)，简单的说就是让网站执行你想要的js<br>1.攻击者在输入框中偷偷插入一段<code>&lt;script&gt;xxx&lt;/script&gt;</code><br>2.攻击代码<code>xxx</code>中获取cookie发送到攻击者的服务器<br>3.发布文章后，如果有人查看文章，就会将查看者的cookie发送到攻击者的服务器</p>
-<h4 id="XSFR"><a href="#XSFR" class="headerlink" title="XSFR"></a>XSFR</h4><p>受害者必须有以下两步：<br>1.登录受信任购物网站浏览商品，支付接口是<code>http://xxx.com/pay?id=100</code><br>2.进入另外一个页面（比如查看一封邮件），页面有<code>&lt;img src=&quot;http://xxx.com/pay?id=100&quot;&gt;</code>自动支付<br>防范：增加验证流程——支付需要指纹、密码、验证码等</p>
+<h4 id="XSRF"><a href="#XSRF" class="headerlink" title="XSRF"></a>XSRF</h4><p>受害者必须有以下两步：<br>1.登录受信任购物网站浏览商品，支付接口是<code>http://xxx.com/pay?id=100</code><br>2.进入另外一个页面（比如查看一封邮件），页面有<code>&lt;img src=&quot;http://xxx.com/pay?id=100&quot;&gt;</code>自动支付<br>防范：增加验证流程——支付需要指纹、密码、验证码等</p>
 
       
 
@@ -408,15 +408,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">压缩</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">总结</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">目标</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">压缩</a>
               </li>
              
               <li class="article-tag-list-item">
