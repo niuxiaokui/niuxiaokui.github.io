@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="奔跑的牛">
 <meta property="og:description" content="摘要：MongoDB基础">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-09-05T06:17:35.838Z">
+<meta property="og:updated_time" content="2018-09-19T07:46:33.631Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MongoDB入门">
 <meta name="twitter:description" content="摘要：MongoDB基础">
@@ -265,7 +265,7 @@
 <li>和$有特别的意义，只有在特定环境下才能使用</li>
 <li>以下划线”_”开头的键是保留的(不是严格要求的)</li>
 </ul>
-<h3 id="数据库、集合（表）操作"><a href="#数据库、集合（表）操作" class="headerlink" title="数据库、集合（表）操作"></a>数据库、集合（表）操作</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">show dbs #查看所有数据库</span><br><span class="line">use database #创建/切换到数据库，database为数据库名称</span><br><span class="line">db #查看当前数据库名</span><br><span class="line">db.dropDatabase() #删除当前所在的数据库</span><br><span class="line">show collections #展示数据库的集合</span><br><span class="line">db.collection.drop() #删除集合，collection为集合的名称</span><br></pre></td></tr></table></figure>
+<h3 id="数据库、集合（表）操作"><a href="#数据库、集合（表）操作" class="headerlink" title="数据库、集合（表）操作"></a>数据库、集合（表）操作</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">show dbs #查看所有数据库</span><br><span class="line">use database #创建/切换到数据库，database为数据库名称</span><br><span class="line">db #查看当前数据库名</span><br><span class="line">db.dropDatabase() #删除当前所在的数据库</span><br><span class="line">show collections #展示数据库的集合</span><br><span class="line">show tables #同上</span><br><span class="line">db.collection.drop() #删除集合，collection为集合的名称</span><br></pre></td></tr></table></figure>
 <h4 id="插入文档"><a href="#插入文档" class="headerlink" title="插入文档"></a>插入文档</h4><p>MongoDB使用insert()方法向集合中插入文档，文档的数据结构和JSON基本一样，而且支持js语法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; db.collection.insert(&#123;name:&quot;xiaowang&quot;,age:24&#125;)</span><br><span class="line">WriteResult(&#123; &quot;nInserted&quot; : 1 &#125;)</span><br><span class="line">&gt; for(i = 0;1 &lt; 100; i++)db.number.insert(&#123;x:i&#125;)</span><br></pre></td></tr></table></figure></p>
 <h4 id="查询文档"><a href="#查询文档" class="headerlink" title="查询文档"></a>查询文档</h4><p>find()方法以非结构化的方式来显示所有文档,参数是查询条件，无参数时返回全部文档</p>
 <p>pretty()方法以格式化的方式来显示所有文档<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&gt; db.collection.find()</span><br><span class="line">&#123; &quot;_id&quot; : ObjectId(&quot;58074f057d033c48f5988c14&quot;), &quot;name&quot; : &quot;xiaowang&quot;, &quot;age&quot; : 24 &#125;</span><br><span class="line">&gt; db.collection.find().pretty()</span><br><span class="line">&#123;</span><br><span class="line">  &quot;_id&quot; : ObjectId(&quot;58074f057d033c48f5988c14&quot;),</span><br><span class="line">  &quot;name&quot; : &quot;xiaowang&quot;,</span><br><span class="line">  &quot;age&quot; : 24</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
@@ -516,11 +516,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">HTML</a>
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
+                <a href="javascript:void(0)" class="js-tag color5">HTML</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -536,7 +536,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">MongoDB</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -548,15 +556,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Vue.js</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">node</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">jade</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Vue.js</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -572,11 +580,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">小程序</a>
+                <a href="javascript:void(0)" class="js-tag color4">ES6</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">压缩</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">小程序</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -588,10 +600,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">浏览器</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
               </li>
              
@@ -600,19 +608,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">浏览器</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">web-im</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">MongoDB</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ES6</a>
               </li>
             
             <div class="clearfix"></div>
