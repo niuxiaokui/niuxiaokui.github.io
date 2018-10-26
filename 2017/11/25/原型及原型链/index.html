@@ -16,15 +16,15 @@
 <meta property="og:site_name" content="奔跑的牛">
 <meta property="og:description" content="摘要：我所理解的原型及原型链，先放张图">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://oeaojnvpz.bkt.clouddn.com/blog13.png">
-<meta property="og:image" content="http://oeaojnvpz.bkt.clouddn.com/blog14.png">
-<meta property="og:image" content="http://oeaojnvpz.bkt.clouddn.com/blog15.png">
-<meta property="og:image" content="http://oeaojnvpz.bkt.clouddn.com/blog16.png">
-<meta property="og:updated_time" content="2018-09-04T07:38:47.593Z">
+<meta property="og:image" content="http://picture.niuxiaokui.top/blog13.png">
+<meta property="og:image" content="http://picture.niuxiaokui.top/blog14.png">
+<meta property="og:image" content="http://picture.niuxiaokui.top/blog15.png">
+<meta property="og:image" content="http://picture.niuxiaokui.top/blog16.png">
+<meta property="og:updated_time" content="2018-10-26T09:07:10.522Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="原型及原型链">
 <meta name="twitter:description" content="摘要：我所理解的原型及原型链，先放张图">
-<meta name="twitter:image" content="http://oeaojnvpz.bkt.clouddn.com/blog13.png">
+<meta name="twitter:image" content="http://picture.niuxiaokui.top/blog13.png">
   
     <link rel="alternative" href="/atom.xml" title="奔跑的牛" type="application/atom+xml">
   
@@ -170,13 +170,13 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>摘要：我所理解的原型及原型链，先放张图<br><img src="http://oeaojnvpz.bkt.clouddn.com/blog13.png" alt="blog13"><br><a id="more"></a></p>
+        <p>摘要：我所理解的原型及原型链，先放张图<br><img src="http://picture.niuxiaokui.top/blog13.png" alt="blog13"><br><a id="more"></a></p>
 <p>原型规则：<br>1.所有的引用类型都具有对象特性，即可自由扩展属性<br>2.所有的函数都有一个<code>prototype</code>属性，该属性指向由该函数创建的实例的原型<br>3.所有的引用类型都有一个<code>__proto__</code>属性，该属性指向它的构造函数的<code>prototype</code>属性，即它的原型。但要注意：<code>__proto__</code>属性只能在学习或调试的环境下使用，或者在ES5下使用Object.getPrototypeOf()获得、isPrototypeOf()判断对象原型<br>4.每个原型都有一个<code>constructor</code>属性指向关联的构造函数<br>5.如果对象本身没有某个属性，就会去它的原型对象中查询。如果还没有，继续到原型对象的原型中查询，沿着原型链一级一级向上查询直到null<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// 构造函数Foo</span><br><span class="line">function Foo() &#123;&#125;</span><br><span class="line">// 创建实例f1</span><br><span class="line">var f1 = new Foo();</span><br><span class="line">console.log(f1.__proto__ === Foo.prototype); // true</span><br><span class="line">console.log(Foo.prototype.constructor === Foo); // true</span><br></pre></td></tr></table></figure></p>
-<p>构造函数Foo、实例原型Foo.prototype与实例f1三者之间的关系<br><img src="http://oeaojnvpz.bkt.clouddn.com/blog14.png" alt="blog14"></p>
+<p>构造函数Foo、实例原型Foo.prototype与实例f1三者之间的关系<br><img src="http://picture.niuxiaokui.top/blog14.png" alt="blog14"></p>
 <p>Foo.prototype也是个对象，它由构造函数Object实例化生成的，即Foo.prototype的原型Foo.prototype.<strong>proto</strong>指向了Object.prototype<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Object.prototype.isPrototypeOf(Foo.prototype); // true</span><br></pre></td></tr></table></figure></p>
-<p>结合上一张图，添加上构造函数Object、原型Object.prototype及实例：<br><img src="http://oeaojnvpz.bkt.clouddn.com/blog15.png" alt="blog15"></p>
+<p>结合上一张图，添加上构造函数Object、原型Object.prototype及实例：<br><img src="http://picture.niuxiaokui.top/blog15.png" alt="blog15"></p>
 <p>不要忘记函数也是个对象，是由Function构造器生成的，那么函数的原型就是Function.prototype啦！同时，Function.prototype也是个对象，它的原型又指向了Object.prototype。Object.prototype的原型指向null<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Object.prototype.isPrototypeOf(Function.prototype); // true</span><br><span class="line">console.log(Object.__proto__ === Function.prototype); // true</span><br></pre></td></tr></table></figure></p>
-<p>更新关系图：<br><img src="http://oeaojnvpz.bkt.clouddn.com/blog16.png" alt="blog16"></p>
+<p>更新关系图：<br><img src="http://picture.niuxiaokui.top/blog16.png" alt="blog16"></p>
 <p>注意：Function.<strong>proto</strong>是指向Function.prototype的，但这并不表示Function构造器创建了自己——Function是内置对象，一开始就存在</p>
 
       
@@ -367,6 +367,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">JSON</a>
               </li>
              
@@ -379,15 +383,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">MongoDB</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -395,11 +391,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">【安全】</a>
+                <a href="javascript:void(0)" class="js-tag color3">MongoDB</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Vue.js</a>
+                <a href="javascript:void(0)" class="js-tag color5">【安全】</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -408,6 +404,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">jade</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Vue.js</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -427,11 +427,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">压缩</a>
+                <a href="javascript:void(0)" class="js-tag color4">小程序</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">小程序</a>
+                <a href="javascript:void(0)" class="js-tag color3">压缩</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -443,15 +443,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">浏览器</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Github</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">浏览器</a>
               </li>
              
               <li class="article-tag-list-item">

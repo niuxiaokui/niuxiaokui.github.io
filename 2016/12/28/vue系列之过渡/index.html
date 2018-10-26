@@ -16,12 +16,12 @@
 <meta property="og:site_name" content="奔跑的牛">
 <meta property="og:description" content="摘要：vue实现简单的过渡效果">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://oeaojnvpz.bkt.clouddn.com/blog9.png">
-<meta property="og:updated_time" content="2018-09-05T01:50:56.331Z">
+<meta property="og:image" content="http://picture.niuxiaokui.top/blog9.png">
+<meta property="og:updated_time" content="2018-10-26T09:07:10.523Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="vue系列之过渡">
 <meta name="twitter:description" content="摘要：vue实现简单的过渡效果">
-<meta name="twitter:image" content="http://oeaojnvpz.bkt.clouddn.com/blog9.png">
+<meta name="twitter:image" content="http://picture.niuxiaokui.top/blog9.png">
   
     <link rel="alternative" href="/atom.xml" title="奔跑的牛" type="application/atom+xml">
   
@@ -168,7 +168,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>摘要：vue实现简单的过渡效果<a id="more"></a></p>
-<h4 id="过渡效果"><a href="#过渡效果" class="headerlink" title="过渡效果"></a>过渡效果</h4><p>Vue在插入、更新或者移除DOM时可以应用过渡，简单的使用transition封装组件结合<code>v-if</code>和<code>v-show</code>达到效果<br>会有4个(CSS)类名在enter/leave的过渡中切换，<br>v-enter: 定义进入过渡的开始状态。在元素被插入时生效，在下一个帧移除。<br>v-enter-active: 定义进入过渡的结束状态。在元素被插入时生效，在transition/animation完成之后移除。<br>v-leave: 定义离开过渡的开始状态。在离开过渡被触发时生效，在下一个帧移除。<br>v-leave-active: 定义离开过渡的结束状态。在离开过渡被触发时生效，在transition/animation 完成之后移除。<br>其中的v由<code>&lt;transition name=&quot;fade&quot;&gt;</code>中的name属性设置（设置为fade）<br><img src="http://oeaojnvpz.bkt.clouddn.com/blog9.png" alt="blog9"></p>
+<h4 id="过渡效果"><a href="#过渡效果" class="headerlink" title="过渡效果"></a>过渡效果</h4><p>Vue在插入、更新或者移除DOM时可以应用过渡，简单的使用transition封装组件结合<code>v-if</code>和<code>v-show</code>达到效果<br>会有4个(CSS)类名在enter/leave的过渡中切换，<br>v-enter: 定义进入过渡的开始状态。在元素被插入时生效，在下一个帧移除。<br>v-enter-active: 定义进入过渡的结束状态。在元素被插入时生效，在transition/animation完成之后移除。<br>v-leave: 定义离开过渡的开始状态。在离开过渡被触发时生效，在下一个帧移除。<br>v-leave-active: 定义离开过渡的结束状态。在离开过渡被触发时生效，在transition/animation 完成之后移除。<br>其中的v由<code>&lt;transition name=&quot;fade&quot;&gt;</code>中的name属性设置（设置为fade）<br><img src="http://picture.niuxiaokui.top/blog9.png" alt="blog9"></p>
 <h4 id="过渡示例"><a href="#过渡示例" class="headerlink" title="过渡示例"></a>过渡示例</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=&quot;en&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">  &lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">  &lt;title&gt;vue过渡&lt;/title&gt;</span><br><span class="line">  &lt;style&gt;</span><br><span class="line">    p &#123;</span><br><span class="line">      width:300px;</span><br><span class="line">      height:300px;</span><br><span class="line">      background: red;</span><br><span class="line">    &#125;</span><br><span class="line">    .fade-enter-active, .fade-leave-active &#123;</span><br><span class="line">        transition: all 1s ease 0.5s;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    .fade-enter-active &#123;</span><br><span class="line">      opacity:1;</span><br><span class="line">      width:300px;</span><br><span class="line">      height:300px;</span><br><span class="line">    &#125;</span><br><span class="line">    .fade-leave-active &#123;</span><br><span class="line">      opacity:0;</span><br><span class="line">      width:100px;</span><br><span class="line">      height:100px;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    .fade-enter, .fade-leave &#123;</span><br><span class="line">      opacity:0;</span><br><span class="line">      width:100px;</span><br><span class="line">      height:100px;</span><br><span class="line">    &#125;</span><br><span class="line">  &lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">  &lt;div id=&quot;box&quot;&gt;</span><br><span class="line">    &lt;input type=&quot;button&quot; value=&quot;点我显示/隐藏&quot; @click=&quot;show=!show&quot;&gt;</span><br><span class="line">    &lt;transition name=&quot;fade&quot;&gt;</span><br><span class="line">      &lt;p v-show=&quot;show&quot;&gt;&lt;/p&gt;</span><br><span class="line">    &lt;/transition&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">  &lt;script src=&quot;https://unpkg.com/vue/dist/vue.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">  &lt;script&gt;</span><br><span class="line">    new Vue(&#123;</span><br><span class="line">      el:&apos;#box&apos;,</span><br><span class="line">      data:&#123;</span><br><span class="line">        show:false</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">  &lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
       
 
@@ -358,6 +358,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">JSON</a>
               </li>
              
@@ -370,15 +374,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">MongoDB</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -386,11 +382,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">【安全】</a>
+                <a href="javascript:void(0)" class="js-tag color3">MongoDB</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Vue.js</a>
+                <a href="javascript:void(0)" class="js-tag color5">【安全】</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -399,6 +395,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">jade</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Vue.js</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -418,11 +418,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">压缩</a>
+                <a href="javascript:void(0)" class="js-tag color4">小程序</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">小程序</a>
+                <a href="javascript:void(0)" class="js-tag color3">压缩</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -434,15 +434,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">浏览器</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Github</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">浏览器</a>
               </li>
              
               <li class="article-tag-list-item">

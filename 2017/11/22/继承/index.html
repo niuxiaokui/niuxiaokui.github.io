@@ -16,12 +16,12 @@
 <meta property="og:site_name" content="奔跑的牛">
 <meta property="og:description" content="摘要：冴羽的博客学习继承">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://oeaojnvpz.bkt.clouddn.com/blog12.png">
-<meta property="og:updated_time" content="2018-09-05T16:08:27.675Z">
+<meta property="og:image" content="http://picture.niuxiaokui.top/blog12.png">
+<meta property="og:updated_time" content="2018-10-26T09:07:10.522Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="继承">
 <meta name="twitter:description" content="摘要：冴羽的博客学习继承">
-<meta name="twitter:image" content="http://oeaojnvpz.bkt.clouddn.com/blog12.png">
+<meta name="twitter:image" content="http://picture.niuxiaokui.top/blog12.png">
   
     <link rel="alternative" href="/atom.xml" title="奔跑的牛" type="application/atom+xml">
   
@@ -179,7 +179,7 @@
 <h4 id="寄生式继承"><a href="#寄生式继承" class="headerlink" title="寄生式继承"></a>寄生式继承</h4><p>创建一个仅用于封装继承过程的函数，该函数在内部以某种方式来增强对象，再返回对象<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">function _create(o) &#123;</span><br><span class="line">  var obj = Object.create(o);</span><br><span class="line">  obj.say = function () &#123;</span><br><span class="line">    console.log(&quot;hi&quot;);</span><br><span class="line">  &#125;</span><br><span class="line">  return obj;</span><br><span class="line">&#125;</span><br><span class="line">var person = &#123;</span><br><span class="line">  name: &quot;xiaowang&quot;</span><br><span class="line">&#125;</span><br><span class="line">var person3 = _create(person);</span><br><span class="line">person3.say() // hi</span><br></pre></td></tr></table></figure></p>
 <p>注意：每次创建对象都会创建一次方法</p>
 <h4 id="寄生组合式继承"><a href="#寄生组合式继承" class="headerlink" title="寄生组合式继承"></a>寄生组合式继承</h4><p>寄生组合式继承是实现基于类型继承的最有效方式。只会调用一次父类型，避免了在父类型原型上创建多余的属性，同时原型链还保持不变。其本质上是使用寄生式继承来继承父类型的原型，然后再将结果指定给子类型的原型<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">function Parent(name) &#123;</span><br><span class="line">  this.name = name;</span><br><span class="line">  this.friends = [&quot;xiaowang&quot;, &quot;laowang&quot;];</span><br><span class="line">&#125;</span><br><span class="line">Parent.prototype.say = function () &#123;</span><br><span class="line">  console.log(this.name);</span><br><span class="line">&#125;</span><br><span class="line">function Child(name, age) &#123;</span><br><span class="line">  Parent.call(this, name);</span><br><span class="line">  this.age = age;</span><br><span class="line">&#125;</span><br><span class="line">// 注意与组合继承的区别</span><br><span class="line">var F = function () &#123; &#125;</span><br><span class="line">F.prototype = Parent.prototype;</span><br><span class="line">Child.prototype = new F();</span><br><span class="line">var child7 = new Child(&quot;xiaohong&quot;, 18);</span><br><span class="line">console.log(child7)</span><br></pre></td></tr></table></figure></p>
-<p><img src="http://oeaojnvpz.bkt.clouddn.com/blog12.png" alt="blog12"></p>
+<p><img src="http://picture.niuxiaokui.top/blog12.png" alt="blog12"></p>
 <p>封装一下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">function object(o) &#123;</span><br><span class="line">  function F() &#123; &#125;</span><br><span class="line">  F.prototype = o;</span><br><span class="line">  return new F();</span><br><span class="line">&#125;</span><br><span class="line">function prototype(child, parent) &#123;</span><br><span class="line">  var prototype = object(parent.prototype);</span><br><span class="line">  prototype.constructor = child;</span><br><span class="line">  child.prototype = prototype;</span><br><span class="line">&#125;</span><br><span class="line">prototype(Child, Parent);</span><br></pre></td></tr></table></figure></p>
 
       
@@ -370,6 +370,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">JSON</a>
               </li>
              
@@ -382,15 +386,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">MongoDB</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -398,11 +394,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">【安全】</a>
+                <a href="javascript:void(0)" class="js-tag color3">MongoDB</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Vue.js</a>
+                <a href="javascript:void(0)" class="js-tag color5">【安全】</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -411,6 +407,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">jade</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Vue.js</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -430,11 +430,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">压缩</a>
+                <a href="javascript:void(0)" class="js-tag color4">小程序</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">小程序</a>
+                <a href="javascript:void(0)" class="js-tag color3">压缩</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -446,15 +446,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">浏览器</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Github</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">浏览器</a>
               </li>
              
               <li class="article-tag-list-item">

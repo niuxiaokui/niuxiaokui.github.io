@@ -16,13 +16,13 @@
 <meta property="og:site_name" content="奔跑的牛">
 <meta property="og:description" content="摘要：学习ES6笔记">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://oeaojnvpz.bkt.clouddn.com/blog4.png">
-<meta property="og:image" content="http://oeaojnvpz.bkt.clouddn.com/blog5.png">
-<meta property="og:updated_time" content="2018-09-05T12:47:54.266Z">
+<meta property="og:image" content="http://picture.niuxiaokui.top/blog4.png">
+<meta property="og:image" content="http://picture.niuxiaokui.top/blog5.png">
+<meta property="og:updated_time" content="2018-10-26T09:07:10.523Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="学习ES6">
 <meta name="twitter:description" content="摘要：学习ES6笔记">
-<meta name="twitter:image" content="http://oeaojnvpz.bkt.clouddn.com/blog4.png">
+<meta name="twitter:image" content="http://picture.niuxiaokui.top/blog4.png">
   
     <link rel="alternative" href="/atom.xml" title="奔跑的牛" type="application/atom+xml">
   
@@ -187,7 +187,7 @@
 <p>endsWith：判断指定的子字符串是否出现在字符串的末端，返回布尔值，true表示是，false表示否。可以有两个参数，第一个为子字符串，第二个选填，表示针对前几个字符<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">let strC = &quot;helloworld&quot;;</span><br><span class="line">strC.endsWith(&quot;world&quot;); // true</span><br><span class="line">strC.endsWith(&quot;hello&quot;, 5); // true</span><br><span class="line">strC.endsWith(&quot;hello&quot;, 6); // false</span><br></pre></td></tr></table></figure></p>
 <p>codePointAt：能正确识别4个字节的字符（Unicode码点大于0xFFFF的字符），并正确返回码点的十进制数，charAt只能识别2个字节的字符<br>String.fromCodePoint：能根据码点返回对应的字符，可以识别Unicode码点大于0xFFFF的字符，如果有多个参数传入，则它们会被合并成一个字符串返回。String.fromCharCode方法只识别2个字节的码点<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">let str4 = &quot;𠮷&quot;;</span><br><span class="line">let strCode0 = str4.codePointAt();</span><br><span class="line">let str4_0 = String.fromCodePoint(strCode0, strCode0, strCode0);</span><br><span class="line">console.log(strCode0) // 134071</span><br><span class="line">console.log(str4_0) // 𠮷𠮷𠮷</span><br></pre></td></tr></table></figure></p>
 <p>String.raw：不加工，原样输出<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">let strC = `helloworld\nhelloworld`;</span><br><span class="line">let strD = String.raw`helloworld\nhelloworld`;</span><br><span class="line">console.log(strC)</span><br><span class="line">console.log(strD)</span><br></pre></td></tr></table></figure></p>
-<p><img src="http://oeaojnvpz.bkt.clouddn.com/blog4.png" alt="blog4"></p>
+<p><img src="http://picture.niuxiaokui.top/blog4.png" alt="blog4"></p>
 <h4 id="4-Number对象"><a href="#4-Number对象" class="headerlink" title="4.Number对象"></a>4.Number对象</h4><p>Number.isNaN：判断是否为非数值，只针对数值型有效，非数值型一律返回false。也就是说：<strong>返回false的可能是数值或非Number类型的值</strong>。传统的isNAN会先试着将参数转化成数值型在判断，而Number.isNaN则不转化直接判断。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Number.isNaN(1); // false</span><br><span class="line">Number.isNaN(NaN); // true</span><br><span class="line">Number.isNaN(&quot;abc&quot;); // false</span><br><span class="line">isNaN(&quot;abc&quot;); // true</span><br><span class="line">Number.isNaN(&quot;1&quot;); // false</span><br><span class="line">isNaN(&quot;1&quot;); // false</span><br></pre></td></tr></table></figure></p>
 <p>Number.isFinite：判断是否为非无穷，即有穷。也是只针对数值型有效，非数值型一律false。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Number.isFinite(1); // true</span><br><span class="line">Number.isFinite(Infinity); // 无穷大，false</span><br><span class="line">Number.isFinite(&quot;1&quot;); // false</span><br></pre></td></tr></table></figure></p>
 <p>Number.parseInt：返回一个整数，如果参数是字符串，会先转化解析字符串再返回一个整数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Number.parseInt(12.3); // 12</span><br><span class="line">Number.parseInt(&quot;12.3abc&quot;); // 12</span><br></pre></td></tr></table></figure></p>
@@ -267,7 +267,7 @@
 <h4 id="16-WeakSet"><a href="#16-WeakSet" class="headerlink" title="16.WeakSet"></a>16.WeakSet</h4><p>WeakSet与Set类似，WeakSet结构同样不会存储重复的值，但它的成员必须是对象类型的值（严格来说是具有iterable接口的对象），而且WeakSet结构不可遍历（它的成员都是对象的弱引用，随时会被回收机制回收）<br>WeakSet结构提供了add()，delete(),has()方法，作用与用法跟Set结构完全一致。但由于WeakSet结构不能遍历，就不会有keys(),values(),entride(),forEach()方法和size属性<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">let ws1 = new WeakSet([&#123; name: &quot;xiaowang&quot; &#125;]);</span><br><span class="line">console.log(ws1); // WeakSet &#123;Object &#123;name: &quot;xiaowang&quot;&#125;&#125;</span><br><span class="line"></span><br><span class="line">var arrA = [1];</span><br><span class="line">var arrB = [2];</span><br><span class="line">let ws2 = new WeakSet([arrA, arrB]);</span><br><span class="line">console.log(ws2); // WeakSet &#123;[1], [2]&#125;</span><br><span class="line"></span><br><span class="line">let ws3 = new WeakSet([1, 2]);</span><br><span class="line">console.log(ws3); // 报错</span><br></pre></td></tr></table></figure></p>
 <h4 id="17-Map"><a href="#17-Map" class="headerlink" title="17.Map"></a>17.Map</h4><p>Map与Object对象类似，但Map的键名类型不在局限于字符串，可以是各种类型的值。如果想要在创建实例的同时进行初始化，可以将数组作为参数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">let m = new Map([</span><br><span class="line">  [&quot;name&quot;, &quot;xiaowuang&quot;],</span><br><span class="line">  [&quot;age&quot;, 24]</span><br><span class="line">]);</span><br><span class="line">console.log(m); // Map &#123;&quot;name&quot; =&gt; &quot;xiaowuang&quot;, &quot;age&quot; =&gt; 24&#125;</span><br></pre></td></tr></table></figure></p>
 <p>set：给实例设置一堆键值对，返回map实例,如果键名已经存在，那么后面的键值会覆盖前面的键值<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">let m = new Map();</span><br><span class="line">m.set(&quot;name&quot;, &quot;xiaowang&quot;); // 字符串类型的键名</span><br><span class="line">m.set(&#123; &quot;age&quot;: 24 &#125;, 1)  // 对象类型的键名</span><br><span class="line">m.set([1], 2); // 数组类型的键名</span><br><span class="line">m.set(true, 3); // 布尔类型的键名</span><br><span class="line">m.set(Symble(&quot;symble&quot;), 4); // Symbol类型的键名</span><br><span class="line">m.set(null, 5); // null为键名</span><br><span class="line">m.set(undefined, 6); // undefined为键名</span><br><span class="line">console.log(m);</span><br></pre></td></tr></table></figure></p>
-<p><img src="http://oeaojnvpz.bkt.clouddn.com/blog5.png" alt="blog5"></p>
+<p><img src="http://picture.niuxiaokui.top/blog5.png" alt="blog5"></p>
 <p>size属性来获取实例的成员数<br>get：获得指定键名的键值，如果不存在就返回undefined<br>delete：删除指定的键值对，成功返回true，失败返回false<br>clear：清除所有键值对<br>has：判断Map实例是否包含指定的键值对，有就返回true，没有则返回false<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">let m = new Map([[&quot;name&quot;, &quot;xiaowang&quot;], [&quot;age&quot;, 24], [&quot;height&quot;, 180]]);</span><br><span class="line">console.log(m.get(&quot;name&quot;)); // xiaowang</span><br><span class="line">console.log(m.get(&quot;weight&quot;)); // undefined</span><br><span class="line">console.log(m.delete(&quot;age&quot;)); // true</span><br><span class="line">console.log(m); // Map &#123;&quot;name&quot; =&gt; &quot;xiaowang&quot;, &quot;height&quot; =&gt; 180&#125;</span><br><span class="line">console.log(m.size); // 2</span><br><span class="line">console.log(m.has(&quot;name&quot;)); // true</span><br><span class="line">console.log(m.has(&quot;age&quot;)); // false</span><br><span class="line">m.clear();</span><br><span class="line">console.log(m); // Map &#123; &#125;</span><br></pre></td></tr></table></figure></p>
 <p>Map结构可以被遍历<br>entries：返回实例的键值对遍历器<br>keys：返回实例所有键名的遍历器<br>values：返回实例所有键值的遍历器<br>forEach：遍历每一个键值对<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">let m = new Map([[&quot;name&quot;, &quot;xiaoming&quot;], [&quot;age&quot;, 24]]);</span><br><span class="line">for (let [key, value] of m.entries()) &#123;</span><br><span class="line">  console.log(key, value); // name xiaoming age 24</span><br><span class="line">&#125;</span><br><span class="line">for (let key of m.keys()) &#123;</span><br><span class="line">  console.log(key); // name age</span><br><span class="line">&#125;</span><br><span class="line">for (let value of m.values()) &#123;</span><br><span class="line">  console.log(value); // xiaoming 24</span><br><span class="line">&#125;</span><br><span class="line">m.forEach(function (value, key) &#123;</span><br><span class="line">  console.log(key, value); // name xiaoming age 24</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
 <h4 id="18-WeakMap"><a href="#18-WeakMap" class="headerlink" title="18.WeakMap"></a>18.WeakMap</h4><p>WeakMap与Map结构很类似，不同点在于WeakMap的键名只支持数组、对象、函数这样的引用类型数据<br>WeakMap也有get、has、delete方法，用法用途与Map一样，但不支持clear、keys、values、entries、forEach方法，也没有size属性<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">let wm = new WeakMap();</span><br><span class="line">wm.set(&#123; &quot;name&quot;&#125;, &quot;xiaowang&quot;);</span><br><span class="line">wm.set([&quot;age&quot;], 24);</span><br><span class="line">function height() &#123; &#125;</span><br><span class="line">wm.set(height, 180);</span><br><span class="line">console.log(wm); // WeakMap &#123;[&quot;age&quot;] =&gt; 24, function =&gt; 180, Object &#123;name: &quot;xiaowang&quot;&#125; =&gt; 1&#125;</span><br></pre></td></tr></table></figure></p>
@@ -483,6 +483,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">JSON</a>
               </li>
              
@@ -495,15 +499,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">MongoDB</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -511,11 +507,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">【安全】</a>
+                <a href="javascript:void(0)" class="js-tag color3">MongoDB</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Vue.js</a>
+                <a href="javascript:void(0)" class="js-tag color5">【安全】</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -524,6 +520,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">jade</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Vue.js</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -543,11 +543,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">压缩</a>
+                <a href="javascript:void(0)" class="js-tag color4">小程序</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">小程序</a>
+                <a href="javascript:void(0)" class="js-tag color3">压缩</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -559,15 +559,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">浏览器</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Github</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">浏览器</a>
               </li>
              
               <li class="article-tag-list-item">
