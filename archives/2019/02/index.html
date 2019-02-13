@@ -6,22 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="https://niuxiaokui.github.io">
-  <title>继承 | 奔跑的牛</title>
+  <title>Archives: 2019/2 | 奔跑的牛</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="摘要：冴羽的博客学习继承">
-<meta name="keywords" content="JavaScript">
-<meta property="og:type" content="article">
-<meta property="og:title" content="继承">
-<meta property="og:url" content="https://niuxiaokui.github.io/2017/11/22/继承/index.html">
+  <meta name="description" content="欢迎来到">
+<meta property="og:type" content="website">
+<meta property="og:title" content="奔跑的牛">
+<meta property="og:url" content="https://niuxiaokui.github.io/archives/2019/02/index.html">
 <meta property="og:site_name" content="奔跑的牛">
-<meta property="og:description" content="摘要：冴羽的博客学习继承">
+<meta property="og:description" content="欢迎来到">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://picture.niuxiaokui.top/blog12.png">
-<meta property="og:updated_time" content="2018-10-26T09:07:10.522Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="继承">
-<meta name="twitter:description" content="摘要：冴羽的博客学习继承">
-<meta name="twitter:image" content="http://picture.niuxiaokui.top/blog12.png">
+<meta name="twitter:title" content="奔跑的牛">
+<meta name="twitter:description" content="欢迎来到">
   
     <link rel="alternative" href="/atom.xml" title="奔跑的牛" type="application/atom+xml">
   
@@ -147,48 +143,36 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-继承" class="article article-type-post " itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+            
   
-    <h1 class="article-title" itemprop="name">
-      继承
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2019" class="archive-year">2019</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2019/02/13/学习underscore中-cb-和-optimizeC函数/" class="archive-article-date">
+  	<time datetime="2019-02-13T13:22:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-02-13</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2019/02/13/学习underscore中-cb-和-optimizeC函数/">学习underscore中 cb 和 optimizeCb函数</a>
     </h1>
   
 
-        
-        <a href="/2017/11/22/继承/" class="archive-article-date">
-  	<time datetime="2017-11-22T07:40:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-22</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>摘要：<a href="https://github.com/mqyqingfeng/Blog" target="_blank" rel="noopener">冴羽的博客</a>学习继承<a id="more"></a></p>
-<h4 id="原型链继承"><a href="#原型链继承" class="headerlink" title="原型链继承"></a>原型链继承</h4><p>通过原型链继承时不可以使用字面量创建原型方法，因为这样会重写原型链<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">function Person() &#123;</span><br><span class="line">  this.friends = [&quot;laowang&quot;, &quot;xiaowang&quot;]</span><br><span class="line">&#125;</span><br><span class="line">function Child() &#123; &#125;</span><br><span class="line">Child.prototype = new Person();</span><br><span class="line">var child1 = new Child();</span><br><span class="line">child1.friends.push(&quot;dagang&quot;);</span><br><span class="line">console.log(child1.friends); // [&quot;laowang&quot;, &quot;xiaowang&quot;, &quot;dagang&quot;]</span><br><span class="line">var child2 = new Child();</span><br><span class="line">console.log(child2.friends); //[&quot;laowang&quot;, &quot;xiaowang&quot;, &quot;dagang&quot;]</span><br></pre></td></tr></table></figure></p>
-<p>注意：<br>1.引用类型的属性被所有实例共享<br>2.实例化子类Child时，无法向父类Person传参</p>
-<h4 id="借用构造函数（经典继承）"><a href="#借用构造函数（经典继承）" class="headerlink" title="借用构造函数（经典继承）"></a>借用构造函数（经典继承）</h4><p>原理：在子类型构造函数的内部调用父类型构造函数。call、apply方法可以实现（<a href="https://niuxiaokui.github.io/2017/11/13/%E6%A8%A1%E6%8B%9F%E5%AE%9E%E7%8E%B0call%E3%80%81applay%E3%80%81bind%E5%92%8Cnew/">模拟实现call、applay、bind和new</a>）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">function Person(age) &#123;</span><br><span class="line">  this.friends = [&quot;laowang&quot;, &quot;xiaowang&quot;];</span><br><span class="line">  this.age = age</span><br><span class="line">&#125;</span><br><span class="line">function Child(age) &#123;</span><br><span class="line">  Person.call(this, age);</span><br><span class="line">&#125;</span><br><span class="line">var child3 = new Child(24);</span><br><span class="line">child3.friends.push(&quot;dagang&quot;)</span><br><span class="line">console.log(child3.friends); // [&quot;laowang&quot;, &quot;xiaowang&quot;, &quot;dagang&quot;]</span><br><span class="line">console.log(child3.age); // 24</span><br><span class="line">var child4 = new Child(99);</span><br><span class="line">console.log(child4.friends); // [&quot;laowang&quot;, &quot;xiaowang&quot;]</span><br><span class="line">console.log(child4.age); // 99</span><br></pre></td></tr></table></figure></p>
-<p>注意：<br>1.引用类型的属性不会被所有实例共享<br>2.实例化子类Child时，可以向父类Person传参<br>3.方法都在构造函数中定义，每次创建实例都会创建一遍方法</p>
-<h4 id="组合继承"><a href="#组合继承" class="headerlink" title="组合继承"></a>组合继承</h4><p>原型链继承+经典继承，原理：使用原型链实现对原型属性和方法的继承，而通过借用构造函数来实现对实例属性的继承<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">function Person(age) &#123;</span><br><span class="line">  this.age = age;</span><br><span class="line">  this.friends = [&quot;laowang&quot;, &quot;xiaowang&quot;]</span><br><span class="line">&#125;</span><br><span class="line">Person.prototype.say = function () &#123;</span><br><span class="line">  console.log(this.sex)</span><br><span class="line">&#125;</span><br><span class="line">function Child(sex, age) &#123;</span><br><span class="line">  Person.call(this, age) // 父类第二次被调用</span><br><span class="line">  this.sex = sex</span><br><span class="line">&#125;</span><br><span class="line">Child.prototype = new Person(); // 父类第一次被调用</span><br><span class="line">var child5 = new Child(&quot;male&quot;, 25);</span><br><span class="line">child5.friends.push(&quot;dagang&quot;);</span><br><span class="line">child5.say() // male</span><br><span class="line">console.log(child5.age); // 25</span><br><span class="line">console.log(child5.friends); // [&quot;laowang&quot;, &quot;xiaowang&quot;, &quot;dagang&quot;]</span><br><span class="line">var child6 = new Child(&quot;female&quot;, 24);</span><br><span class="line">child6.say() // female</span><br><span class="line">console.log(child6.age); // 24</span><br><span class="line">console.log(child6.friends); // [&quot;laowang&quot;, &quot;xiaowang&quot;]</span><br></pre></td></tr></table></figure></p>
-<p>注意：通过在原型上定义方法实现了函数复用，又保证每个实例都有自己的属性，是js中最常用的继承方式</p>
-<h4 id="原型式继承"><a href="#原型式继承" class="headerlink" title="原型式继承"></a>原型式继承</h4><p>借助原型基于已有的对象创建对象，同时不必因此自定义类型。是Object.create的模拟实现<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">function _create(o) &#123;</span><br><span class="line">  function F() &#123; &#125;</span><br><span class="line">  F.prototype = o;</span><br><span class="line">  return new F();</span><br><span class="line">&#125;</span><br><span class="line">var person = &#123;</span><br><span class="line">  friends: [&quot;xiaowang&quot;, &quot;laowang&quot;],</span><br><span class="line">  name: &quot;name&quot;</span><br><span class="line">&#125;</span><br><span class="line">var person1 = _create(person);</span><br><span class="line">console.log(person1.friends); // [&quot;xiaowang&quot;, &quot;laowang&quot;]</span><br><span class="line">console.log(person1.name); // name</span><br><span class="line">person1.name = &quot;person1&quot;;</span><br><span class="line">person1.friends.push(&quot;dagang&quot;);</span><br><span class="line">console.log(person1.friends); // [&quot;xiaowang&quot;, &quot;laowang&quot;, &quot;dagang&quot;]</span><br><span class="line">console.log(person1.name); // person1</span><br><span class="line">var person2 = _create(person);</span><br><span class="line">console.log(person2.friends); // [&quot;xiaowang&quot;, &quot;laowang&quot;, &quot;dagang&quot;]</span><br><span class="line">console.log(person2.name); // name</span><br></pre></td></tr></table></figure></p>
-<p>注意：<br>1.包含引用类型的属性值会共享<br>2.修改person1.name时，是给person1添加新的name属性，而非覆盖person的name属性</p>
-<h4 id="寄生式继承"><a href="#寄生式继承" class="headerlink" title="寄生式继承"></a>寄生式继承</h4><p>创建一个仅用于封装继承过程的函数，该函数在内部以某种方式来增强对象，再返回对象<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">function _create(o) &#123;</span><br><span class="line">  var obj = Object.create(o);</span><br><span class="line">  obj.say = function () &#123;</span><br><span class="line">    console.log(&quot;hi&quot;);</span><br><span class="line">  &#125;</span><br><span class="line">  return obj;</span><br><span class="line">&#125;</span><br><span class="line">var person = &#123;</span><br><span class="line">  name: &quot;xiaowang&quot;</span><br><span class="line">&#125;</span><br><span class="line">var person3 = _create(person);</span><br><span class="line">person3.say() // hi</span><br></pre></td></tr></table></figure></p>
-<p>注意：每次创建对象都会创建一次方法</p>
-<h4 id="寄生组合式继承"><a href="#寄生组合式继承" class="headerlink" title="寄生组合式继承"></a>寄生组合式继承</h4><p>寄生组合式继承是实现基于类型继承的最有效方式。只会调用一次父类型，避免了在父类型原型上创建多余的属性，同时原型链还保持不变。其本质上是使用寄生式继承来继承父类型的原型，然后再将结果指定给子类型的原型<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">function Parent(name) &#123;</span><br><span class="line">  this.name = name;</span><br><span class="line">  this.friends = [&quot;xiaowang&quot;, &quot;laowang&quot;];</span><br><span class="line">&#125;</span><br><span class="line">Parent.prototype.say = function () &#123;</span><br><span class="line">  console.log(this.name);</span><br><span class="line">&#125;</span><br><span class="line">function Child(name, age) &#123;</span><br><span class="line">  Parent.call(this, name);</span><br><span class="line">  this.age = age;</span><br><span class="line">&#125;</span><br><span class="line">// 注意与组合继承的区别</span><br><span class="line">var F = function () &#123; &#125;</span><br><span class="line">F.prototype = Parent.prototype;</span><br><span class="line">Child.prototype = new F();</span><br><span class="line">var child7 = new Child(&quot;xiaohong&quot;, 18);</span><br><span class="line">console.log(child7)</span><br></pre></td></tr></table></figure></p>
-<p><img src="http://picture.niuxiaokui.top/blog12.png" alt="blog12"></p>
-<p>封装一下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">function object(o) &#123;</span><br><span class="line">  function F() &#123; &#125;</span><br><span class="line">  F.prototype = o;</span><br><span class="line">  return new F();</span><br><span class="line">&#125;</span><br><span class="line">function prototype(child, parent) &#123;</span><br><span class="line">  var prototype = object(parent.prototype);</span><br><span class="line">  prototype.constructor = child;</span><br><span class="line">  child.prototype = prototype;</span><br><span class="line">&#125;</span><br><span class="line">prototype(Child, Parent);</span><br></pre></td></tr></table></figure></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -200,64 +184,19 @@
 		</ul>
 	</div>
 
-      
+          
 
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
+        </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2017/11/25/原型及原型链/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          原型及原型链
-        
-      </div>
-    </a>
   
   
-    <a href="/2017/11/18/创建对象/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">创建对象</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-  
-  
+    </div></section>
   
 
-  
-
-  
-
-  
+    
 
 
           </div>
@@ -280,8 +219,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
-		isArchive: false,
+		isPost: false,
+		isArchive: true,
 		isTag: false,
 		isCategory: false,
 		open_in_new: true,
