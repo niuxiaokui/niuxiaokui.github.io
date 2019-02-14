@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="https://niuxiaokui.github.io">
   <title>学习underscore链式调用 | 奔跑的牛</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="摘要：学习冴羽的博客研究underscore链式调用">
+  <meta name="description" content="摘要：学习冴羽的博客研究 underscore 链式调用">
 <meta name="keywords" content="JavaScript">
 <meta property="og:type" content="article">
 <meta property="og:title" content="学习underscore链式调用">
 <meta property="og:url" content="https://niuxiaokui.github.io/2019/01/29/学习underscore链式调用/index.html">
 <meta property="og:site_name" content="奔跑的牛">
-<meta property="og:description" content="摘要：学习冴羽的博客研究underscore链式调用">
+<meta property="og:description" content="摘要：学习冴羽的博客研究 underscore 链式调用">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-01-29T16:22:46.370Z">
+<meta property="og:updated_time" content="2019-02-14T13:58:12.506Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="学习underscore链式调用">
-<meta name="twitter:description" content="摘要：学习冴羽的博客研究underscore链式调用">
+<meta name="twitter:description" content="摘要：学习冴羽的博客研究 underscore 链式调用">
   
     <link rel="alternative" href="/atom.xml" title="奔跑的牛" type="application/atom+xml">
   
@@ -165,7 +165,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>摘要：学习<a href="https://github.com/mqyqingfeng/Blog" target="_blank" rel="noopener">冴羽的博客</a>研究underscore链式调用<a id="more"></a></p>
+        <p>摘要：学习<a href="https://github.com/mqyqingfeng/Blog" target="_blank" rel="noopener">冴羽的博客</a>研究 underscore 链式调用<a id="more"></a></p>
 <h3 id="jQuery"><a href="#jQuery" class="headerlink" title="jQuery"></a>jQuery</h3><p>jQuery 之所以能实现链式调用，关键就在于通过 return this，返回调用对象，伪代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">// 获取DOM</span><br><span class="line">function JQuery(selector) &#123;</span><br><span class="line">  this.elements = [];</span><br><span class="line">  var nodeLists = document.getElementsByTagName(selector);</span><br><span class="line">  for (var i = 0; i &lt; nodeLists.length; i++) &#123;</span><br><span class="line">    this.elements.push(nodeLists[i]);</span><br><span class="line">  &#125;</span><br><span class="line">  return this;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 添加方法</span><br><span class="line">JQuery.prototype = &#123;</span><br><span class="line">  eq: function(num)&#123;</span><br><span class="line">    this.elements = [this.elements[num]];</span><br><span class="line">    return this;</span><br><span class="line">  &#125;,</span><br><span class="line">  css: function(prop, val) &#123;</span><br><span class="line">    this.elements.forEach(function(el)&#123;</span><br><span class="line">      el.style[prop] = val;</span><br><span class="line">    &#125;)</span><br><span class="line">    return this;</span><br><span class="line">  &#125;,</span><br><span class="line">  show: function() &#123;</span><br><span class="line">    this.css(&apos;display&apos;, &apos;block&apos;);</span><br><span class="line">    return this;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">window.$ = function(selector)&#123;</span><br><span class="line">  return new JQuery(selector)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$(&quot;div&quot;).eq(0).css(&quot;width&quot;, &quot;200px&quot;).show();</span><br></pre></td></tr></table></figure></p>
 <h3 id="underscore"><a href="#underscore" class="headerlink" title="underscore"></a>underscore</h3><p>underscore 默认不使用链式调用，但是可以通过 _chain 函数来实现</p>
 <h4 id="chain"><a href="#chain" class="headerlink" title="_chain"></a>_chain</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">_.chain = function(obj) &#123;</span><br><span class="line">  var instance = _(obj); // &#123; _wrapped: obj &#125;</span><br><span class="line">  instance._chain = true;</span><br><span class="line">  return instance; // &#123; _wrapped: obj, _chain: true &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
@@ -204,11 +204,11 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/02/13/学习underscore中-cb-和-optimizeC函数/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2019/02/13/学习underscore中cb和optimizeCb函数/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          学习underscore中 cb 和 optimizeCb函数
+          学习underscore中cb和optimizeCb函数
         
       </div>
     </a>
@@ -349,15 +349,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Flex</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">HTML</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Flex</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -397,15 +397,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Shell</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">node</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">jade</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Shell</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -449,15 +449,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">web-im</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Github</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">web-im</a>
               </li>
             
             <div class="clearfix"></div>
