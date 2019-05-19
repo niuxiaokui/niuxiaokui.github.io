@@ -6,20 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="https://niuxiaokui.github.io">
-  <title>学习underscore中 cb 和 optimizeCb函数 | 奔跑的牛</title>
+  <title>Archives: 2019/5 | 奔跑的牛</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="摘要：学习冴羽的博客研究underscore的内部函数 cb 和 optimizeCb">
-<meta name="keywords" content="JavaScript">
-<meta property="og:type" content="article">
-<meta property="og:title" content="学习underscore中 cb 和 optimizeCb函数">
-<meta property="og:url" content="https://niuxiaokui.github.io/2019/02/13/学习underscore中-cb-和-optimizeC函数/index.html">
+  <meta name="description" content="欢迎来到">
+<meta property="og:type" content="website">
+<meta property="og:title" content="奔跑的牛">
+<meta property="og:url" content="https://niuxiaokui.github.io/archives/2019/05/index.html">
 <meta property="og:site_name" content="奔跑的牛">
-<meta property="og:description" content="摘要：学习冴羽的博客研究underscore的内部函数 cb 和 optimizeCb">
+<meta property="og:description" content="欢迎来到">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-02-13T16:17:43.554Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="学习underscore中 cb 和 optimizeCb函数">
-<meta name="twitter:description" content="摘要：学习冴羽的博客研究underscore的内部函数 cb 和 optimizeCb">
+<meta name="twitter:title" content="奔跑的牛">
+<meta name="twitter:description" content="欢迎来到">
   
     <link rel="alternative" href="/atom.xml" title="奔跑的牛" type="application/atom+xml">
   
@@ -145,53 +143,36 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-学习underscore中-cb-和-optimizeC函数" class="article article-type-post " itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+            
   
-    <h1 class="article-title" itemprop="name">
-      学习underscore中 cb 和 optimizeCb函数
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2019" class="archive-year">2019</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2019/05/19/你不知道的 Chrome 调试技巧/" class="archive-article-date">
+  	<time datetime="2019-05-19T07:14:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-19</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2019/05/19/你不知道的 Chrome 调试技巧/">《你不知道的 Chrome 调试技巧》笔记</a>
     </h1>
   
 
-        
-        <a href="/2019/02/13/学习underscore中-cb-和-optimizeC函数/" class="archive-article-date">
-  	<time datetime="2019-02-13T13:22:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-02-13</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>摘要：学习<a href="https://github.com/mqyqingfeng/Blog" target="_blank" rel="noopener">冴羽的博客</a>研究underscore的内部函数 cb 和 optimizeCb<a id="more"></a></p>
-<h3 id="map"><a href="#map" class="headerlink" title="_.map"></a>_.map</h3><p>_.map 函数中有使用 cb 函数：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">// 简化过，这里仅假设 obj 是数组</span><br><span class="line">_.map = function (obj, iteratee, context) &#123;</span><br><span class="line">  iteratee = cb(iteratee, context);</span><br><span class="line"></span><br><span class="line">  var length = obj.length, results = Array(length);</span><br><span class="line">  for (var index = 0; index &lt; length; index++) &#123;</span><br><span class="line">    results[index] = iteratee(obj[index], index, obj);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  return results;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
-<p>_.map 的三个参数： obj 是待处理数据； iteratee 是处理函数； context 是指定的执行上下文，即 this 的值</p>
-<h3 id="cb"><a href="#cb" class="headerlink" title="cb"></a>cb</h3><p>cb 函数源码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">var cb = function (value, context, argCount) &#123;</span><br><span class="line"></span><br><span class="line">  if (_.iteratee !== builtinIteratee) return _.iteratee(value, context);</span><br><span class="line"></span><br><span class="line">  if (value == null) return _.identity;</span><br><span class="line"></span><br><span class="line">  if (_.isFunction(value)) return optimizeCb(value, context, argCount);</span><br><span class="line"></span><br><span class="line">  if (_.isObject(value) &amp;&amp; !_.isArray(value)) return _.matcher(value);</span><br><span class="line"></span><br><span class="line">  return _.property(value);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
-<p>cb 函数对传入的 value 值类型进行判断，然后根据不同的类型，返回不同的函数。涉及到8个函数，其中 _.iteratee 、 _.identity 、optimizeCb 、 _.matcher 、 _.property 这五个函数还没有接触过</p>
-<h4 id="iteratee"><a href="#iteratee" class="headerlink" title="_.iteratee"></a>_.iteratee</h4><p>_.iteratee 的源码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">_.iteratee = builtinIteratee = function (value, context) &#123;</span><br><span class="line">  return cb(value, context, Infinity);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
-<p>因为源码中<code>_.iteratee = builtinIteratee</code>，所以通常情况下<code>_.iteratee !== builtinIteratee</code>为 false。但是当我们在外部修改 <em>.iteratee 函数后，则返回 true，执行`</em>.iteratee(value, context)`,也就是使用自定义的 _.iteratee 函数来处理 value 和 context<br>因为 underscore 中的多个函数都使用了 cb 函数，而 cb 函数又使用了 _.iteratee 函数，所以要修改 _.iteratee 函数的话，一定要谨慎操作</p>
-<h4 id="identity"><a href="#identity" class="headerlink" title="_.identity"></a>_.identity</h4><p>_.identity 的源码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">_.identity = function(value) &#123;</span><br><span class="line">  return value;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
-<p>_.identity 函数就是将传入的第一个参数原样返回，当 value 值为 null 或 undefined 时，返回 _.identity</p>
-<h4 id="optimizeCb"><a href="#optimizeCb" class="headerlink" title="optimizeCb"></a>optimizeCb</h4><p>optimizeCb 的源码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">var optimizeCb = function (func, context, argCount) &#123;</span><br><span class="line">  // 如果没有传入指定的上下文 context，就返回 func 函数</span><br><span class="line">  if (context === void 0) return func;</span><br><span class="line">  switch (argCount == null ? 3 : argCount) &#123;</span><br><span class="line">    case 1: return function (value) &#123;</span><br><span class="line">      return func.call(context, value);</span><br><span class="line">    &#125;;</span><br><span class="line">    // 值为2的情况被省略了，因为 underscore 函数中没有用到</span><br><span class="line">    case 3: return function (value, index, collection) &#123;</span><br><span class="line">      return func.call(context, value, index, collection);</span><br><span class="line">    &#125;;</span><br><span class="line">    case 4: return function (accumulator, value, index, collection) &#123;</span><br><span class="line">      return func.call(context, accumulator, value, index, collection);</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;</span><br><span class="line">  return function () &#123;</span><br><span class="line">    return func.apply(context, arguments);</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
-<p>传入的三个参数：func 是处理函数； context 是指定的执行上下文 this ； argCount 是返回函数参数的个数<br>void的返回值都是undefined，用void 0是为了防止undefined被重写而出现判断不准确的情况</p>
-<blockquote>
-<p>ES5之后的标准中，规定了全局变量下的undefined值为只读，不可改写的，但是局部变量中依然可以对之进行改写。</p>
-</blockquote>
-<p>中间使用 switch 对 argCount 进行判断而不是直接返回下面的匿名函数，可以避免使用 arguments 以提高一点性能</p>
-<h4 id="matcher"><a href="#matcher" class="headerlink" title="_.matcher"></a>_.matcher</h4><p>_.matcher 的源码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line">var nativeIsArray = Array.isArray;</span><br><span class="line"></span><br><span class="line">_.isArray = nativeIsArray || function (obj) &#123;</span><br><span class="line">  return Object.prototype.toString.call(obj) === &apos;[object Array]&apos;;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">_.isObject = function (obj) &#123;</span><br><span class="line">  var type = typeof obj;</span><br><span class="line">  return type === &apos;function&apos; || type === &apos;object&apos; &amp;&amp; !!obj;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">_.extendOwn = function () &#123;</span><br><span class="line">  var obj, key, src, value, valueIsArray, typeTarget;</span><br><span class="line">  // 默认不是深复制</span><br><span class="line">  var deep = false;</span><br><span class="line">  var length = arguments.length;</span><br><span class="line">  // 默认第一个是目标对象</span><br><span class="line">  var target = arguments[0] || &#123;&#125;;</span><br><span class="line">  var i = 1;</span><br><span class="line">  if (typeof target === &quot;boolean&quot;) &#123;</span><br><span class="line">    deep = target;</span><br><span class="line">    target = arguments[i] || &#123;&#125;;</span><br><span class="line">    i++;</span><br><span class="line">  &#125;</span><br><span class="line">  // 复制属性要求target必须为对象（包含函数），如果不是，就设为&#123;&#125;</span><br><span class="line">  if (typeof target !== &quot;object&quot; &amp;&amp; !isFunction(target)) &#123;</span><br><span class="line">    target = &#123;&#125;;</span><br><span class="line">  &#125;</span><br><span class="line">  for (; i &lt; length; i++) &#123;</span><br><span class="line">    obj = arguments[i];</span><br><span class="line">    if (obj != null) &#123;</span><br><span class="line">      for (key in obj) &#123;</span><br><span class="line">        src = target[key];</span><br><span class="line">        value = obj[key];</span><br><span class="line">        // 如果待复制对象的属性值与目标对象target相同就跳出</span><br><span class="line">        if (target === value) &#123;</span><br><span class="line">          continue;</span><br><span class="line">        &#125;</span><br><span class="line">        // 如果要求深复制且属性值是引用类型，就进行递归</span><br><span class="line">        if (deep &amp;&amp; value &amp;&amp; (isPlainObject(value) || (valueIsArray = Array.isArray(value)))) &#123;</span><br><span class="line">          if (valueIsArray) &#123;</span><br><span class="line">            valueIsArray = false;</span><br><span class="line">            typeTarget = src &amp;&amp; Array.isArray(src) ? src : [];</span><br><span class="line">          &#125; else &#123;</span><br><span class="line">            typeTarget = src &amp;&amp; isPlainObject(src) ? src : &#123;&#125;;</span><br><span class="line">          &#125;</span><br><span class="line">          target[key] = _extend(deep, typeTarget, value);</span><br><span class="line">        &#125; else if (value !== undefined) &#123;</span><br><span class="line">          target[key] = value;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  return target;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">_.matcher = _.matches = function (attrs) &#123;</span><br><span class="line">  attrs = _.extendOwn(&#123;&#125;, attrs);</span><br><span class="line">  return function (obj) &#123;</span><br><span class="line">    return _.isMatch(obj, attrs);</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">// 判断 attrs 对象中的键值是否在 object 中有并且相等。如果有且相等，返回 true</span><br><span class="line">_.isMatch = function (object, attrs) &#123;</span><br><span class="line">  var keys = _.keys(attrs), length = keys.length;</span><br><span class="line">  if (object == null) return !length;</span><br><span class="line">  var obj = Object(object);</span><br><span class="line">  for (var i = 0; i &lt; length; i++) &#123;</span><br><span class="line">    var key = keys[i];</span><br><span class="line">    if (attrs[key] !== obj[key] || !(key in obj)) return false;</span><br><span class="line">  &#125;</span><br><span class="line">  return true;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
-<p>_.matcher 就是用来处理当 map 的第二个参数是对象的情况<br>调用效果如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_.map([&#123;name:&apos;Kevin&apos;&#125;, &#123;name: &apos;Daisy&apos;, age: 18&#125;], &#123;name: &apos;Daisy&apos;&#125;); // [false, true]</span><br></pre></td></tr></table></figure></p>
-<h4 id="property"><a href="#property" class="headerlink" title="_.property"></a>_.property</h4><p>_.property 的源码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">_.property = function (path) &#123;</span><br><span class="line">  // 如果不是数组</span><br><span class="line">  if (!_.isArray(path)) &#123;</span><br><span class="line">    return shallowProperty(path);</span><br><span class="line">  &#125;</span><br><span class="line">  return function (obj) &#123;</span><br><span class="line">    return deepGet(obj, path);</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">var shallowProperty = function (key) &#123;</span><br><span class="line">  return function (obj) &#123;</span><br><span class="line">    return obj == null ? void 0 : obj[key];</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">// 根据路径取出深层次的值</span><br><span class="line">var deepGet = function (obj, path) &#123;</span><br><span class="line">  var length = path.length;</span><br><span class="line">  for (var i = 0; i &lt; length; i++) &#123;</span><br><span class="line">    if (obj == null) return void 0;</span><br><span class="line">    obj = obj[path[i]];</span><br><span class="line">  &#125;</span><br><span class="line">  return length ? obj : void 0;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
-<p>_.property 用来处理当 value 是基本类型的值的情况，会返回元素对应的属性值<br>调用效果如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">_.map([&#123; name: &apos;Kevin&apos; &#125;, &#123; name: &apos;Daisy&apos; &#125;], &apos;name&apos;); // [&apos;Kevin&apos;, &apos;daisy&apos;]</span><br><span class="line"></span><br><span class="line">var person1 = &#123;</span><br><span class="line">  child: &#123;</span><br><span class="line">    nickName: &apos;Kevin&apos;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">var person2 = &#123;</span><br><span class="line">  child: &#123;</span><br><span class="line">    nickName: &apos;Daisy&apos;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">// 获取深层次属性值</span><br><span class="line">_.map([person1, person2], [&apos;child&apos;, &apos;nickName&apos;]); // [&apos;Kevin&apos;, &apos;daisy&apos;]</span><br></pre></td></tr></table></figure></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -203,55 +184,19 @@
 		</ul>
 	</div>
 
-      
+          
 
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
+        </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-  
-<nav id="article-nav">
   
   
-    <a href="/2019/01/29/学习underscore链式调用/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">学习underscore链式调用</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-  
-  
+    </div></section>
   
 
-  
-
-  
-
-  
+    
 
 
           </div>
@@ -274,8 +219,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
-		isArchive: false,
+		isPost: false,
+		isArchive: true,
 		isTag: false,
 		isCategory: false,
 		open_in_new: true,
@@ -364,10 +309,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">JSON</a>
               </li>
              
@@ -384,10 +325,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">MongoDB</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">NPM</a>
               </li>
              
@@ -400,15 +337,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Shell</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">node</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">jade</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Shell</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -425,10 +362,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Swiper</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ES6</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -461,6 +394,18 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">web-im</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">MongoDB</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ES6</a>
               </li>
             
             <div class="clearfix"></div>
