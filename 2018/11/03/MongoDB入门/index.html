@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="奔跑的牛">
 <meta property="og:description" content="摘要：MongoDB基础，2016-10-23初次编辑，2018-11更新">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-11-08T02:39:18.537Z">
+<meta property="og:updated_time" content="2019-05-19T13:09:18.742Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MongoDB入门">
 <meta name="twitter:description" content="摘要：MongoDB基础，2016-10-23初次编辑，2018-11更新">
@@ -197,7 +197,7 @@
 </ul>
 </li>
 </ul>
-<h3 id="window环境"><a href="#window环境" class="headerlink" title="window环境"></a>window环境</h3><h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><p>首先要下载适合自己电脑的版本，地址：<a href="http://www.mongodb.org/downloads" target="_blank" rel="noopener">http://www.mongodb.org/downloads</a>,然后安装到D:\mongodb目录下。之后主动创建文件夹D:\mongodb\data，再在data目录下创建db和log两个文件夹，在log目录下创建mongodb.log文件<br>结构：<br>D:\mongodb：</p>
+<h3 id="window环境"><a href="#window环境" class="headerlink" title="window环境"></a>window环境</h3><h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><p>首先要下载适合自己电脑的版本，地址：<a href="https://www.mongodb.org/downloads" target="_blank" rel="noopener">http://www.mongodb.org/downloads</a>,然后安装到D:\mongodb目录下。之后主动创建文件夹D:\mongodb\data，再在data目录下创建db和log两个文件夹，在log目录下创建mongodb.log文件<br>结构：<br>D:\mongodb：</p>
 <ul>
 <li>GNU-AGPL-3.0</li>
 <li>README</li>
@@ -352,7 +352,7 @@
 <h3 id="安全问题"><a href="#安全问题" class="headerlink" title="安全问题"></a>安全问题</h3><p>1.最安全的是物理隔离，但不现实<br>2.网络隔离<br>3.防火墙<br>4.用户名、密码</p>
 <h4 id="创建用户"><a href="#创建用户" class="headerlink" title="创建用户"></a>创建用户</h4><p>配置mongod.conf文件，添加<code>auth = true</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">use=&#123;</span><br><span class="line">  user:&quot;name&quot;,</span><br><span class="line">  pwd:&quot;password&quot;,</span><br><span class="line">  customData:&quot;用户说明&quot;,</span><br><span class="line">  roles:[&#123;</span><br><span class="line">    role:&quot;read&quot;, #类型</span><br><span class="line">    db:&quot;database&quot; #在哪个库</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;...&#125; #可设置多个权限</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br><span class="line">db.createUser(use) #创建用户</span><br></pre></td></tr></table></figure></p>
 <p>角色类型：内建类型<br>read 读取权限<br>readWrite 读写权限，不能操作索引<br>bdAdmin 操作数据库类型权限<br>dbOwner 具有前三者的权限<br>userAdmin 管理用户的权限<br>用户角色：<br>1.数据库角色（read，readWrite，dbAdmin，dbOwner，userAdmin）<br>2.集群角色（clusterAdmin，clusterManager，…）<br>3.备份角色（backup，restore，…）<br>4.其他特殊权限（DBAdminAnyDatabase，…）</p>
-<p><a href="http://www.imooc.com/learn/295" target="_blank" rel="noopener">mongoDB入门篇</a></p>
+<p><a href="https://www.imooc.com/learn/295" target="_blank" rel="noopener">mongoDB入门篇</a></p>
 
       
 

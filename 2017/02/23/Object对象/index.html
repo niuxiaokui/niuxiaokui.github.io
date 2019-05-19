@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="奔跑的牛">
 <meta property="og:description" content="摘要：JavaScript中对象属性的特性和常用的方法">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-09-09T02:50:14.040Z">
+<meta property="og:updated_time" content="2019-05-19T13:09:18.740Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Object对象">
 <meta name="twitter:description" content="摘要：JavaScript中对象属性的特性和常用的方法">
@@ -188,7 +188,7 @@
 <p>2）使用Object.seal方法使对象变为不可扩展，同时将对象所有属性的<code>configurable</code>特性设置为false<br>使用Object.isSealed方法判断是否不可扩展、修改、删除<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Object.isSealed(person); // false</span><br><span class="line">Object.seal(person);</span><br><span class="line">Object.isSealed(person); // true</span><br></pre></td></tr></table></figure></p>
 <p>3）使用Object.freeze方法可以冻结对象，使所有属性的特性都为false只读<br>使用Object.isFrozen方法判断是否冻结<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Object.isFrozen(person); // false</span><br><span class="line">Object.freeze(person);</span><br><span class="line">Object.isFrozen(person); // true</span><br></pre></td></tr></table></figure></p>
 <p>注意：Object.preventExtensions、Object.seal、Object.freeze三种方法调用后，无法恢复原来的状态，因为没有对应可逆的方法</p>
-<p><a href="http://www.imooc.com/learn/277" target="_blank" rel="noopener">JavaScript深入浅出</a><br><a href="http://www.jianshu.com/p/88570529a03c" target="_blank" rel="noopener">你不知道的toString方法</a><br><a href="http://javascript.ruanyifeng.com/stdlib/object.html" target="_blank" rel="noopener">JavaScript 标准参考教程（alpha）3.标准库 Object对象</a><br>《JavaScript高级程序设计》（第三版）第6章 面向对象的程序设计<br>《JavaScript权威指南》第6章 对象</p>
+<p><a href="https://www.imooc.com/learn/277" target="_blank" rel="noopener">JavaScript深入浅出</a><br><a href="https://www.jianshu.com/p/88570529a03c" target="_blank" rel="noopener">你不知道的toString方法</a><br><a href="https://javascript.ruanyifeng.com/stdlib/object.html" target="_blank" rel="noopener">JavaScript 标准参考教程（alpha）3.标准库 Object对象</a><br>《JavaScript高级程序设计》（第三版）第6章 面向对象的程序设计<br>《JavaScript权威指南》第6章 对象</p>
 
       
 

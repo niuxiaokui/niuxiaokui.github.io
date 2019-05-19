@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="奔跑的牛">
 <meta property="og:description" content="摘要：微信前端页多图压缩上传坑不少，换了N多插件也没有完全满意的，泪…">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-09-04T14:42:43.460Z">
+<meta property="og:updated_time" content="2019-05-19T13:09:18.742Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="微信前端图片压缩预览上传">
 <meta name="twitter:description" content="摘要：微信前端页多图压缩上传坑不少，换了N多插件也没有完全满意的，泪…">
@@ -166,8 +166,8 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>摘要：微信前端页多图压缩上传坑不少，换了N多插件也没有完全满意的，泪…<a id="more"></a></p>
-<h4 id="前端图片压缩预览上传"><a href="#前端图片压缩预览上传" class="headerlink" title="前端图片压缩预览上传"></a>前端图片压缩预览上传</h4><p>如果只是微信内部的页面，可以直接调用微信jssdk，这个还是比较方便的。如果只是这样我还会踩这么多坑吗？记录下压缩上传插件的使用记录<br>1.首先使用的是百度的Web Uploader，地址：<a href="http://fex-team.github.io/webuploader/" target="_blank" rel="noopener">http://fex-team.github.io/webuploader/</a>。效果：在pc端没问题，微信端就不行了，官网上好像有兼容的解决方法但我没有试</p>
-<p>2.第二个使用的是uploadify，地址：<a href="http://www.uploadify.com/" target="_blank" rel="noopener">http://www.uploadify.com/</a>。现在已经是版本3.x.x了，因为收费就使用了免费的版本2.x.x。效果：pc端全屏没问题，但是当页面宽度小于一定值时，程序就会失效，连选择按钮都不会生成</p>
+<h4 id="前端图片压缩预览上传"><a href="#前端图片压缩预览上传" class="headerlink" title="前端图片压缩预览上传"></a>前端图片压缩预览上传</h4><p>如果只是微信内部的页面，可以直接调用微信jssdk，这个还是比较方便的。如果只是这样我还会踩这么多坑吗？记录下压缩上传插件的使用记录<br>1.首先使用的是百度的Web Uploader，地址：<a href="https://fex-team.github.io/webuploader/" target="_blank" rel="noopener">http://fex-team.github.io/webuploader/</a>。效果：在pc端没问题，微信端就不行了，官网上好像有兼容的解决方法但我没有试</p>
+<p>2.第二个使用的是uploadify，地址：<a href="https://www.uploadify.com/" target="_blank" rel="noopener">http://www.uploadify.com/</a>。现在已经是版本3.x.x了，因为收费就使用了免费的版本2.x.x。效果：pc端全屏没问题，但是当页面宽度小于一定值时，程序就会失效，连选择按钮都不会生成</p>
 <p>3.各种搜索到的开源的压缩上传插件，试了好几个都不理想。想自己写一个上传插件，试了下发现要用到<a href="https://github.com/exif-js/exif-js" target="_blank" rel="noopener">Exif.js</a>适配ios调整方向。此外程序在微信里不够稳定，总之兼容性不好。最后使用了<a href="https://github.com/think2011/localResizeIMG" target="_blank" rel="noopener">localResizeIMG</a>,感觉在不调用微信jssdk的时候它是最优选择，但是安卓机反应稍慢。效果：ios上使用input标签的multiple属性可以一次选择多个图片，但是在安卓上不支持该属性，每次仍只能上传一张图片<br>结论：前端压缩图片上传在pc端使用百度的Web Uploader，移动端使用localResizeIMG，微信端使用jssdk（安卓上微信内置的浏览器不识别<code>multiple</code>属性，如果要选择多图就必须使用微信的jssdk），感谢localResizeIMG的作者和代码贡献者<br>前端图片压缩上传的原理：先使用Exif.js获取图片的方向信息，然后用FileReader读取图片信息并根据方向信息和压缩要求将图片正确的绘制在canvas上，再利用canvas的toDataURL方法将压缩后的图片保存为base64位信息（该信息可以直接放在img标签的src属性上预览图片），最后将图片的base64位信息存到formData中传到后台</p>
 
       
