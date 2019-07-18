@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="https://niuxiaokui.github.io">
   <title>JavaScript检测类型 | 奔跑的牛</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="摘要：JavaScript检测类型，参考冴羽的博客再次修改typeof适合基本类型及function检测，遇到null有bug；instanceof测某个对象的原型链是否包含某个构造函数的prototype属性（基本类型没有原型链），它是基于原型链运作的；constructor指向的是最初创建者，而且容易伪造，不适合做类型判断；toString适合检测基本类型和内置对象">
+  <meta name="description" content="摘要：JavaScript检测类型，参考冴羽的博客再次修改typeof 适合基本类型及 function 检测，遇到 null 有 bug ；instanceof 测某个对象的原型链是否包含某个构造函数的 prototype 属性（基本类型没有原型链），它是基于原型链运作的；constructor 指向的是最初创建者，而且容易伪造，不适合做类型判断；toString 适合检测基本类型和内置对象">
 <meta name="keywords" content="JavaScript">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JavaScript检测类型">
 <meta property="og:url" content="https://niuxiaokui.github.io/2017/12/17/JavaScript检测类型/index.html">
 <meta property="og:site_name" content="奔跑的牛">
-<meta property="og:description" content="摘要：JavaScript检测类型，参考冴羽的博客再次修改typeof适合基本类型及function检测，遇到null有bug；instanceof测某个对象的原型链是否包含某个构造函数的prototype属性（基本类型没有原型链），它是基于原型链运作的；constructor指向的是最初创建者，而且容易伪造，不适合做类型判断；toString适合检测基本类型和内置对象">
+<meta property="og:description" content="摘要：JavaScript检测类型，参考冴羽的博客再次修改typeof 适合基本类型及 function 检测，遇到 null 有 bug ；instanceof 测某个对象的原型链是否包含某个构造函数的 prototype 属性（基本类型没有原型链），它是基于原型链运作的；constructor 指向的是最初创建者，而且容易伪造，不适合做类型判断；toString 适合检测基本类型和内置对象">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-05-19T13:09:18.742Z">
+<meta property="og:updated_time" content="2019-07-18T02:20:35.651Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript检测类型">
-<meta name="twitter:description" content="摘要：JavaScript检测类型，参考冴羽的博客再次修改typeof适合基本类型及function检测，遇到null有bug；instanceof测某个对象的原型链是否包含某个构造函数的prototype属性（基本类型没有原型链），它是基于原型链运作的；constructor指向的是最初创建者，而且容易伪造，不适合做类型判断；toString适合检测基本类型和内置对象">
+<meta name="twitter:description" content="摘要：JavaScript检测类型，参考冴羽的博客再次修改typeof 适合基本类型及 function 检测，遇到 null 有 bug ；instanceof 测某个对象的原型链是否包含某个构造函数的 prototype 属性（基本类型没有原型链），它是基于原型链运作的；constructor 指向的是最初创建者，而且容易伪造，不适合做类型判断；toString 适合检测基本类型和内置对象">
   
     <link rel="alternative" href="/atom.xml" title="奔跑的牛" type="application/atom+xml">
   
@@ -165,7 +165,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>摘要：JavaScript检测类型，参考<a href="https://github.com/mqyqingfeng/Blog" target="_blank" rel="noopener">冴羽的博客</a>再次修改<br>typeof适合基本类型及function检测，遇到null有bug；<br>instanceof测某个对象的原型链是否包含某个构造函数的prototype属性（基本类型没有原型链），它是基于原型链运作的；<br>constructor指向的是最初创建者，而且容易伪造，不适合做类型判断；<br>toString适合检测基本类型和内置对象<a id="more"></a></p>
+        <p>摘要：JavaScript检测类型，参考<a href="https://github.com/mqyqingfeng/Blog" target="_blank" rel="noopener">冴羽的博客</a>再次修改<br>typeof 适合基本类型及 function 检测，遇到 null 有 bug ；<br>instanceof 测某个对象的原型链是否包含某个构造函数的 prototype 属性（基本类型没有原型链），它是基于原型链运作的；<br>constructor 指向的是最初创建者，而且容易伪造，不适合做类型判断；<br>toString 适合检测基本类型和内置对象<a id="more"></a></p>
 <h4 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">// typeof</span><br><span class="line">var a = &quot;niuxiaokui&quot;; // string</span><br><span class="line">var b = true; // boolean</span><br><span class="line">var c = 23; // number</span><br><span class="line">var d; // undefined</span><br><span class="line">var e = null; // object，这是一个bug</span><br><span class="line">var f = new Object(); // object</span><br><span class="line">var g = new Array(); // object</span><br><span class="line">var h = function () &#123; &#125;;// function</span><br><span class="line"></span><br><span class="line">// instanceof</span><br><span class="line">[1, 2, 3] instanceof Array // true</span><br><span class="line">/abc/ instanceof RegExp // true</span><br><span class="line">(&#123;&#125;) instanceof Object // true</span><br><span class="line">(function () &#123; &#125;) instanceof Function // true</span><br><span class="line"></span><br><span class="line">// toString</span><br><span class="line">Object.prototype.toString.call(1); // [object Number]</span><br><span class="line">Object.prototype.toString.call(true); // [object Boolean]</span><br><span class="line">Object.prototype.toString.call(&apos;&apos;); // [object String]</span><br><span class="line">Object.prototype.toString.call(null); // [object Null]</span><br><span class="line">Object.prototype.toString.call(undefuned); // [object Undefined]</span><br><span class="line">Object.prototype.toString.call([]); // [object Array]</span><br><span class="line">Object.prototype.toString.call(&#123;&#125;); // [object Object]</span><br><span class="line">Object.prototype.toString.call(function () &#123; &#125;); // [object Function]</span><br><span class="line">Object.prototype.toString.call(/test/i); // [object RegExp]</span><br><span class="line">Object.prototype.toString.call(new Date()); // [object Date]</span><br><span class="line">Object.prototype.toString.call(new Error()); // [object Error]</span><br><span class="line">Object.prototype.toString.call(Math); // [object Math]</span><br><span class="line">Object.prototype.toString.call(JSON); // [object JSON]</span><br><span class="line">Object.prototype.toString.call(window) // [object Window] 不同浏览器显示不一致</span><br><span class="line">(function () &#123;</span><br><span class="line">  console.log(Object.prototype.toString.call(arguments)); // [object Arguments]</span><br><span class="line">&#125;)()</span><br></pre></td></tr></table></figure>
 <p>当toString方法被调用的时候，下面的步骤会被执行：<br>1.如果this值是undefined，就返回[object Undefined]<br>2.如果this的值是null，就返回[object Null]<br>3.让O成为ToObject(this)的结果<br>4.让class成为O的内部属性[[Class]]的值<br>5.最后返回由 “[object “ 和 class 和 “]” 三个部分组成的字符串<br>注意：在IE6中（还有用IE6的吗），null和undefined会被Object.prototype.toString识别成[object Object]</p>
 <h4 id="封装检测函数"><a href="#封装检测函数" class="headerlink" title="封装检测函数"></a>封装检测函数</h4><p>写一个能检测各种类型的函数type，如果是基本类型，就使用typeof检测，引用类型就使用toString检测。鉴于typeof 的结果是小写，希望所有的结果都是小写<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">var class2type = &#123;&#125;;</span><br><span class="line">&quot;Boolean Number String Function Array Date RegExp Object Error&quot;.split(&quot; &quot;).map(function (item, index) &#123;</span><br><span class="line">  class2type[&quot;[object &quot; + item + &quot;]&quot;] = item.toLowerCase();</span><br><span class="line">&#125;)</span><br><span class="line">function type(obj) &#123;</span><br><span class="line">  if (obj == null) &#123; // undefined、null</span><br><span class="line">    return obj + &quot;&quot;;</span><br><span class="line">  &#125;</span><br><span class="line">  return typeof obj === &quot;object&quot; || typeof obj === &quot;function&quot; ? class2type[Object.prototype.toString.call(obj)] || &quot;object&quot; : typeof obj;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
@@ -354,6 +354,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">HTML</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">JSON</a>
               </li>
              
@@ -363,14 +371,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">跨域</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">HTML</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -386,11 +386,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Shell</a>
+                <a href="javascript:void(0)" class="js-tag color5">brew</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">brew</a>
+                <a href="javascript:void(0)" class="js-tag color1">Shell</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -418,15 +418,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">数据结构与算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">regex</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">数据结构与算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">小程序</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">压缩</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -438,7 +442,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">压缩</a>
+                <a href="javascript:void(0)" class="js-tag color4">浏览器</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -447,10 +451,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Github</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">浏览器</a>
               </li>
              
               <li class="article-tag-list-item">
