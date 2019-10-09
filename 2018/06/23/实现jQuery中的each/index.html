@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="奔跑的牛">
 <meta property="og:description" content="摘要：学习冴羽的博客实现jQuery中的each">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-08-04T15:34:00.873Z">
+<meta property="og:updated_time" content="2019-10-07T02:46:41.225Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="实现jQuery中的each">
 <meta name="twitter:description" content="摘要：学习冴羽的博客实现jQuery中的each">
@@ -169,7 +169,7 @@
 <h4 id="each"><a href="#each" class="headerlink" title="$.each"></a>$.each</h4><p>$.each方法可以遍历对象和数组，语法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$.each(object, callback)</span><br></pre></td></tr></table></figure></p>
 <p>回调函数有两个参数，第一个参数为对象的键名或数组的索引，第二个参数就是对应的键值或数组元素。回调函数返回false时可以跳出循环<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$.each([0, 1, 2, 3, 4, 5], function(index, item)&#123;</span><br><span class="line">  if (index &gt; 2) &#123;</span><br><span class="line">    return false;</span><br><span class="line">  &#125;</span><br><span class="line">  console.log(index + &quot;: &quot; + item );</span><br><span class="line">&#125;);</span><br><span class="line">// 0: 0</span><br><span class="line">// 1: 1</span><br><span class="line">// 2: 2</span><br></pre></td></tr></table></figure></p>
 <h4 id="模拟实现"><a href="#模拟实现" class="headerlink" title="模拟实现"></a>模拟实现</h4><p>需要将普通的对象和（类）数组分开处理，如果是普通对象，使用<code>for...in</code>循环；如果是（类）数组，使用<code>for</code>循环。因而要先判断传入的事数组还是普通的对象。判断方法<code>isArrayLike</code>见<a href="https://niuxiaokui.github.io/2017/12/29/JavaScript%E6%A3%80%E6%B5%8B%E5%A4%8D%E6%9D%82%E7%B1%BB%E5%9E%8B/">JavaScript检测复杂类型</a>，当回调函数返回false时跳出循环<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">function _each(obj, callback) &#123;</span><br><span class="line">  var i = 0, length;</span><br><span class="line">  if (isArrayLike(obj)) &#123;</span><br><span class="line">    for (length = obj.length; i &lt; length; i++) &#123;</span><br><span class="line">      if (callback(i, obj[i]) === false) &#123;</span><br><span class="line">        break;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    for (i in obj) &#123;</span><br><span class="line">      if (callback(i, obj[i]) === false) &#123;</span><br><span class="line">        break;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  return obj;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h4 id="this"><a href="#this" class="headerlink" title="this"></a>this</h4><p>有时候需要用到this，使用call或apply来指定this，但是这样会导致性能损失<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">function _each(obj, callback) &#123;</span><br><span class="line">  var i = 0, length;</span><br><span class="line">  if (isArrayLike(obj)) &#123;</span><br><span class="line">    for (length = obj.length; i &lt; length; i++) &#123;</span><br><span class="line">      if (callback.call(obj[i], i, obj[i]) === false) &#123;</span><br><span class="line">        break;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    for (i in obj) &#123;</span><br><span class="line">      if (callback.call(obj[i], i, obj[i]) === false) &#123;</span><br><span class="line">        break;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  return obj;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="this"><a href="#this" class="headerlink" title="this"></a>this</h4><p>有时候需要用到 this，使用 call 或 apply 来指定 this，但是这样会导致性能损失<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">function _each(obj, callback) &#123;</span><br><span class="line">  var i = 0, length;</span><br><span class="line">  if (isArrayLike(obj)) &#123;</span><br><span class="line">    for (length = obj.length; i &lt; length; i++) &#123;</span><br><span class="line">      if (callback.call(obj[i], i, obj[i]) === false) &#123;</span><br><span class="line">        break;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    for (i in obj) &#123;</span><br><span class="line">      if (callback.call(obj[i], i, obj[i]) === false) &#123;</span><br><span class="line">        break;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  return obj;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 
       
 
@@ -419,7 +419,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">压缩</a>
+                <a href="javascript:void(0)" class="js-tag color3">总结</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">目标</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -427,11 +431,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">总结</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">目标</a>
+                <a href="javascript:void(0)" class="js-tag color3">压缩</a>
               </li>
              
               <li class="article-tag-list-item">
