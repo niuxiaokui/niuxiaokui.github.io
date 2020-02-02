@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="奔跑的牛">
 <meta property="og:description" content="摘要：JavaScript中的this">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-09-04T16:04:54.316Z">
+<meta property="og:updated_time" content="2020-01-14T06:25:35.888Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="this">
 <meta name="twitter:description" content="摘要：JavaScript中的this">
@@ -166,12 +166,12 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>摘要：JavaScript中的this<a id="more"></a></p>
-<h4 id="全局中的this"><a href="#全局中的this" class="headerlink" title="全局中的this"></a>全局中的this</h4><p>this是在执行上下文创建时绑定的，全局中的this指向Window对象本身</p>
-<h4 id="函数中的this"><a href="#函数中的this" class="headerlink" title="函数中的this"></a>函数中的this</h4><p>函数中的this指向什么完全取决于函数在哪里被调用：<br>1.由new调用，绑定到新创建的对象<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var bar = new foo(); // 构造函数foo中this指向bar</span><br></pre></td></tr></table></figure></p>
-<p>2.有call、apply、bind调用，绑定到指定的对象<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">foo.call(obj); // foo中this指向obj</span><br></pre></td></tr></table></figure></p>
-<p>3.由上下文对象调用（被一个对象拥有或者包含），绑定到那个上下文对象<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">obj.foo(); // foo中this指向obj</span><br></pre></td></tr></table></figure></p>
-<p>4.独立调用：在严格模式下绑定到undefined，否则绑定到全局对象<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">function bar()&#123;&#125;</span><br><span class="line">// var bar = foo();</span><br><span class="line">// var bar = obj.foo();</span><br><span class="line">bar(); // 以上三种独立调用函数this均指向undefined或全局对象（客户端中就是window）</span><br></pre></td></tr></table></figure></p>
-<h4 id="属性中的this"><a href="#属性中的this" class="headerlink" title="属性中的this"></a>属性中的this</h4><p>如果对象在全局环境中声明，对象属性中的this指向全局对象；如果是在函数中声明的对象，this在非严格模式下指向全局，严格模式下指向undefined<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var a = 2;</span><br><span class="line">var obj = &#123;</span><br><span class="line">  a: 1,</span><br><span class="line">  b: this.a + 2</span><br><span class="line">&#125;</span><br><span class="line">console.log(obj.a); // 4</span><br></pre></td></tr></table></figure></p>
+<h4 id="全局中的this"><a href="#全局中的this" class="headerlink" title="全局中的this"></a>全局中的this</h4><p>this 是在执行上下文创建时绑定的，全局中的 this 指向 window 对象本身</p>
+<h4 id="函数中的this"><a href="#函数中的this" class="headerlink" title="函数中的this"></a>函数中的this</h4><p>函数中的 this 指向什么完全取决于函数在哪里被调用：<br>1.由new调用，绑定到新创建的对象<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var bar = new foo(); // 构造函数 foo 中 this 指向 bar</span><br></pre></td></tr></table></figure></p>
+<p>2.有 call、apply、bind 调用，绑定到指定的对象<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">foo.call(obj); // foo 中 this 指向 obj</span><br></pre></td></tr></table></figure></p>
+<p>3.由上下文对象调用（被一个对象拥有或者包含），绑定到那个上下文对象<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">obj.foo(); // foo 中 this 指向 obj</span><br></pre></td></tr></table></figure></p>
+<p>4.独立调用：在严格模式下绑定到 undefined，否则绑定到全局对象<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">function bar()&#123;&#125;</span><br><span class="line">// var bar = foo();</span><br><span class="line">// var bar = obj.foo();</span><br><span class="line">bar(); // 以上三种独立调用函数 this 均指向 undefined 或全局对象（客户端中就是 window）</span><br></pre></td></tr></table></figure></p>
+<h4 id="属性中的this"><a href="#属性中的this" class="headerlink" title="属性中的this"></a>属性中的this</h4><p>如果对象在全局环境中声明，对象属性中的 this 指向全局对象；如果是在函数中声明的对象，this 在非严格模式下指向全局，严格模式下指向 undefined<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var a = 2;</span><br><span class="line">var obj = &#123;</span><br><span class="line">  a: 1,</span><br><span class="line">  b: this.a + 2</span><br><span class="line">&#125;</span><br><span class="line">console.log(obj.a); // 4</span><br></pre></td></tr></table></figure></p>
 <p>《你不知道的JavaScript（上卷）》第二部分 第二章 this全面解析<br><a href="https://www.jianshu.com/p/d647aa6d1ae6" target="_blank" rel="noopener">前端基础进阶（五）：全方位解读this</a></p>
 
       
@@ -382,11 +382,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">MongoDB</a>
+                <a href="javascript:void(0)" class="js-tag color4">NPM</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">NPM</a>
+                <a href="javascript:void(0)" class="js-tag color3">MongoDB</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -430,11 +430,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">regex</a>
+                <a href="javascript:void(0)" class="js-tag color4">浏览器</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">浏览器</a>
+                <a href="javascript:void(0)" class="js-tag color1">regex</a>
               </li>
              
               <li class="article-tag-list-item">
