@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="奔跑的牛">
 <meta property="og:description" content="摘要：极客时间《数据结构与算法之美》入门篇笔记">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-02-12T17:29:46.312Z">
+<meta property="og:updated_time" content="2020-02-15T16:17:03.996Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《数据结构与算法之美》基础篇笔记">
 <meta name="twitter:description" content="摘要：极客时间《数据结构与算法之美》入门篇笔记">
@@ -174,7 +174,13 @@
 <h3 id="双向链表"><a href="#双向链表" class="headerlink" title="双向链表"></a>双向链表</h3><p>双向链表的每个结点不知有一个后继指针 next 指向后面的结点，还有一个前驱指针 prev 指向前面的结点。这样使双向链表需要比单链表更多的空间来存储后继结点的地址，同时也带来了更多的灵活性。双向链表可以支持 O(1) 时间复杂度的情况下找到前去结点，而不需要遍历所有结点。<br>双向链表中的删除：<br>1、删除结点中“值等于某个给定值”的结点<br>2、删除给定指针指向的结点<br>第1种情况，无论单双链表都需要遍历找到对应的结点后再删除。遍历的时间复杂度为 O(n)，纯删除操作为 O(1)，结合加法法则，删除值等于给定值的结点对应的链表操作的总时间复杂度为 O(n)<br>第2种情况，已知要删除的结点，那么就知道其前驱结点的指针，不需要遍历获得前驱结点，则时间复杂度为 O(1)<br>插入：如果在链表的某个指定结点前面插入一个结点，双向链表可以获得节点的前驱结点，时间复杂度为 O(1)<br>如果双向链表和循环列表整合则成为双向循环链表</p>
 <h3 id="数组与链表对比"><a href="#数组与链表对比" class="headerlink" title="数组与链表对比"></a>数组与链表对比</h3><p>数组是使用的连续内存空间，如果声明的空间过大，则可能导致“内存不足”，过小则可能会不够用。不够用时会申请一块更大的内存空间，把原数组拷贝进去，十分费时。<br>链表本身没有大小限制，天然支持动态扩容</p>
 <h3 id="基于链表实现-LRU-缓存淘汰算法"><a href="#基于链表实现-LRU-缓存淘汰算法" class="headerlink" title="基于链表实现 LRU 缓存淘汰算法"></a>基于链表实现 LRU 缓存淘汰算法</h3><p>思路：维护一个有序单链表，越靠近链表尾部的结点是越早访问的。当有一个新数据被访问时，从头开始顺序遍历链表。<br>如果链表中已缓存该数据，遍历得到该数据对应的结点，将其从原有位置上删除，然后在添加到链表头部。<br>如果链表中没有该数据，同时缓存未满，则直接将新数据结点插入到链表头部；如果缓存已满，则将链表尾结点删除后将新数据结点插入链表头部</p>
-<h3 id="链表编写技巧"><a href="#链表编写技巧" class="headerlink" title="链表编写技巧"></a>链表编写技巧</h3><p>技巧一：理解指针或引用的含义<br>存储所指对象的内存地址。将某个变量赋值给指针，实际上就是将这个变量的地址赋值给指针。指针中存储了这个变量的内存地址，指向了这个变量，通过指针就能找到这个变量<br>技巧二：警惕指针丢失和内存泄漏<br>插入结点时，一定要注意操作的顺序。删除链表结点时，也一定要记得手动释放内存空间<br>技巧三：利用哨兵简化实现难度<br>针对链表的插入、删除操作，需要对插入第一个结点和删除最后一个结点的情况进行特殊处理。使用哨兵解决“便捷问题”，不直接参与业务逻辑。引入哨兵结点后，在任何时候，不管链表是不是空，head 指针都会一直指向这个哨兵结点。有哨兵结点的链表叫“带头链表”，没有的则称为“不带头链表”</p>
+<h3 id="链表编写技巧"><a href="#链表编写技巧" class="headerlink" title="链表编写技巧"></a>链表编写技巧</h3><h4 id="技巧一：理解指针或引用的含义"><a href="#技巧一：理解指针或引用的含义" class="headerlink" title="技巧一：理解指针或引用的含义"></a>技巧一：理解指针或引用的含义</h4><p>存储所指对象的内存地址。将某个变量赋值给指针，实际上就是将这个变量的地址赋值给指针。指针中存储了这个变量的内存地址，指向了这个变量，通过指针就能找到这个变量</p>
+<h4 id="技巧二：警惕指针丢失和内存泄漏"><a href="#技巧二：警惕指针丢失和内存泄漏" class="headerlink" title="技巧二：警惕指针丢失和内存泄漏"></a>技巧二：警惕指针丢失和内存泄漏</h4><p>插入结点时，一定要注意操作的顺序。删除链表结点时，也一定要记得手动释放内存空间，自动管理内存的编程语言除外</p>
+<h4 id="技巧三：利用哨兵简化实现难度"><a href="#技巧三：利用哨兵简化实现难度" class="headerlink" title="技巧三：利用哨兵简化实现难度"></a>技巧三：利用哨兵简化实现难度</h4><p>针对链表的插入、删除操作，需要对插入第一个结点和删除最后一个结点的情况进行特殊处理。使用哨兵解决“便捷问题”，不直接参与业务逻辑。引入哨兵结点后，在任何时候，不管链表是不是空，head 指针都会一直指向这个哨兵结点。有哨兵结点的链表叫“带头链表”，没有的则称为“不带头链表”。示例：在一个元素不重复的数组中，匹配指定元素并返回其所在的位置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">// 普通代码</span><br><span class="line">function find(arr, key) &#123; // 在数组 arr 中返回与 key 相等的元素的索引</span><br><span class="line">  if (arr == null || arr.lenght &lt;= 0) &#123; // 判断数组是否存在元素</span><br><span class="line">    return -1</span><br><span class="line">  &#125;</span><br><span class="line">  var i = 0, n = arr.lenght</span><br><span class="line">  while (i &lt; n) &#123;</span><br><span class="line">    if (arr[i] == key) &#123; // 循环判断是否相等</span><br><span class="line">      return i</span><br><span class="line">    &#125;</span><br><span class="line">    ++i</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 利用哨兵</span><br><span class="line">function find(arr, key) &#123;</span><br><span class="line">  if (arr == null || arr.lenght &lt;= 0) &#123; // 判断数组是否存在元素</span><br><span class="line">    return -1</span><br><span class="line">  &#125;</span><br><span class="line">  var n = arr.length</span><br><span class="line">  if (arr[n - 1] == key) &#123; // 先判断数组最后一个元素是否为要找的</span><br><span class="line">    return n - 1</span><br><span class="line">  &#125;</span><br><span class="line">  var tmp = arr[n - 1] // 暂时保存最后一个元素的值，便于后面数组的恢复</span><br><span class="line">  arr[n - 1] = key // 将指定的值赋给数组最后一个元素</span><br><span class="line">  var i = 0</span><br><span class="line">  while (arr[i] != key) &#123; // 循环判断数组元素是否与指定值相等，数组越长，遍历耗时越久</span><br><span class="line">    ++i // 代码少了 arr[i] == key 这个判断，数组越长，节省时间越多</span><br><span class="line">  &#125;</span><br><span class="line">  arr[n - 1] = tmp // 循环后恢复原来的数组</span><br><span class="line">  if (i == n - 1) &#123; // 返回索引，如果 i = n - 1，说明整个数组前面的 n - 1 个元素都不匹配，前面已经判断数组最后一个元素也不是，说明数组中不包含指定的元素</span><br><span class="line">    return -1</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    return i</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>利用哨兵可以减少执行时间，但是这样可读性太差，一般不需要如此追求极致的性能</p>
+<h4 id="技巧四：重点留意边界条件处理"><a href="#技巧四：重点留意边界条件处理" class="headerlink" title="技巧四：重点留意边界条件处理"></a>技巧四：重点留意边界条件处理</h4><p>经常用来检查链表代码是否正确的边界条件有4个：<br>1、如果链表为空时，代码是否能正常工作？<br>2、如果链表只包含一个结点时，代码是否能正常工作？<br>3、如果链表只包含两个结点时，代码是否能正常工作？<br>4、代码逻辑在处理头结点和尾结点的时候，是否能正常工作？<br>就是链表在结点个数为0、1、2时能否工作，代码在头尾结点能否正确执行</p>
+<h4 id="技巧五：举例画图，辅助思考"><a href="#技巧五：举例画图，辅助思考" class="headerlink" title="技巧五：举例画图，辅助思考"></a>技巧五：举例画图，辅助思考</h4><p>画在纸上可以更清晰</p>
+<h4 id="技巧六：多写多练，没有捷径"><a href="#技巧六：多写多练，没有捷径" class="headerlink" title="技巧六：多写多练，没有捷径"></a>技巧六：多写多练，没有捷径</h4><p>练习 5 个常见的链表操作：<br>1、单链表反转<br>2、链表中环的检测<br>3、两个有序的链表合并<br>4、删除链表倒数第 n 个结点<br>5、求链表的中间结点</p>
 <h1 id="用空间换时间"><a href="#用空间换时间" class="headerlink" title="用空间换时间"></a>用空间换时间</h1><p>用空间换时间的设计思想：当内存空间充足，追求代码执行速度，可以选择空间复杂的相对较高但时间复杂度相对较低的算法或者数据结构。反之，在手机或单片机上则选择用时间换空间的思想</p>
 
       
@@ -376,15 +382,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">NPM</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">MongoDB</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">NPM</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">【安全】</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">brew</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -397,10 +407,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">jade</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">brew</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -440,15 +446,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">压缩</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">总结</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">目标</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">压缩</a>
               </li>
              
               <li class="article-tag-list-item">
