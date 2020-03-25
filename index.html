@@ -145,6 +145,134 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Untitled-1" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        function LinkedList() {
+  // Node 辅助类：element 是要添加的值，next 是指向下一个结点的指针
+  var Node = function (element) {
+    this.element = element
+    this.next = null
+  }
+  var length = 0 // 链表长度
+  var head = null // 链表 head 指针
+  // 向链表尾部添加元素
+  this.append = function (element) {
+    var node = new Node(element), current;
+    if (head == null) { // 如果链表为空，将 head 指向第一个元素
+      head = node
+    } else { // 如果链表不为空
+      current = head
+      while (current.next) { // 遍历得到链表最后一个元素
+        current = current.next
+      }
+      current.next = node // 将原来最后一个元素的 next 指针指向新元素
+    }
+    length++ // 更新长度
+  }
+  // 向链表指定位置插入元素
+  this.insert = function (position, element) { // position 为指定位置的索引
+    if (possion >= 0 && possion <= length)="" {="" 判断是否越界="" var="" node="new" node(element),="" current="head," 暂存当前元素="" previous,="" 暂存前一个元素="" index="0" if="" (possion="=" 0)="" 添加到第一个位置="" 注意复制顺序="" node.next="head" head="node" }="" else="" while="" (index++="" <="" possion)="" 遍历得到="" 索引元素及其前一个元素="" previous="current" 插入元素="" previous.next="node" length++="" return="" true="" false="" 从链表指定位置移除元素="" this.removeat="function" (position)="" (position=""> -1 && position < length) { // 判断是否越界
+      if (position == 0) {
+        head = current.next
+      } else {
+        while (index++ < position) {
+          previou = current
+          current = current.next
+        }
+        // 跳过 current 元素达到移除的目的
+        previou.next = current.next
+      }
+      length--
+      return current.element
+    } else {
+      return null
+    }
+  }
+  // 返回元素在链表中的索引
+  this.indexOf = function (element) {
+    var current = head,
+      index = 0
+    while (current) {
+      if (element == current.element) {
+        return index
+      }
+      index++
+      current = current.next
+    }
+    return -1
+  }
+  // 从链表中移除元素
+  this.remove = function (element) {
+    var index = this.indexOf(element)
+    return this.removeAt(index)
+  }
+  // 返回链表是否为空
+  this.isEmpty = function () {
+    return lenght === 0
+  }
+  // 返回链表包含元素个数
+  this.size = function () {
+    return lenght
+  }
+  // 获取第一个元素
+  this.getHead = function () {
+    return head
+  }
+  // 将链表转换成字符串返回
+  this.toString = function () {
+    var current = head,
+      string = ''
+    while (current) {
+      string += "," + current.element
+      current = current.next
+    }
+    return string.slice(1)
+  }
+}</=>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/03/26/Untitled-1/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-《数据结构与算法之美》基础篇笔记" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
@@ -833,82 +961,6 @@
 
 
   
-    <article id="post-你不知道的 Chrome 调试技巧" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/05/19/你不知道的 Chrome 调试技巧/">《你不知道的 Chrome 调试技巧》笔记</a>
-    </h1>
-  
-
-        
-        <a href="/2019/05/19/你不知道的 Chrome 调试技巧/" class="archive-article-date">
-  	<time datetime="2019-05-19T07:14:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-19</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>摘要：掘金小册<a href="https://juejin.im/book/5c526902e51d4543805ef35e/section/5c5269026fb9a049f1549e4a" target="_blank" rel="noopener">《你不知道的 Chrome 调试技巧》</a>笔记，未整合版<a href="https://juejin.im/post/5c09a80151882521c81168a2" target="_blank" rel="noopener">【译】你不知道的Chrome调试工具技巧</a>，文章的配图是真的棒，感谢作者和译者
-        
-          <a class="article-more-a" href="/2019/05/19/你不知道的 Chrome 调试技巧/#more">more >></a>
-        
-      
-
-      
-    </p></div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">浏览器</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/05/19/你不知道的 Chrome 调试技巧/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1002,10 +1054,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">CSS</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
               </li>
              
@@ -1014,15 +1062,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">CSS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Flex</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">HTML</a>
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+                <a href="javascript:void(0)" class="js-tag color5">HTML</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1062,6 +1114,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">brew</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">node</a>
               </li>
              
@@ -1070,15 +1126,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">brew</a>
+                <a href="javascript:void(0)" class="js-tag color4">【Vue.js】</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Vue.js</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">【Vue.js】</a>
               </li>
              
               <li class="article-tag-list-item">
