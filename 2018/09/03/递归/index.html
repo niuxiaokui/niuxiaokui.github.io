@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="奔跑的牛">
 <meta property="og:description" content="摘要：冴羽的博客学习递归">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-10-07T02:46:56.233Z">
+<meta property="og:updated_time" content="2020-04-12T15:31:21.952Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="递归">
 <meta name="twitter:description" content="摘要：冴羽的博客学习递归">
@@ -145,7 +145,7 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-递归" class="article article-type-post " itemscope="" itemprop="blogPost">
+            <article id="post-递归" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -168,7 +168,7 @@
         <p>摘要：<a href="https://github.com/mqyqingfeng/Blog" target="_blank" rel="noopener">冴羽的博客</a>学习递归<a id="more"></a></p>
 <h4 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h4><p>程序调用自身的编程技巧称为递归(recursion)。例如：<br>阶乘<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">function factorial(n) &#123;</span><br><span class="line">  if (n == 1) return n;</span><br><span class="line">  return n * factorial(n - 1);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>可以看出：构成递归需具备边界条件、递归前进段和递归返回段，当边界条件不满足时，递归前进，当边界条件满足时，递归返回<br>递归的特点：<br>1.大型复杂的问题层层转化为一个与原问题相似的规模较小的问题来求解<br>2.不能无限制调用自身，必须有出口——明确的边界条件</p>
-<h4 id="尾调用"><a href="#尾调用" class="headerlink" title="尾调用"></a>尾调用</h4><p>尾调用就是指某个函数的最后一步是调用另一个函数<br>例如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 尾调用</span><br><span class="line">function f(x)&#123;</span><br><span class="line">    return g(x);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="尾调用"><a href="#尾调用" class="headerlink" title="尾调用"></a>尾调用</h4><p>尾调用就是指某个函数的最后一步是调用另一个函数<br>例如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 尾调用</span><br><span class="line">function f(x)&#123;</span><br><span class="line">  return g(x);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>分析下执行上下文栈变化：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">// 伪代码</span><br><span class="line">ECStack.push(&lt;f&gt; functionContext);</span><br><span class="line">ECStack.pop();</span><br><span class="line">ECStack.push(&lt;g&gt; functionContext);</span><br><span class="line">ECStack.pop();</span><br></pre></td></tr></table></figure></p>
 <p>结论：使用尾调用只存在一个调用记录，所以永远不会发生“栈溢出”错误<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 非尾调用，如上面的阶乘</span><br><span class="line">function f(x)&#123;</span><br><span class="line">  return x * g(x - 1);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>分析下执行上下文栈变化：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">// 伪代码</span><br><span class="line">ECStack.push(&lt;f&gt; functionContext);</span><br><span class="line">ECStack.push(&lt;g&gt; functionContext);</span><br><span class="line">ECStack.pop();</span><br><span class="line">ECStack.pop();</span><br></pre></td></tr></table></figure></p>
@@ -387,11 +387,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">MongoDB</a>
+                <a href="javascript:void(0)" class="js-tag color5">【安全】</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">【安全】</a>
+                <a href="javascript:void(0)" class="js-tag color3">MongoDB</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -427,15 +427,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">regex</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">数据结构与算法</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">浏览器</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">regex</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -459,15 +459,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">web-im</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Github</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">web-im</a>
               </li>
             
             <div class="clearfix"></div>
@@ -475,7 +475,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
         </div>
         <ul class="search-ul">
           <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
-            缺失模块。<br>1、请确保node版本大于6.2<br>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br> npm i hexo-generator-json-content --save<br><br>
+            缺失模块。<br/>1、请确保node版本大于6.2<br/>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
             3、在根目录_config.yml里添加配置：
 <pre style="font-size: 12px;" q-show="jsonFail">
   jsonContent:
@@ -592,5 +592,5 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
 
 </div>
   </div>
-<script>!function(e){var r=Array.prototype.slice.call(document.querySelectorAll("img[data-original]"));function t(){for(var c=0;c<r.length;c++)t=r[c],void 0,0<=(n=t.getBoundingClientRect()).top&&0<=n.left&&n.top<=(e.innerHeight||document.documentElement.clientHeight)&&function(){var t,n,e,i,o=r[c];t=o,n=function(){r=r.filter(function(t){return o!==t})},e=new Image,i=t.getAttribute("data-original"),e.onload=function(){t.src=i,n&&n()},e.src=i}();var t,n}t(),e.addEventListener("scroll",function(){!function(t,n){clearTimeout(t.tId),t.tId=setTimeout(function(){t.call(n)},500)}(t,e)})}(this);</script></body>
+<script>!function(e){var c=Array.prototype.slice.call(document.querySelectorAll("img[data-original]"));function i(){for(var r=0;r<c.length;r++)t=c[r],0<=(n=t.getBoundingClientRect()).bottom&&0<=n.left&&n.top<=(e.innerHeight||document.documentElement.clientHeight)&&function(){var t,n,e,i,o=c[r];t=o,n=function(){c=c.filter(function(t){return o!==t})},e=new Image,i=t.getAttribute("data-original"),e.onload=function(){t.src=i,n&&n()},e.src=i}();var t,n}i(),e.addEventListener("scroll",function(){var t,n;t=i,n=e,clearTimeout(t.tId),t.tId=setTimeout(function(){t.call(n)},500)})}(this);</script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script></body>
 </html>
