@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="奔跑的牛">
 <meta property="og:description" content="摘要：极客时间《数据结构与算法之美》入门篇笔记">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-04-17T16:30:47.594Z">
+<meta property="og:updated_time" content="2020-04-27T23:51:10.436Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《数据结构与算法之美》基础篇笔记">
 <meta name="twitter:description" content="摘要：极客时间《数据结构与算法之美》入门篇笔记">
@@ -191,7 +191,13 @@
 <h3 id="阻塞队列"><a href="#阻塞队列" class="headerlink" title="阻塞队列"></a>阻塞队列</h3><p>阻塞队列是在队列的基础上增加了阻塞操作：在队列为空的时候，从队列头部获取数据会被阻塞，指导队列中有了数据才能返回；如果队列已满，那么插入操作就会被阻塞，直到队列中有空闲位置后再插入数据，然后再返回。可以使用阻塞队列轻松实现一个“生产者-消费者模型”。当资源有限的情况下，比如线程池，线程池没有空闲线程时，新的任务请求线程资源一般有两种处理方式：第一种是非阻塞的处理方式，直接拒绝任务；另一种是阻塞的处理方式，将请求排队，等到有空闲线程时取出进行处理。基于数组或链表可以实现两种队列，基于链表的队列，可以无线排队。但排队太多会导致响应时间过长，对于对响应时间敏感的系统不适合。基于数组实现的有限队列，队列大小有限，如果队列已满，新的请求会被直接拒绝，这样对响应时间敏感的系统相对合理</p>
 <h3 id="并发队列"><a href="#并发队列" class="headerlink" title="并发队列"></a>并发队列</h3><p>在多线程的情况下，会有多个线程同时操作队列，这时候就会有线程安全问题。线程安全的队列叫做并发队列。最简单的实现方式是直接在 enqueue()、dequeue() 方法上加锁，同一时刻只允许一个存或者取操作。后面详细介绍。</p>
 <h1 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h1><p>递归需要满足的三个条件：<br>1、一个问题的解可以分解为几个子问题的解<br>2、这个问题与分解之后的子问题，除了数据规模不同，求解思路完全一样<br>3、存在递归终止条件<br>递归的关键是要写出递归公式，找到终止条件。遇到递归，要把它抽象成一个递推公式，不用想一层层的调用关系，不要试图用人脑去分解递归的每个步骤。<br>递归代码简洁高效，但是要警惕堆栈溢出、重复计算、函数调用耗时多、空间复杂度高等。可以将已经求解过得值保存下来，后面的计算先看下是否有对应的结果，这样可以避免重复计算</p>
-<h1 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h1><p>排序算法的关注点：<br>一、排序算法的执行效率<br>1、最好情况、最坏情况、平均情况时间复杂度。要排序的数据有的有序，有的无序，为了更好的对比就全部区分下<br>2、时间复杂度的系数、常数 、低阶。在实际的软件开发中，排序的数据规模比较小，因而也要考虑这些因素<br>3、比较次数和交换（或移动）次数。基于比较的排序算法的执行过程，会涉及两种操作，一种是元素比较大小，另一种是元素交换或移动<br>二、排序算法的内存消耗<br>内存消耗可以通过空间复杂度来衡量。空间复杂度是 O(1) 的排序算法被称为原地排序<br>三、排序算法的稳定性<br>如果待排序的序列中存在值相等的元素，经过排序之后，相等元素之间原有的先后顺序不变，这种排序算法叫作稳定的排序算法；如果前后顺序发生变化，那对应的排序算法就叫作不稳定的排序算法。</p>
+<h1 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h1><p>排序算法的关注点：<br>一、排序算法的执行效率<br>1、最好情况、最坏情况、平均情况时间复杂度。要排序的数据有的有序，有的无序，为了更好的对比就全部区分下<br>2、时间复杂度的系数、常数 、低阶。在实际的软件开发中，排序的数据规模比较小，因而也要考虑这些因素<br>3、比较次数和交换（或移动）次数。基于比较的排序算法的执行过程，会涉及两种操作，一种是元素比较大小，另一种是元素交换或移动<br>二、排序算法的内存消耗<br>内存消耗可以通过空间复杂度来衡量。空间复杂度是 O(1) 的排序算法被称为原地排序<br>三、排序算法的稳定性<br>如果待排序的序列中存在值相等的元素，经过排序之后，相等元素之间原有的先后顺序不变，这种排序算法叫作稳定的排序算法；如果前后顺序发生变化，那对应的排序算法就叫作不稳定的排序算法。<br>稳定性举例：订单排序，希望优先按金额从小到大排序，同金额的按时间从早到晚排序。先按照时间排序，然后借助稳定性算法按照金额排序。因为稳定性算法不会将相同金额的订单更换位置，所以相同金额的订单仍然是时间早的在前面，时间晚的在后面</p>
+<h3 id="冒泡排序（Bubble-Sort）"><a href="#冒泡排序（Bubble-Sort）" class="headerlink" title="冒泡排序（Bubble Sort）"></a>冒泡排序（Bubble Sort）</h3><p>冒泡排序只会操作相邻的两个数据，判断这两个值是否满足大小关系要求，不满足就交换。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">// java 冒泡排序，a 表示数组，n 表示数组大小</span><br><span class="line">public void bubbleSort(int[] a, int n) &#123;</span><br><span class="line">  if (n &lt;= 1) return;</span><br><span class="line">  for (int i = 0; i &lt; n; ++i) &#123;</span><br><span class="line">    // 提前退出冒泡循环的标志位</span><br><span class="line">    boolean flag = false;</span><br><span class="line">    for (int j = 0; j &lt; n - i - 1; ++j) &#123;</span><br><span class="line">      if (a[j] &gt; a[j + 1]) &#123; // 交换</span><br><span class="line">        int tmp = a[j];</span><br><span class="line">        a[j] = a[j + 1];</span><br><span class="line">        a[j + 1] = tmp;</span><br><span class="line">        flag = true;  // 表示有数据交换      </span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    if (!flag) break;  // 没有数据交换，提前退出</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// js</span><br><span class="line">function bubbleSort(arr) &#123;</span><br><span class="line">  var n = arr.length;</span><br><span class="line">  for (var i = 0; i &lt; n - 1; i++) &#123;</span><br><span class="line">    for (var j = 0; j &lt; n - i - 1; ++j) &#123;</span><br><span class="line">      if (arr[j] &gt; arr[j + 1]) &#123;</span><br><span class="line">        var temp = arr[j];</span><br><span class="line">        arr[j] = arr[j + 1];</span><br><span class="line">        arr[j + 1] = temp;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  return arr;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>冒泡每次操作只涉及到相邻元素操作，只需要常量级的临时空间，空间复杂度为 O(1)，是原地排序算法。<br>当两个相邻数据不满足大小关系时才交换位置，如果两个值相等则不交换，是稳定排序算法。<br>最好情况下，数据是有序的，只需要一次冒泡操作即可结束，时间复杂度为 O(n)。最坏情况下，数据刚好是倒序排列，时间复杂度为 O(n^2)。平均时间复杂度需要结合概率论知识计算，还可以通过“有序度”和“逆序度”这两个概念来进行分析</p>
+<h3 id="有序度和逆序度"><a href="#有序度和逆序度" class="headerlink" title="有序度和逆序度"></a>有序度和逆序度</h3><p>有序度是数组中具有有序关系的元素对的个数。用数学表达式表示：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">有序元素对：a[i] &lt;= a[j], 如果 i &lt; j</span><br></pre></td></tr></table></figure></p>
+<p>比如要排序数组的初始状态为<code>4，5，6，3，2，1</code>，有序元素对有 (4，5) (4，6)(5，6)，有序度为3<br>一个完全有序的数组的有序度叫满有序度，比如<code>1，2，3，4，5，6</code>，有序度为 n*(n-1)/2 =&gt; 15<br>逆序度的定义正好跟有序度相反（默认从小到大为有序）。用数学表达式表示：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">逆序元素对：a[i] &gt; a[j], 如果 i &lt; j</span><br></pre></td></tr></table></figure></p>
+<p>可以得到一个公式：逆序度 = 满有序度 - 有序度<br>泡排序包含两个操作原子：比较和交换。每次交换有序度都会 +1，逆序度是确定的，所以交换次数也是确定的，如上例中交换次数为 15-3=12<br>对于包含 n 个数据的数组进行排序，最好情况下，有序度为 n(n-1)/2，不需要交换。最坏情况下，有序度为 0，需要 n(n-1)/2 次交换。取个中间值需要 n(n-1)/4 次交换，而比较操作更多，两个 for 循环遍历比较的复杂度上限为 O(n^2)，所以平均时间复杂度为 O(n^2)</p>
+<h3 id="插入排序（Insertion-Sort）"><a href="#插入排序（Insertion-Sort）" class="headerlink" title="插入排序（Insertion Sort）"></a>插入排序（Insertion Sort）</h3><p>插入算法的核心思想：将数组分为已排序区间和未排序区间，初始已排序区间只有数组的第一个元素，然后取未排序区间的元素在已排序区间找到合适位置插入，并保证已排序区间的数据一直有序。重复这个过程，直到未排序区间数据为空。</p>
 
       
 
@@ -392,11 +398,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">NPM</a>
+                <a href="javascript:void(0)" class="js-tag color3">MongoDB</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">MongoDB</a>
+                <a href="javascript:void(0)" class="js-tag color4">NPM</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -404,11 +410,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Shell</a>
+                <a href="javascript:void(0)" class="js-tag color5">brew</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">brew</a>
+                <a href="javascript:void(0)" class="js-tag color1">Shell</a>
               </li>
              
               <li class="article-tag-list-item">
