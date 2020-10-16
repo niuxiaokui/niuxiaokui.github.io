@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="奔跑的牛">
 <meta property="og:description" content="摘要：极客时间《数据结构与算法之美》基础篇笔记，冒泡排序、插入排序、选择排序、归并排序、快速排序、桶排序、计数排序、基数排序">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-09-24T16:11:44.331Z">
+<meta property="og:updated_time" content="2020-10-11T03:48:24.949Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《数据结构与算法之美》基础篇笔记（二）">
 <meta name="twitter:description" content="摘要：极客时间《数据结构与算法之美》基础篇笔记，冒泡排序、插入排序、选择排序、归并排序、快速排序、桶排序、计数排序、基数排序">
@@ -191,7 +191,7 @@
 <h3 id="基数排序（Radix-sort）"><a href="#基数排序（Radix-sort）" class="headerlink" title="基数排序（Radix sort）"></a>基数排序（Radix sort）</h3><p><strong>基数排序对要排序的数据是有要求的，需要可以分割出独立的“位”来比较，而且位之间有递进的关系，按照每位来排序的排序算法要是稳定的。每一位的数据范围不能太大，要可以用线性排序算法来排序，否则，基数排序的时间复杂度就无法做到 O(n)</strong>。比如：10 万个手机号码排序，使用快排的时间复杂度为 O(nlogn)。借助稳定排序算法，从后向前分别排序。每一位的排序都可以使用桶排序或者计数排序，这样时间复杂度为 O(n)，需要 k 次排序就是 O(k * n)。手机号共 11 位，时间复杂度接近 O(n)。<strong>如果字符并不都一样长的话，可以使用 0 将短字符补齐到长字符</strong>，因为所有字符的 ASCII 值都比 0 大。<br>有些排序问题可以不使用排序算法就可以排序，比如：对 D，a，F，B，c，A，z 这个字符串进行排序，所有小写字母在前，大写字母在后，但大小写字母内部不要求有序。如果还有数字，要求数字在两者之间怎么办？<br>方法：使用 a、b 两个指针，a 指针从前向后遍历，遇到大些字母停下，b 指针从后向前遍历，遇到小写字母停下，然后交换 a、b 指针对应的元素。重复操作直到两个指针相交。有数字时，将数字和小写字母归为一类，将其与大些字母分开，然后再遍历一次将小写字母和数字排序。具体过程：a 指针仍是从前向后遍历，遇到大写字母停下，但 b 指针是遇到小写字母或者数字停下，交换两者对应元素，a、b 指针相交后，此时小写字母和数字在前，大些字母在后。然后再次遍历 a 指针遇到数字停下，b 指针遇到小写字母停下，交换指针对应元素，a、b 指针再次相交后，此时的字符串就是小写字母在前，数字在中间，大些字母在后</p>
 <h3 id="排序优化"><a href="#排序优化" class="headerlink" title="排序优化"></a>排序优化</h3><p>实现一个通用的、高性能的 排序函数，先看几种排序算法的特性：</p>
 <p><table><tr><th></th><th>时间复杂度</th><th>稳定排序</th><th>原地排序</th></tr><tr><th>冒泡排序</th><th>O(n²)</th><th>是</th><th>是</th></tr><tr><th>插入排序</th><th>O(n²)</th><th>是</th><th>是</th></tr><tr><th>选择排序</th><th>O(n²)</th><th>否</th><th>是</th></tr><tr><th>快速排序</th><th>O(nlogn)</th><th>否</th><th>是</th></tr><tr><th>归并排序</th><th>O(nlogn)</th><th>是</th><th>否</th></tr><tr><th>桶排序</th><th>O(n)</th><th>是</th><th>否</th></tr><tr><th>计数排序</th><th>O(k+n)k是数据范围</th><th>是</th><th>否</th></tr><tr><th>基数排序</th><th>O(dn)d是维度</th><th>是</th><th>否</th></tr></table><br>虽然线性排序算法的时间复杂度比较低，但是其适用场景比较特殊，要写一个通用的排序算法，不能适用线性排序。对于小规模数据进行排序，可以使用时间复杂度为 O(n²) 的算法，但是对于大规模数据进行排序，使用 O(nlong) 的算法更加高效。为了兼容任意规模数据的排序，一般首选时间复杂度为 O(nlogn) 的排序算法来实现。堆排序和快速排序应用比较多，但归并排序由于空间复杂度为 O(n) 应用比较少。但是快速排序在最坏情况下的时间复杂度为 O(n²)，我们需要一些方法来优化。快速排序 O(n²) 时间复杂度的原因是分区点选的不合理造成的，优化快速排序的要从分区点着手：<br>1、三数取中法。从首、尾、中间分别取一个点，三者比较大小，选取中间值作为分区点。如果数据很多，可以改为“五数取中”或者“十数取中”。这样每隔固定长度取出的数进行比较得到的分区点，肯定比单纯取某一个数据更好；<br>2、随机法。每次从要排序的区间内随机抽取一个元素作为区分点，不能保证每次分区点都很好，但从概率的角度来讲，每次分区点也不会都很差，平均情况下分区点还比较好。<br>快排还有另外一个问题：快排递归时要警惕内存溢出。为了避免快排递归过深而堆栈过小，导致堆栈溢出，有两种解决方法：<br>1、限制递归深度，一旦递归超过了我们设置的阈值，就停止递归<br>2、在堆上模拟实现一个函数调用栈，手动模拟入栈、出栈的过程，这样就没有系统栈大小的限制</p>
-<h4 id="C-中的-qsort-函数"><a href="#C-中的-qsort-函数" class="headerlink" title="C 中的 qsort()函数"></a>C 中的 qsort()函数</h4><p>qsort() 会优先使用归并排序来排序输入的函数，因为归并排序的空间复杂度为 O(n)，对于小数据量的排序，比如 1、2kb，用空间换取时间问题不大。但是要排序的数据量比较大时时候，qsort() 会改为快速排序算法来排序，同时采用“三数取中法”选择分区点，并在堆上模拟栈避免递归过深导致的内存溢出问题。实际上，当要排序的区间中元素个数小于等于 4 时，qsort() 就退化为插入排序并利用哨兵简化代码。在小规模数据面前，O(n²) 时间复杂度的算法并不一定比 O(nlogn) 的算法执行时间长，因为 O(nlogn) 是省略了低阶、系数、常数的，在没有省略之前是 O(knlogn + c)</p>
+<h4 id="C-中的-qsort-函数"><a href="#C-中的-qsort-函数" class="headerlink" title="C 中的 qsort()函数"></a>C 中的 qsort()函数</h4><p>qsort() 会优先使用归并排序来排序输入的函数，因为归并排序的空间复杂度为 O(n)，对于小数据量的排序，比如 1、2kb，用空间换取时间问题不大。但是要排序的数据量比较大时时候，qsort() 会改为快速排序算法来排序，同时采用“三数取中法”选择分区点，并在堆上模拟栈避免递归过深导致的内存溢出问题。实际上，当要排序的区间中元素个数小于等于 4 时，qsort() 就退化为插入排序并利用哨兵简化代码。在小规模数据面前，O(n²) 时间复杂度的算法并不一定比 O(nlogn) 的算法执行时间长，因为 O(nlogn) 是省略了低阶、系数、常数的，在没有省略之前是 O(knlogn + c)，而 k 和 c 有可能还是比较大的数。因此，对于小规模数据的排序，一般选择简单、不需要递归的插入排序算法。</p>
 
       
 
@@ -223,6 +223,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/2020/10/11/《数据结构与算法之美》基础篇笔记（三）/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          《数据结构与算法之美》基础篇笔记（三）
+        
+      </div>
+    </a>
   
   
     <a href="/2020/02/05/《数据结构与算法之美》基础篇笔记（一）/" id="article-nav-older" class="article-nav-link-wrap">
@@ -408,15 +417,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Shell</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">node</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">jade</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Shell</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -456,15 +465,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">压缩</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">总结</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">目标</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">压缩</a>
               </li>
              
               <li class="article-tag-list-item">
