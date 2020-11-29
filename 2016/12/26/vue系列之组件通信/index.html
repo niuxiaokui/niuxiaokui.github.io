@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="https://niuxiaokui.github.io">
   <title>vue系列之组件通信 | 奔跑的牛</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="摘要：vue2中组件之间传递信息，记得要先引入vue.js">
-<meta name="keywords" content="Vue.js">
+  <meta name="description" content="摘要：vue2 中组件之间传递信息，记得要先引入 vue.js">
+<meta name="keywords" content="Vue">
 <meta property="og:type" content="article">
 <meta property="og:title" content="vue系列之组件通信">
 <meta property="og:url" content="https://niuxiaokui.github.io/2016/12/26/vue系列之组件通信/index.html">
 <meta property="og:site_name" content="奔跑的牛">
-<meta property="og:description" content="摘要：vue2中组件之间传递信息，记得要先引入vue.js">
+<meta property="og:description" content="摘要：vue2 中组件之间传递信息，记得要先引入 vue.js">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-09-05T02:06:42.825Z">
+<meta property="og:updated_time" content="2020-11-29T15:00:02.139Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="vue系列之组件通信">
-<meta name="twitter:description" content="摘要：vue2中组件之间传递信息，记得要先引入vue.js">
+<meta name="twitter:description" content="摘要：vue2 中组件之间传递信息，记得要先引入 vue.js">
   
     <link rel="alternative" href="/atom.xml" title="奔跑的牛" type="application/atom+xml">
   
@@ -62,7 +62,9 @@
 			
 				<li><a href="/">主页</a></li>
 	        
-				<li><a href="/tags/Vue-js">VUE</a></li>
+				<li><a href="/tags/数据结构与算法">数据结构与算法</a></li>
+	        
+				<li><a href="/tags/Vue">VUE</a></li>
 	        
 			</ul>
 		</nav>
@@ -114,6 +116,8 @@
 			
 				
 			
+				
+			
 			
 			
 			<nav class="header-nav">
@@ -125,12 +129,14 @@
 			</nav>
 
 			<nav class="header-menu js-header-menu">
-				<ul style="width: 50%">
+				<ul style="width: 70%">
 				
 				
-					<li style="width: 50%"><a href="/">主页</a></li>
+					<li style="width: 33.333333333333336%"><a href="/">主页</a></li>
 		        
-					<li style="width: 50%"><a href="/tags/Vue-js">VUE</a></li>
+					<li style="width: 33.333333333333336%"><a href="/tags/数据结构与算法">数据结构与算法</a></li>
+		        
+					<li style="width: 33.333333333333336%"><a href="/tags/Vue">VUE</a></li>
 		        
 				</ul>
 			</nav>
@@ -165,7 +171,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>摘要：vue2中组件之间传递信息，记得要先引入vue.js<a id="more"></a></p>
+        <p>摘要：vue2 中组件之间传递信息，记得要先引入 vue.js<a id="more"></a></p>
 <h4 id="父子组件通信"><a href="#父子组件通信" class="headerlink" title="父子组件通信"></a>父子组件通信</h4><p>方法一： 传递一个对象或数组。对象和数组是引用类型，指向同一个内存空间，如果 prop 是一个对象或数组，在子组件内部改变它会影响父组件的状态<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;box1&quot;&gt;</span><br><span class="line">  &lt;div&gt;父组件：&lt;input type=&quot;text&quot; v-model=&quot;message.a&quot;&gt;&lt;/div&gt;</span><br><span class="line">  &lt;componenta :my-message=&quot;message&quot;&gt;&lt;/componenta&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">  Vue.component(&apos;componenta&apos;, &#123;</span><br><span class="line">    props: [&apos;myMessage&apos;],</span><br><span class="line">    template: &apos;&lt;div&gt;子组件：&lt;input v-model=&quot;myMessage.a&quot;&gt;&lt;/div&gt;&apos;</span><br><span class="line">  &#125;);</span><br><span class="line">  new Vue(&#123;</span><br><span class="line">    el: &apos;#box1&apos;,</span><br><span class="line">    data: &#123;</span><br><span class="line">      message: &#123;a: &apos;更改我试试&apos;&#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure></p>
 <p>方法二： 使用事件接口。<code>$on(eventName)</code>监听事件，<code>$emit(eventName)</code>触发事件。父组件可以在使用子组件的地方直接用<code>v-on</code>来监听子组件触发的事件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;box2&quot;&gt;</span><br><span class="line">  &lt;div&gt;父组件值：&#123;&#123;num&#125;&#125;&lt;/div&gt;</span><br><span class="line">  &lt;componentb :my-message=&quot;num&quot; @change=&quot;ags&quot;&gt;&lt;/componentb&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">  Vue.component(&apos;componentb&apos;, &#123;</span><br><span class="line">    props:[&apos;myMessage&apos;],</span><br><span class="line">    template: &apos;&lt;div&gt;子组件值：&#123;&#123;myMessage&#125;&#125; &lt;button @click=&quot;change&quot;&gt;点我+1&lt;/button&gt;&lt;/div&gt;&apos;,</span><br><span class="line">    methods: &#123;</span><br><span class="line">      change() &#123;</span><br><span class="line">        this.$emit(&apos;change&apos;);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">  new Vue(&#123;</span><br><span class="line">    el: &apos;#box2&apos;,</span><br><span class="line">    data: &#123;</span><br><span class="line">      num: 0</span><br><span class="line">    &#125;,</span><br><span class="line">    methods: &#123;</span><br><span class="line">      ags() &#123;</span><br><span class="line">        this.num++;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure></p>
 <h4 id="非父子组件通信"><a href="#非父子组件通信" class="headerlink" title="非父子组件通信"></a>非父子组件通信</h4><p>简单的场景下，使用一个空的Vue实例作为中央事件总线，复杂的请使用vuex<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;box3&quot;&gt;</span><br><span class="line">  &lt;componentc&gt;&lt;/componentc&gt;</span><br><span class="line">  &lt;componentd&gt;&lt;/componentd&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">  var Event = new Vue();</span><br><span class="line">  var C = &#123;</span><br><span class="line">    template: &apos;&lt;div&gt;我是c &lt;button @click=&quot;send&quot;&gt;点我给d发送信息&lt;/button&gt; &#123;&#123;message&#125;&#125;&lt;/div&gt;&apos;,</span><br><span class="line">    data() &#123;</span><br><span class="line">      return &#123;message: &quot;c的信息&quot;&#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    methods: &#123;</span><br><span class="line">      send() &#123;</span><br><span class="line">        Event.$emit(&apos;msg&apos;, this.message);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">  var D = &#123;</span><br><span class="line">    template: &apos;&lt;div&gt;我是d，我要接受c发送的信息-&gt;&#123;&#123;msg&#125;&#125;&lt;/div&gt;&apos;,</span><br><span class="line">    data() &#123;</span><br><span class="line">        return &#123;msg:&apos;&apos;&#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    mounted() &#123;</span><br><span class="line">      Event.$on(&apos;msg&apos;, function(value) &#123;</span><br><span class="line">        this.msg = value;</span><br><span class="line">      &#125;.bind(this)); // this由指向Event改为指向D</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">  new Vue(&#123;</span><br><span class="line">    el: &apos;#box3&apos;,</span><br><span class="line">    components: &#123;</span><br><span class="line">      &apos;componentc&apos;: C,</span><br><span class="line">      &apos;componentd&apos;: D</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure></p>
@@ -182,7 +188,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Vue.js</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Vue</a>
         		</li>
       		
 		</ul>
@@ -334,6 +340,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">CSS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
               </li>
              
@@ -342,23 +352,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">CSS</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Flex</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+                <a href="javascript:void(0)" class="js-tag color3">工具</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">HTML</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -370,31 +376,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">跨域</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">MongoDB</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">【安全】</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">brew</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">NPM</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Shell</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -402,15 +384,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">【安全】</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">jade</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Vue.js</a>
+                <a href="javascript:void(0)" class="js-tag color4">Vue</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">【Vue.js】</a>
+                <a href="javascript:void(0)" class="js-tag color1">【Vue】</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -422,27 +408,31 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">数据结构与算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">regex</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">浏览器</a>
+                <a href="javascript:void(0)" class="js-tag color3">数据结构与算法</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ES6</a>
+                <a href="javascript:void(0)" class="js-tag color2">Chrome</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">压缩</a>
+                <a href="javascript:void(0)" class="js-tag color3">调试</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">underscore</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">小程序</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">压缩</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -451,14 +441,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">目标</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Github</a>
               </li>
              
               <li class="article-tag-list-item">

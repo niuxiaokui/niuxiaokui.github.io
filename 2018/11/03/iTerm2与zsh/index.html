@@ -9,14 +9,14 @@
   <title>iTerm2与zsh | 奔跑的牛</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="摘要：iTerm2 + zsh + Oh my zsh">
-<meta name="keywords" content="Shell">
+<meta name="keywords" content="工具">
 <meta property="og:type" content="article">
 <meta property="og:title" content="iTerm2与zsh">
 <meta property="og:url" content="https://niuxiaokui.github.io/2018/11/03/iTerm2与zsh/index.html">
 <meta property="og:site_name" content="奔跑的牛">
 <meta property="og:description" content="摘要：iTerm2 + zsh + Oh my zsh">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-05-19T07:38:31.672Z">
+<meta property="og:updated_time" content="2020-11-29T14:57:26.382Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iTerm2与zsh">
 <meta name="twitter:description" content="摘要：iTerm2 + zsh + Oh my zsh">
@@ -62,7 +62,9 @@
 			
 				<li><a href="/">主页</a></li>
 	        
-				<li><a href="/tags/Vue-js">VUE</a></li>
+				<li><a href="/tags/数据结构与算法">数据结构与算法</a></li>
+	        
+				<li><a href="/tags/Vue">VUE</a></li>
 	        
 			</ul>
 		</nav>
@@ -114,6 +116,8 @@
 			
 				
 			
+				
+			
 			
 			
 			<nav class="header-nav">
@@ -125,12 +129,14 @@
 			</nav>
 
 			<nav class="header-menu js-header-menu">
-				<ul style="width: 50%">
+				<ul style="width: 70%">
 				
 				
-					<li style="width: 50%"><a href="/">主页</a></li>
+					<li style="width: 33.333333333333336%"><a href="/">主页</a></li>
 		        
-					<li style="width: 50%"><a href="/tags/Vue-js">VUE</a></li>
+					<li style="width: 33.333333333333336%"><a href="/tags/数据结构与算法">数据结构与算法</a></li>
+		        
+					<li style="width: 33.333333333333336%"><a href="/tags/Vue">VUE</a></li>
 		        
 				</ul>
 			</nav>
@@ -168,14 +174,14 @@
         <p>摘要：iTerm2 + zsh + Oh my zsh<a id="more"></a></p>
 <h4 id="安装iTerm2"><a href="#安装iTerm2" class="headerlink" title="安装iTerm2"></a>安装iTerm2</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew cask install iTerm2</span><br></pre></td></tr></table></figure>
 <p>快捷操作：<br>1、选中即复制，不用<code>command</code>+<code>C</code><br>2、垂直分割：<code>command</code>+<code>D</code>，水平分割：<code>command</code>+<code>shift</code>+<code>D</code><br>3、显示历史命令：<code>shift</code>+<code>command</code>+<code>H</code><br>4、全屏切换：<code>command</code>+<code>enter</code></p>
-<h4 id="切换zsh"><a href="#切换zsh" class="headerlink" title="切换zsh"></a>切换zsh</h4><p>不管有没有自带的zsh，先安装最新版的zsh<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install zsh</span><br></pre></td></tr></table></figure></p>
+<h4 id="切换-zsh"><a href="#切换-zsh" class="headerlink" title="切换 zsh"></a>切换 zsh</h4><p>不管有没有自带的 zsh，先安装最新版的 zsh<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install zsh</span><br></pre></td></tr></table></figure></p>
 <p>查看本机已经装了哪些shell<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">cat /etc/shells</span><br><span class="line">/bin/bash</span><br><span class="line">/bin/csh</span><br><span class="line">/bin/ksh</span><br><span class="line">/bin/sh</span><br><span class="line">/bin/tcsh</span><br><span class="line">/bin/zsh</span><br></pre></td></tr></table></figure></p>
 <p>把默认的bash切换成zsh<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chsh -s /bin/zsh</span><br></pre></td></tr></table></figure></p>
 <p>输入密码后重新打开可以发现已经默认为zsh<br>vscode修改默认shell需要在用户设置里面添加<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">terminal.integrated.shell.osx&quot;: &quot;/bin/zsh&quot;</span><br></pre></td></tr></table></figure></p>
-<p>当然也有其他环境下类似的配置，依自己喜好来选择<br>zsh很强大但配置很不容易通过oh my zsh可以很简单的配置zsh<br>先安装<a href="https://github.com/robbyrussell/oh-my-zsh" target="_blank" rel="noopener">oh my zsh</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh</span><br></pre></td></tr></table></figure></p>
-<p>编辑<code>~/.zshrc</code>文件可以快速上手配置zsh。由于默认bash的配置文件是<code>~/.bash_profile</code>，现在的zsh启动时并不会加载，所以调用node、hexo等并不会识别，会提示：<code>zsh: command not found: node</code>。想要将zsh加载<code>~/.bash_profile</code>，在<code>~/.zshrc</code>文件末尾增加<code>~/.bash_profile</code>的引用：<code>source ~/.bash_profile</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo vim ~/.zshrc</span><br><span class="line">...</span><br><span class="line">source ~/.bash_profile</span><br></pre></td></tr></table></figure></p>
+<p>当然也有其他环境下类似的配置，依自己喜好来选择<br>zsh 很强大但配置很不容易通过 oh my zsh 可以很简单的配置 zsh<br>先安装<a href="https://github.com/robbyrussell/oh-my-zsh" target="_blank" rel="noopener">oh my zsh</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh</span><br></pre></td></tr></table></figure></p>
+<p>编辑<code>~/.zshrc</code>文件可以快速上手配置 zsh。由于默认 bash 的配置文件是<code>~/.bash_profile</code>，现在的 zsh 启动时并不会加载，所以调用 node、hexo 等并不会识别，会提示：<code>zsh: command not found: node</code>。想要将 zsh 加载<code>~/.bash_profile</code>，在<code>~/.zshrc</code>文件末尾增加<code>~/.bash_profile</code>的引用：<code>source ~/.bash_profile</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo vim ~/.zshrc</span><br><span class="line">...</span><br><span class="line">source ~/.bash_profile</span><br></pre></td></tr></table></figure></p>
 <p>按<code>i</code>进入输入模式，修改对应的值按<code>esc</code>退出输入模式，再输入<code>:wq</code>保存修改即可<br><a href="https://github.com/robbyrussell/oh-my-zsh/wiki/themes" target="_blank" rel="noopener">主题列表</a></p>
-<p>其他：fish也试了试，安装没什么问题，但是环境变量配置不与bash shell通用，因此试了下就卸载了</p>
+<p>其他：fish 也试了试，安装没什么问题，但是环境变量配置不与 bash shell 通用，因此试了下就卸载了</p>
 <p>参考：<br><a href="https://www.cnblogs.com/xishuai/p/mac-iTerm2.html" target="_blank" rel="noopener">Mac OS 终端利器 iTerm2</a><br><a href="https://blog.csdn.net/u014102846/article/details/77964493" target="_blank" rel="noopener">MAC下使用iTerm2和zsh</a></p>
 
       
@@ -190,7 +196,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Shell</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">工具</a>
         		</li>
       		
 		</ul>
@@ -342,6 +348,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">CSS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
               </li>
              
@@ -350,23 +360,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">CSS</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Flex</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+                <a href="javascript:void(0)" class="js-tag color3">工具</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">HTML</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -378,31 +384,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">跨域</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">MongoDB</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">【安全】</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">brew</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">NPM</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Shell</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -410,15 +392,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">【安全】</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">jade</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Vue.js</a>
+                <a href="javascript:void(0)" class="js-tag color4">Vue</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">【Vue.js】</a>
+                <a href="javascript:void(0)" class="js-tag color1">【Vue】</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -430,27 +416,31 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">数据结构与算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">regex</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">浏览器</a>
+                <a href="javascript:void(0)" class="js-tag color3">数据结构与算法</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ES6</a>
+                <a href="javascript:void(0)" class="js-tag color2">Chrome</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">压缩</a>
+                <a href="javascript:void(0)" class="js-tag color3">调试</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">underscore</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">小程序</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">压缩</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -459,14 +449,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">目标</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Github</a>
               </li>
              
               <li class="article-tag-list-item">
