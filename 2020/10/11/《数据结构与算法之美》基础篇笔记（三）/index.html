@@ -17,7 +17,7 @@
 <meta property="og:description" content="摘要：极客时间《数据结构与算法之美》基础篇笔记，二分查找、跳表、散列表、哈希算法">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAMAAABOo35HAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAC9UExURVlZWdPT07KysmRkZIWFhfT09JmZmWZmZm9vb39/fxkZGUxMTDMzM3p6epCQkKamppubm729venp6cjIyN7e3tbW1s/Pz8LCwnx8fLS0tFZWVoiIiI+Pj6GhoeTk5Glpabu7u93d3evr66CgoJSUlKqqqsnJyeDg4Hd3d8PDw+Xl5bi4uNHR0dvb26Ojo6urq+fn51hYWDg4OCgoKHBwcK2traenp0FBQe7u7vHx8U5OTre3t8zMzHV1df///7GrnpQAAAA/dFJOU///////////////////////////////////////////////////////////////////////////////////AI4mfBcAAAUGSURBVHja7NoJb6M4GMZxY0NCD64kve/pMZ2d3Z297+X7f6zFNmBAMUXa6URl/q9UJSWPUPzrizFWRUlNLgEBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYYIEFAVhggQUWWGBBABZYYIEFFlgQgAUWWGCBBRYEYIEFFlhggQUBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYn6cCIcRXgvX/h9qcIVBqDdbEM8RCxGCB9QqXYRwHYDHBgwXWl8eKZKiESHI3Ba1kWs3fKixcaJUl1YyeBm7Ocq+yLItUiVBGnXxenSHJolIKEcwHq6ikbOX1YGVzQCTN8LPmSLreghUl9sN4Uw7yajMrLC0TZ1ImzqY6FEop0+pIaEN5HaoOxVuwEqFyc4I46uSlzOLqgxlh6UaR9l3VYWl9Fdoxb1Q90KJtu41pwwFW/WHhTtW8i7TafLCqRsk6bsGw63L9qurXRmuIlbT9lDQnlXU+nBFW1Q2qnZbDprWa2tjR90LZFqx1/+Td/HpGWLlrLDvIwTcx6dQ1Vrntbig68cDms3JwbA5Y1azs1ger6sNV/bbIw1jU81MvNAGrl58RVn8ozW+btF08iGFoAlYvP3csfVur1gJBEIA1uBmue5dhZDOyO2epbmgCVi8/I6x0MMHH9pjsTfBhNzQBq5uPZoQlB0uH3DZG4EZqQ26fL3sZq5uf09Ih6qw3i/pm6BZO0qZX7rrUS68Xsbr5ZE4rePMk08pk9aUZugfqppvs6AM1Acvlo/StP+6EbW06z8hJqxbYp2BZPQUnFsLsKuhQdaHqn5ewbF7KXIn0jWO5MqOQ7RaNLPtbNMmmhimj0GUmYLl8Gs0Lq4wyPbTu1l2QKqHSouzs3OlDIslW5SQsnY/NXmFplyNvEuuLV/Tau9BzwiraDUSwXmysztYWWNtL1psXeumgIrDGaqXvBfUuvtqUYI3V2t1wk1e2msFluJJm6zDJXv/fIfjPP7DAAgsssCiwwAILLLDAosACCyywwAKLAgsssMACC6zt9fDz/v75tyOB+98PD2+ORgKffjw4OP1uJPDxl+Xy8v1I4MPF3t7VNyOB4/vF4uzdzrG+39f1kz/w66Guv/yBvw90KX/gZKkr8Qf+2dOV+gNHC12/7RxrabD2/a31bLAO/a11YbAO/K21MFhLf2s9Gqw9f2vdGqzFu11jnVusE2/gxmI9eQOnFuvYG7i0WH7uK4t15w2cWazrXWP9a7H8f/bQYvm/6IPF+sF/pVssf19Ii/WH/0K2WH/uGuvEWC39gSdj9Twy+Rqri5EZx1gt/IE7Y/XoD1wbq9vd3w1PlufnD2OBp+ebm/uxwPHF6emnscDR4vLy41jg7vHq6sNY4Pr27OyYdRaLUrDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssL6u+k+AAQCR9eHtLKvLfwAAAABJRU5ErkJggg==">
-<meta property="og:updated_time" content="2020-12-22T16:45:19.032Z">
+<meta property="og:updated_time" content="2020-12-25T13:02:33.385Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《数据结构与算法之美》基础篇笔记（三）">
 <meta name="twitter:description" content="摘要：极客时间《数据结构与算法之美》基础篇笔记，二分查找、跳表、散列表、哈希算法">
@@ -65,6 +65,8 @@
 				<li><a href="/">主页</a></li>
 	        
 				<li><a href="/tags/数据结构与算法">数据结构与算法</a></li>
+	        
+				<li><a href="/tags/underscore">underscore</a></li>
 	        
 				<li><a href="/tags/Vue">VUE</a></li>
 	        
@@ -120,6 +122,8 @@
 			
 				
 			
+				
+			
 			
 			
 			<nav class="header-nav">
@@ -134,11 +138,13 @@
 				<ul style="width: 70%">
 				
 				
-					<li style="width: 33.333333333333336%"><a href="/">主页</a></li>
+					<li style="width: 25%"><a href="/">主页</a></li>
 		        
-					<li style="width: 33.333333333333336%"><a href="/tags/数据结构与算法">数据结构与算法</a></li>
+					<li style="width: 25%"><a href="/tags/数据结构与算法">数据结构与算法</a></li>
 		        
-					<li style="width: 33.333333333333336%"><a href="/tags/Vue">VUE</a></li>
+					<li style="width: 25%"><a href="/tags/underscore">underscore</a></li>
+		        
+					<li style="width: 25%"><a href="/tags/Vue">VUE</a></li>
 		        
 				</ul>
 			</nav>
@@ -203,6 +209,10 @@
 <h3 id="唯一标识"><a href="#唯一标识" class="headerlink" title="唯一标识"></a>唯一标识</h3><p>在海量的图库中搜索一张图是否存在，只对比图片的名称是不行的，因为图片的名称与图片数据不是强绑定关系，可以随意修改。笨办法是将图片的二进制码串与图库中所有的图片的二进制码串一一对比，但这种方法太耗时。我们可以给每个图片取一个唯一标识：将图片的二进制码串开头、中间、结尾各取 100 个字节拼起来，在通过哈希算法得到一个哈希字符串，用它做图片的唯一标识。通过这个唯一标识来判段图片是否存在，如果不存在该标识，说明图库中不存在改图片；如果存在，就对标识相同的图片进行全量对比，看是否真的完全一样。</p>
 <h3 id="数据校验"><a href="#数据校验" class="headerlink" title="数据校验"></a>数据校验</h3><p>基于 P2P 协议的 BT 下载软件在下载电影时，会将一个电影文件分割成很多文件块，等所有文件块都下载完成之后再组装成一个完整的电影文件。但是下载的文件块有可能被其他人恶意修改，为了电脑的安全，需要校验文件块的正确性和完整性。其中一种校验思路是利用哈希算法对数据的敏感，只要文件块有改变，计算出的哈希值就会不同，然后通过与种子文件中保存的哈希值对比，这样就能判断文件块是否发生改变</p>
 <h3 id="散列函数-1"><a href="#散列函数-1" class="headerlink" title="散列函数"></a>散列函数</h3><p>散列函数更看重散列的平均性和哈希算法的执行效率，而对散列冲突和安全性的要求要低很多，只要冲突不是过于严重，可以通过开放寻址法或链表法来解决，计算的到的值否能反向解密也不关心。而且复杂的算法会降低散列函数的执行效率，进而影响散列表的性能，因而散列函数用的散列算法一般比较简单</p>
+<h3 id="负载均衡"><a href="#负载均衡" class="headerlink" title="负载均衡"></a>负载均衡</h3><p>会话粘滞的负载均衡算法：在同一个客户端上，在一次会话中的所有请求都路由到同一个服务器上<br>通过哈希算法，对客户端 IP 地址或者会话 ID 计算哈希值，将取得的哈希值与服务器列表的大小进行取模运算，最终得到的值就是应该北路有道的服务器编号</p>
+<h3 id="数据分片"><a href="#数据分片" class="headerlink" title="数据分片"></a>数据分片</h3><p>1、统计“搜索关键词”出现的次数<br>快速统计出 1T 的日志文件中每个关键词被搜索的次数，需要解决两个难点：1、日志很大，没法放到一台机器的内存中；2、如果只使用一台机器处理这么巨大的数据，速度会很慢<br>解决这两个难点可以这么做：先对数据进行分片，然后采用多台机器处理的方法。具体方法：使用 n 台机器并行处理，需要先从日志文件中依次读出每个关键词，并且通过哈希函数计算得到哈希值，然后跟机器总数 n 取模，最终的到的值就是应该被分配到的机器编号。这样是哈希值相同的关键词就都分配到同一台机器上，每台机器分别计算关键词出现的次数，最后合并起来就是最终的结果。这也是 MapReduce 的基本设计思想</p>
+<p>2、快速判断图片是否在图库中<br>前面的方法是获取图片的唯一标识构建散列表，但如果图库中 1 亿张图片，甚至更多，这样只在一台机器上构建散列表是不行的。我们同样可以数据进行分片，然后采用多机处理，每台机器仅维护磨一部分图片对应的散列表。像第 1 个例子一样，先计算唯一标识，然后与机器总数进行求余取模，得到对应分配的机器编号，然后将这个图片的唯一标识和图片路径发往对应的机器构建散列表。如果我们需要判断一个图片是否在图库中的时候，也是先通过同样的哈希算法得到唯一标识，然后与机器总数求模取余，得到对应的机器编号，最后在该机器散列表中进行查找<br>首先，我们先估算一下 1 亿张图片构建散列表需要多少台机器。假设散列表中每个数据单元包含哈希值和图片文件路径这两个信息，如果通过 MD5 来计算哈希值，那么长度就是 128 比特（16 字节）。文件路径长度的上限是 256 字节，假设平均长度是 128 字节，如果使用链表法来解决冲突，还需要 8 字节的指针，每个数据单元预计需要占用 152 字节。假设一台机器内存是 2GB，散列表的装载因子是 0.75，那么一台机器可以给<code>2*1024*1024*1024*0.75/152≈1000w</code>张图片构建散列表，那么 1 亿张图片大约需要十多台机器。<br>针对海量数据的处理问题都可以采用分布式处理，这样可以突破单机存储、CPU 等资源的限制</p>
+<h3 id="分布式存储"><a href="#分布式存储" class="headerlink" title="分布式存储"></a>分布式存储</h3><p>现在互联网有海量的数据，这些数据都需要缓存，需要将数据分不到多台机器上。借用数据分片的思想，可以将数据分布在多台机器上，但如果数据增多，需要扩容就会出现问题：因为机器数量增多，之前计算时有取模运算，几乎所有位置都会发生改变。而数据量又大，我们又不能将所有缓存重新计算哈希值，否则之前的缓存就全都失效了，而大量缓存同时失效会引起雪崩使数据库压力瞬间增大，很有可能压垮整个服务。利用一致性哈希算法可以解决这个问题，一致性哈希算法也是使用取模的方法，只是之前的取模法是对服务器数量取模，而一致性哈希是对 2^32 取模。<a href="http://www.zsythink.net/archives/1182" target="_blank" rel="noopener">白话解析：一致性哈希算法 consistent hashing</a>、<a href="https://www.jianshu.com/p/92588bbe8a22" target="_blank" rel="noopener">一致性哈希算法原理和实现</a></p>
 
       
 
@@ -368,15 +378,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">CSS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">AJAX</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">CSS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -388,11 +398,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">工具</a>
+                <a href="javascript:void(0)" class="js-tag color5">HTML</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">HTML</a>
+                <a href="javascript:void(0)" class="js-tag color3">工具</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -404,11 +414,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">MongoDB</a>
+                <a href="javascript:void(0)" class="js-tag color5">node</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">node</a>
+                <a href="javascript:void(0)" class="js-tag color3">MongoDB</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -416,11 +426,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">jade</a>
+                <a href="javascript:void(0)" class="js-tag color4">Vue</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Vue</a>
+                <a href="javascript:void(0)" class="js-tag color5">jade</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -436,11 +446,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">regex</a>
+                <a href="javascript:void(0)" class="js-tag color3">数据结构与算法</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">数据结构与算法</a>
+                <a href="javascript:void(0)" class="js-tag color1">regex</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -456,11 +466,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">压缩</a>
+                <a href="javascript:void(0)" class="js-tag color4">小程序</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">小程序</a>
+                <a href="javascript:void(0)" class="js-tag color3">压缩</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -523,7 +533,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
     
     	<section class="tools-section tools-section-me" q-show="aboutme">
   	  	
-  	  		<div class="aboutme-wrap" id="js-aboutme">前端小码农，喜欢学习新知识、新技术&lt;br&gt;目前工作侧重微信公众号的开发，打算毕业三年内专心学技术。想提高javascript水平，掌握nodejs，成为一个全栈工程师，望大神指道。&lt;br&gt;QQ:1085777324&lt;br&gt;微信:niuxiaokui&lt;br&gt;e-mail:niuxiaokuikui@163.com&lt;br&gt;公众号：我的前端路</div>
+  	  		<div class="aboutme-wrap" id="js-aboutme">前端码农，2021.7之前学习完《数据结构与算法之美》、《趣谈网络协议》、《浏览器工作原理与实践》、《图解 Google V8》，巩固 js 基础。在毕业满 5 年之际进入大厂</div>
   	  	
     	</section>
     
