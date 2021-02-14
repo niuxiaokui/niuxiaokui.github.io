@@ -17,7 +17,7 @@
 <meta property="og:description" content="摘要：极客时间《数据结构与算法之美》基础篇笔记，二分查找、跳表、散列表、哈希算法">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAMAAABOo35HAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAC9UExURVlZWdPT07KysmRkZIWFhfT09JmZmWZmZm9vb39/fxkZGUxMTDMzM3p6epCQkKamppubm729venp6cjIyN7e3tbW1s/Pz8LCwnx8fLS0tFZWVoiIiI+Pj6GhoeTk5Glpabu7u93d3evr66CgoJSUlKqqqsnJyeDg4Hd3d8PDw+Xl5bi4uNHR0dvb26Ojo6urq+fn51hYWDg4OCgoKHBwcK2traenp0FBQe7u7vHx8U5OTre3t8zMzHV1df///7GrnpQAAAA/dFJOU///////////////////////////////////////////////////////////////////////////////////AI4mfBcAAAUGSURBVHja7NoJb6M4GMZxY0NCD64kve/pMZ2d3Z297+X7f6zFNmBAMUXa6URl/q9UJSWPUPzrizFWRUlNLgEBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYYIEFAVhggQUWWGBBABZYYIEFFlgQgAUWWGCBBRYEYIEFFlhggQUBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYn6cCIcRXgvX/h9qcIVBqDdbEM8RCxGCB9QqXYRwHYDHBgwXWl8eKZKiESHI3Ba1kWs3fKixcaJUl1YyeBm7Ocq+yLItUiVBGnXxenSHJolIKEcwHq6ikbOX1YGVzQCTN8LPmSLreghUl9sN4Uw7yajMrLC0TZ1ImzqY6FEop0+pIaEN5HaoOxVuwEqFyc4I46uSlzOLqgxlh6UaR9l3VYWl9Fdoxb1Q90KJtu41pwwFW/WHhTtW8i7TafLCqRsk6bsGw63L9qurXRmuIlbT9lDQnlXU+nBFW1Q2qnZbDprWa2tjR90LZFqx1/+Td/HpGWLlrLDvIwTcx6dQ1Vrntbig68cDms3JwbA5Y1azs1ger6sNV/bbIw1jU81MvNAGrl58RVn8ozW+btF08iGFoAlYvP3csfVur1gJBEIA1uBmue5dhZDOyO2epbmgCVi8/I6x0MMHH9pjsTfBhNzQBq5uPZoQlB0uH3DZG4EZqQ26fL3sZq5uf09Ih6qw3i/pm6BZO0qZX7rrUS68Xsbr5ZE4rePMk08pk9aUZugfqppvs6AM1Acvlo/StP+6EbW06z8hJqxbYp2BZPQUnFsLsKuhQdaHqn5ewbF7KXIn0jWO5MqOQ7RaNLPtbNMmmhimj0GUmYLl8Gs0Lq4wyPbTu1l2QKqHSouzs3OlDIslW5SQsnY/NXmFplyNvEuuLV/Tau9BzwiraDUSwXmysztYWWNtL1psXeumgIrDGaqXvBfUuvtqUYI3V2t1wk1e2msFluJJm6zDJXv/fIfjPP7DAAgsssCiwwAILLLDAosACCyywwAKLAgsssMACC6zt9fDz/v75tyOB+98PD2+ORgKffjw4OP1uJPDxl+Xy8v1I4MPF3t7VNyOB4/vF4uzdzrG+39f1kz/w66Guv/yBvw90KX/gZKkr8Qf+2dOV+gNHC12/7RxrabD2/a31bLAO/a11YbAO/K21MFhLf2s9Gqw9f2vdGqzFu11jnVusE2/gxmI9eQOnFuvYG7i0WH7uK4t15w2cWazrXWP9a7H8f/bQYvm/6IPF+sF/pVssf19Ii/WH/0K2WH/uGuvEWC39gSdj9Twy+Rqri5EZx1gt/IE7Y/XoD1wbq9vd3w1PlufnD2OBp+ebm/uxwPHF6emnscDR4vLy41jg7vHq6sNY4Pr27OyYdRaLUrDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssL6u+k+AAQCR9eHtLKvLfwAAAABJRU5ErkJggg==">
-<meta property="og:updated_time" content="2021-01-10T03:06:18.226Z">
+<meta property="og:updated_time" content="2021-02-14T03:44:05.747Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《数据结构与算法之美》基础篇笔记（三）">
 <meta name="twitter:description" content="摘要：极客时间《数据结构与算法之美》基础篇笔记，二分查找、跳表、散列表、哈希算法">
@@ -201,7 +201,7 @@
 <h4 id="装载因子阈值"><a href="#装载因子阈值" class="headerlink" title="装载因子阈值"></a>装载因子阈值</h4><p>装载因子越大，说明散列表中的元素越多，空闲位置越少，散列冲突的概率就越大。对于没有频繁插入和删除的静态数据集合来说，我们可以设计出完美的、比较少冲突的散列函数。但是对于频繁变动数据的散列表，我们无法预知数据的个数，因此也无法事先申请一个足够大的散列表。数据越多，装载因子越大，散列冲突不可避免。此时，我们需要对散列表进行动态扩容，申请一个更大的散列表。<br>散列表扩容后，长度会发生变化，如果散列函数中使用了与散列表长度相关的操作，势必会对数据的存储位置造成影响。支持动态扩容的散列表插入数据，最好情况下时间复杂度为 O(1)；动态扩容需要搬移数据，因而最坏时间复杂度为 O(n)；使用摊还分析法，均摊情况下时间复杂度为 O(1)<br>如果对空间高度消耗非常敏感的话，同样可以进行动态缩容。但无论是扩容还是缩容，装载因子必须要设计的合理，阈值的设置要全很时间、空间复杂度。如果内存空间不紧张，对执行效率要求很高，可以降低装载因子的阈值，以空间换时间；如果空间紧张，对执行效率要求不高，可以增加装载因子的值，甚至可以大于 1(比如链表法的装载因子就可以大于 1)<br>最坏情况下需要迁移数据，非常耗时。用户操作时遇到这种情况也会非常崩溃，如何解决一次性扩容耗时过多的情况能？可以将扩容操作穿插在插入操作的过程中：申请新空间后，并不将老数据搬移到新的散列表中，而是有新数据需要插入时，先将数据插入到新的散列表中，在从老的散列表中拿出一个数据放到新的散列表中。这样把搬移的工作分到每次的插入操作中，避免一次性数据搬移耗时太久的问题，时间复杂度永远为 O(1)。搬移期间要注意，查询数据需要查询新散列表后还要查询老散列表。</p>
 <h4 id="解决散列冲突"><a href="#解决散列冲突" class="headerlink" title="解决散列冲突"></a>解决散列冲突</h4><p>解决散列冲突主要的两种方法：<br>1、开放寻址法<br>优点：使用开放寻址法的散列表的数据都存储在数组中，可以有效的利用 CPU 缓存加快查询速度，而且序列化起来比较简单，链表法包含指针，序列化没这么容易<br>缺点：删除数据时需要特殊标记已经删除掉的数据，而且所有数据都存储在一个数组中，装载因子必须小于 1。接近 1 时就可能造成大量的散列冲突，导致大量的探测、再散列。因而装载因子的上限不能太大，会比链表法更浪费内存空间<br>总结：当数据量比较小、装载因子小的时候，适合采用开放寻址法<br>2、链表法<br>优点：链表法对内存的利用率比开放寻址法要高，可以在需要的时候再创建。链表法对装载因子的容忍度更高，装载因子可以大于 1。只要散列函数的值随机均匀，装载因子变大大也只是造成链表的长度变大，查找效率有所下降，但仍比顺序查找快。而且可以将链表改造成其他高校的动态数据结构，比如跳表、红黑树。即使出现散列冲突，极端情况下全部散列到一个桶中，时间复杂度也是变成 O(logn)<br>缺点：链表存储的是指针，对于比较小的对象存储，添加指针（4 或 8 个字节）是比较消耗内存的，但对于大对象，指针的内存消耗就可以忽略了。链表中的结点时零散、非连续的分布在内存中，对 CPU 的缓存是不友好的，对执行效率也有一定的影响<br>总结：对于存储大对象、大数据量的数据，比较适合链表法。而且他支持更多的优化策略，比如用红黑树代替链表</p>
 <h4 id="具体应用"><a href="#具体应用" class="headerlink" title="具体应用"></a>具体应用</h4><p>一、Java 中的 HashMap<br>1、初始大小。HashMap 默认的初始大小是 16，可以修改。如果已知大概数据量，可以减少动扩容的次数，提高其性能<br>2、装载因子和动态扩容策略。HashMap 默认的装载因子最大值为 0.75，大于这个值就会进行扩容，容量变为原来的两倍<br>3、散列冲突的解决方法。HashMap 底层采用链表法解决冲突，在 JDK1.8 版本中，当链表的长度大于一定的值（默认为 8）时，会将链表转换为红黑树，小于 8 时又会转换为链表。红黑树需要维护平衡，数据量小的时候在性能上不比链表突出<br>4、散列函数。散列函数追求的是简单高效、分布均匀<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">int hash(Object key) &#123;</span><br><span class="line">  int h = key.hashCode(); // hashCode 是 32 位整型值</span><br><span class="line">  return (h ^ (h &gt;&gt;&gt; 16)) &amp; (capicity - 1); // 先无符号右移 16 位，然后再和自己做异或运算，这样计算出来的整型值将“具有”高位和低位的性质；capicity 永远是 2 的幂次方，等式 A % B = A &amp; (B - 1) 成立，也就是求余得到自身在数组中的位置</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// String 类型的对象的 hashCode 方法</span><br><span class="line">public int hashCode() &#123;</span><br><span class="line">  int var1 = this.hash;</span><br><span class="line">  if(int var1 == 0 &amp;&amp; this.value.length &gt; 0) &#123;</span><br><span class="line">    char[] var2 = this.value;</span><br><span class="line">    for(int var3 = 0;var3 &lt; this.value.length; ++var3) &#123;</span><br><span class="line">      var1 = 31 * var1 + var2[var3];</span><br><span class="line">    &#125;</span><br><span class="line">    this.hash = var1;</span><br><span class="line">  &#125;</span><br><span class="line">  return var1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>二、LRU 缓存淘汰算法<br>一个缓存（cache）系统主要有三个操作：<br>1、往缓存中添加一个数据<br>2、从缓存中删除一个数据<br>3、在缓存中查找一个数据<br>仅仅使用链表实现的 LRU 缓存淘汰算法，因为每个操作要遍历链表，所以时间复杂度为 O(n)。而将散列表和链表两种数据结构组合使用，则可以将三种操作的时间复杂度都降为 O(1)。由于我们的散列表是通过链表法解决散列冲突的，所以每个结点会在两条链中。一个链是存储数据的双向链表，另一个链是散列表中的单链表。每个结点包含存储数据(data)、前驱指针(prev)、后继指针(next)和散列表中的链表指针(hnext)<br><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAMAAABOo35HAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAC9UExURVlZWdPT07KysmRkZIWFhfT09JmZmWZmZm9vb39/fxkZGUxMTDMzM3p6epCQkKamppubm729venp6cjIyN7e3tbW1s/Pz8LCwnx8fLS0tFZWVoiIiI+Pj6GhoeTk5Glpabu7u93d3evr66CgoJSUlKqqqsnJyeDg4Hd3d8PDw+Xl5bi4uNHR0dvb26Ojo6urq+fn51hYWDg4OCgoKHBwcK2traenp0FBQe7u7vHx8U5OTre3t8zMzHV1df///7GrnpQAAAA/dFJOU///////////////////////////////////////////////////////////////////////////////////AI4mfBcAAAUGSURBVHja7NoJb6M4GMZxY0NCD64kve/pMZ2d3Z297+X7f6zFNmBAMUXa6URl/q9UJSWPUPzrizFWRUlNLgEBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYYIEFAVhggQUWWGBBABZYYIEFFlgQgAUWWGCBBRYEYIEFFlhggQUBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYn6cCIcRXgvX/h9qcIVBqDdbEM8RCxGCB9QqXYRwHYDHBgwXWl8eKZKiESHI3Ba1kWs3fKixcaJUl1YyeBm7Ocq+yLItUiVBGnXxenSHJolIKEcwHq6ikbOX1YGVzQCTN8LPmSLreghUl9sN4Uw7yajMrLC0TZ1ImzqY6FEop0+pIaEN5HaoOxVuwEqFyc4I46uSlzOLqgxlh6UaR9l3VYWl9Fdoxb1Q90KJtu41pwwFW/WHhTtW8i7TafLCqRsk6bsGw63L9qurXRmuIlbT9lDQnlXU+nBFW1Q2qnZbDprWa2tjR90LZFqx1/+Td/HpGWLlrLDvIwTcx6dQ1Vrntbig68cDms3JwbA5Y1azs1ger6sNV/bbIw1jU81MvNAGrl58RVn8ozW+btF08iGFoAlYvP3csfVur1gJBEIA1uBmue5dhZDOyO2epbmgCVi8/I6x0MMHH9pjsTfBhNzQBq5uPZoQlB0uH3DZG4EZqQ26fL3sZq5uf09Ih6qw3i/pm6BZO0qZX7rrUS68Xsbr5ZE4rePMk08pk9aUZugfqppvs6AM1Acvlo/StP+6EbW06z8hJqxbYp2BZPQUnFsLsKuhQdaHqn5ewbF7KXIn0jWO5MqOQ7RaNLPtbNMmmhimj0GUmYLl8Gs0Lq4wyPbTu1l2QKqHSouzs3OlDIslW5SQsnY/NXmFplyNvEuuLV/Tau9BzwiraDUSwXmysztYWWNtL1psXeumgIrDGaqXvBfUuvtqUYI3V2t1wk1e2msFluJJm6zDJXv/fIfjPP7DAAgsssCiwwAILLLDAosACCyywwAKLAgsssMACC6zt9fDz/v75tyOB+98PD2+ORgKffjw4OP1uJPDxl+Xy8v1I4MPF3t7VNyOB4/vF4uzdzrG+39f1kz/w66Guv/yBvw90KX/gZKkr8Qf+2dOV+gNHC12/7RxrabD2/a31bLAO/a11YbAO/K21MFhLf2s9Gqw9f2vdGqzFu11jnVusE2/gxmI9eQOnFuvYG7i0WH7uK4t15w2cWazrXWP9a7H8f/bQYvm/6IPF+sF/pVssf19Ii/WH/0K2WH/uGuvEWC39gSdj9Twy+Rqri5EZx1gt/IE7Y/XoD1wbq9vd3w1PlufnD2OBp+ebm/uxwPHF6emnscDR4vLy41jg7vHq6sNY4Pr27OyYdRaLUrDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssL6u+k+AAQCR9eHtLKvLfwAAAABJRU5ErkJggg==" data-original="http://picture.niuxiaokui.top/blog/algorithm/LRU.png" alt="LRU 缓存淘汰算法"><br>上面三个操作的过程：<br>1、查找，通过散列表查找数据，时间复杂度为 O(1)。找到数据后，将它移到双向链表的尾部<br>2、删除，先查找到要删除的数据，时间复杂度为 O(1)。因为使用的是双向链表，可以在 O(1)时间复杂度获得其前驱结点然后删除<br>3、添加，先查询是否已经在缓存中，如果已经存在，将其移到双向链表的尾部；如果不存在且缓存没满，则直接将数据放到链表的尾部；如果缓存已经满了，则将双向链表头部的结点删除，再将数据放到链表的尾部<br>整个过程的查找操作都可以通过散列表完成，时间复杂度为 O(1)，其他双向链表的删除、插入等操作等也都可以在 O(1) 的时间复杂度内完成，所以这三个操作的时间复杂度都是 O(1)</p>
+<p>二、LRU 缓存淘汰算法<br>一个缓存（cache）系统主要有三个操作：<br>1、往缓存中添加一个数据<br>2、从缓存中删除一个数据<br>3、在缓存中查找一个数据<br>仅仅使用链表实现的 LRU 缓存淘汰算法，因为每个操作要遍历链表，所以时间复杂度为 O(n)。而将散列表和链表两种数据结构组合使用，则可以将三种操作的时间复杂度都降为 O(1)。由于我们的散列表是通过链表法解决散列冲突的，所以每个结点会在两条链中。一个链是存储数据的双向链表，另一个链是散列表中的单链表。每个结点包含存储数据(data)、前驱指针(prev)、后继指针(next)和散列表中的链表指针(hnext)<br><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAMAAABOo35HAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAC9UExURVlZWdPT07KysmRkZIWFhfT09JmZmWZmZm9vb39/fxkZGUxMTDMzM3p6epCQkKamppubm729venp6cjIyN7e3tbW1s/Pz8LCwnx8fLS0tFZWVoiIiI+Pj6GhoeTk5Glpabu7u93d3evr66CgoJSUlKqqqsnJyeDg4Hd3d8PDw+Xl5bi4uNHR0dvb26Ojo6urq+fn51hYWDg4OCgoKHBwcK2traenp0FBQe7u7vHx8U5OTre3t8zMzHV1df///7GrnpQAAAA/dFJOU///////////////////////////////////////////////////////////////////////////////////AI4mfBcAAAUGSURBVHja7NoJb6M4GMZxY0NCD64kve/pMZ2d3Z297+X7f6zFNmBAMUXa6URl/q9UJSWPUPzrizFWRUlNLgEBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYYIEFAVhggQUWWGBBABZYYIEFFlgQgAUWWGCBBRYEYIEFFlhggQUBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYn6cCIcRXgvX/h9qcIVBqDdbEM8RCxGCB9QqXYRwHYDHBgwXWl8eKZKiESHI3Ba1kWs3fKixcaJUl1YyeBm7Ocq+yLItUiVBGnXxenSHJolIKEcwHq6ikbOX1YGVzQCTN8LPmSLreghUl9sN4Uw7yajMrLC0TZ1ImzqY6FEop0+pIaEN5HaoOxVuwEqFyc4I46uSlzOLqgxlh6UaR9l3VYWl9Fdoxb1Q90KJtu41pwwFW/WHhTtW8i7TafLCqRsk6bsGw63L9qurXRmuIlbT9lDQnlXU+nBFW1Q2qnZbDprWa2tjR90LZFqx1/+Td/HpGWLlrLDvIwTcx6dQ1Vrntbig68cDms3JwbA5Y1azs1ger6sNV/bbIw1jU81MvNAGrl58RVn8ozW+btF08iGFoAlYvP3csfVur1gJBEIA1uBmue5dhZDOyO2epbmgCVi8/I6x0MMHH9pjsTfBhNzQBq5uPZoQlB0uH3DZG4EZqQ26fL3sZq5uf09Ih6qw3i/pm6BZO0qZX7rrUS68Xsbr5ZE4rePMk08pk9aUZugfqppvs6AM1Acvlo/StP+6EbW06z8hJqxbYp2BZPQUnFsLsKuhQdaHqn5ewbF7KXIn0jWO5MqOQ7RaNLPtbNMmmhimj0GUmYLl8Gs0Lq4wyPbTu1l2QKqHSouzs3OlDIslW5SQsnY/NXmFplyNvEuuLV/Tau9BzwiraDUSwXmysztYWWNtL1psXeumgIrDGaqXvBfUuvtqUYI3V2t1wk1e2msFluJJm6zDJXv/fIfjPP7DAAgsssCiwwAILLLDAosACCyywwAKLAgsssMACC6zt9fDz/v75tyOB+98PD2+ORgKffjw4OP1uJPDxl+Xy8v1I4MPF3t7VNyOB4/vF4uzdzrG+39f1kz/w66Guv/yBvw90KX/gZKkr8Qf+2dOV+gNHC12/7RxrabD2/a31bLAO/a11YbAO/K21MFhLf2s9Gqw9f2vdGqzFu11jnVusE2/gxmI9eQOnFuvYG7i0WH7uK4t15w2cWazrXWP9a7H8f/bQYvm/6IPF+sF/pVssf19Ii/WH/0K2WH/uGuvEWC39gSdj9Twy+Rqri5EZx1gt/IE7Y/XoD1wbq9vd3w1PlufnD2OBp+ebm/uxwPHF6emnscDR4vLy41jg7vHq6sNY4Pr27OyYdRaLUrDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssL6u+k+AAQCR9eHtLKvLfwAAAABJRU5ErkJggg==" data-original="https://picture.niuxiaokui.top/blog/algorithm/LRU.png" alt="LRU 缓存淘汰算法"><br>上面三个操作的过程：<br>1、查找，通过散列表查找数据，时间复杂度为 O(1)。找到数据后，将它移到双向链表的尾部<br>2、删除，先查找到要删除的数据，时间复杂度为 O(1)。因为使用的是双向链表，可以在 O(1)时间复杂度获得其前驱结点然后删除<br>3、添加，先查询是否已经在缓存中，如果已经存在，将其移到双向链表的尾部；如果不存在且缓存没满，则直接将数据放到链表的尾部；如果缓存已经满了，则将双向链表头部的结点删除，再将数据放到链表的尾部<br>整个过程的查找操作都可以通过散列表完成，时间复杂度为 O(1)，其他双向链表的删除、插入等操作等也都可以在 O(1) 的时间复杂度内完成，所以这三个操作的时间复杂度都是 O(1)</p>
 <p>三、Redis 有序集合<br>在有序集合中，每个成员对象有两个重要的属性，key（键值）和 score（分值）。<br>细化一下 Redis 有序集合的操作：<br>1、添加一个成员对象<br>2、按照键值来删除一个成员对象<br>3、按照键值来查找一个成员对象<br>4、按照分值区间查找数据<br>5、按照分值从小到大排序成员变量<br>按照分值将对象构建成跳表，删除、查找的时间复杂度为 O(logn)。而使用键值构建一个散列表，按照 key 进行删除、查找的时间复杂度就为 O(1)，然后再结合分值跳表可以快速查按照区间查找数据。</p>
 <p>四、Java LinkedHashMap<br>LinkedHashMap 是通过双向链表和散列表这两种数据结构组合实现的。LinkedHashMap 中的“Linked”实际上是指的是双向链表，并非指用链表法解决散列冲突。按照访问时间排序的 LinkedHashMap 本身就是一个支持 LRU 缓存淘汰策略的缓存系统，它们两个的实现原理一模一样</p>
 <h4 id="散列表与链表"><a href="#散列表与链表" class="headerlink" title="散列表与链表"></a>散列表与链表</h4><p>散列表虽然支持非常高效的数据插入、删除、查找操作，但散列表中的数据都是通过散列函数打散后无序存储的，如果我们想要将数据按照某种顺序排列，那就要先把数据拷贝到数组中，先排序再遍历，而且散列表是动态数据结构，不停的有数据插入、删除，这样每次遍历都需要重新排序，效率势必很慢。因而散列表经常与链表配合使用，链表或跳表用来实现排序的功能</p>
@@ -399,11 +399,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">HTML</a>
+                <a href="javascript:void(0)" class="js-tag color3">工具</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">工具</a>
+                <a href="javascript:void(0)" class="js-tag color5">HTML</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -415,11 +415,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">node</a>
+                <a href="javascript:void(0)" class="js-tag color3">MongoDB</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">MongoDB</a>
+                <a href="javascript:void(0)" class="js-tag color5">node</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -447,15 +447,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">数据结构与算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">regex</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">数据结构与算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Chrome</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">调试</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -467,19 +471,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">压缩</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">总结</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">目标</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">压缩</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">调试</a>
               </li>
              
               <li class="article-tag-list-item">
