@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="奔跑的牛">
 <meta property="og:description" content="摘要：nvm 的相关知识">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-11-29T15:16:18.897Z">
+<meta property="og:updated_time" content="2021-03-21T16:24:35.430Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="nvm">
 <meta name="twitter:description" content="摘要：nvm 的相关知识">
@@ -177,7 +177,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>摘要：nvm 的相关知识<a id="more"></a>，这几天将系统升到了 os 11.0.1，一些软件的支持度不怎么好，使用 brew 更新 node 后，hexo 打包预览都没问题，但是上传报错。没办法，需要安装低版本的 node 来上传，但又想使用最新版的 node 开发，只好舍弃 homebrew 安装的 node，使用 nvm 切换 node 版本</p>
+        <p>摘要：nvm 的相关知识<a id="more"></a>，这几天将系统升到了 OS 11.0.1，一些软件的支持度不怎么好，使用 brew 更新 node 后，hexo 打包预览都没问题，但是上传报错。没办法，需要安装低版本的 node 来上传，但又想使用最新版的 node 开发，只好舍弃 homebrew 直接安装 node 的方法。先使用 homebrew 安装 nvm，再使用 nvm 切换 node 版本</p>
 <h4 id="卸载已安装的-node"><a href="#卸载已安装的-node" class="headerlink" title="卸载已安装的 node"></a>卸载已安装的 node</h4><p>我之前的 node 是使用 brew 安装的，卸载并清除 bash_profile 对应的环境变量<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">brew ls // 查看使用 brew 安装的应用列表</span><br><span class="line">brew uninstall node // 卸载 node</span><br></pre></td></tr></table></figure></p>
 <h4 id="安装-nvm"><a href="#安装-nvm" class="headerlink" title="安装 nvm"></a>安装 nvm</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install nvm</span><br></pre></td></tr></table></figure>
 <p>安装成功后，设置环境变量，修改 .bash_profile 文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo &quot;source $(brew --prefix nvm)/nvm.sh&quot; &gt;&gt; ~/.bash_profile</span><br></pre></td></tr></table></figure></p>
@@ -367,7 +367,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">HTML</a>
+                <a href="javascript:void(0)" class="js-tag color5">Flex</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -375,7 +375,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">工具</a>
+                <a href="javascript:void(0)" class="js-tag color5">HTML</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -387,15 +387,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Flex</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">MongoDB</a>
+                <a href="javascript:void(0)" class="js-tag color3">工具</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">node</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">MongoDB</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -423,11 +423,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">数据结构与算法</a>
+                <a href="javascript:void(0)" class="js-tag color1">regex</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">regex</a>
+                <a href="javascript:void(0)" class="js-tag color3">数据结构与算法</a>
               </li>
              
               <li class="article-tag-list-item">
