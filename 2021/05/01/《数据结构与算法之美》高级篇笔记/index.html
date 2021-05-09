@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="奔跑的牛">
 <meta property="og:description" content="摘要：极客时间《数据结构与算法之美》高级篇笔记，拓扑排序">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2021-05-01T15:59:32.351Z">
+<meta property="og:updated_time" content="2021-05-09T16:10:35.969Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《数据结构与算法之美》高级篇笔记">
 <meta name="twitter:description" content="摘要：极客时间《数据结构与算法之美》高级篇笔记，拓扑排序">
@@ -178,7 +178,13 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>摘要：极客时间<a href="https://time.geekbang.org/column/intro/126" target="_blank" rel="noopener">《数据结构与算法之美》</a>高级篇笔记，拓扑排序<a id="more"></a></p>
-<h4 id="拓扑排序"><a href="#拓扑排序" class="headerlink" title="拓扑排序"></a>拓扑排序</h4>
+<h1 id="拓扑排序"><a href="#拓扑排序" class="headerlink" title="拓扑排序"></a>拓扑排序</h1><p>拓扑排序本身就是基于有向无环图的一个算法。把源文件与源文件之间的依赖关系，抽象成一个有向图，同时还要是一个有向无环图。图可能不是连通的，由几个不连通的子图构成。每个源文件对应图中的一个顶点，源文件之间的依赖关系就是顶点之间的边。a 先于 b 执行，也就是说 b 依赖于 a，那么就在顶点 a 和顶点 b 之间，构建一条从 a 指向 b 的边。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">// 基础图类</span><br><span class="line">public class Graph &#123;</span><br><span class="line">  private int v; // 顶点的个数</span><br><span class="line">  private LinkedList&lt;Integer&gt; adj[]; // 邻接表</span><br><span class="line"></span><br><span class="line">  public Graph(int v) &#123;</span><br><span class="line">    this.v = v;</span><br><span class="line">    adj = new LinkedList[v];</span><br><span class="line">    for (int i=0; i&lt;v; ++i) &#123; // 每个顶点都可以指向其他顶点</span><br><span class="line">      adj[i] = new LinkedList&lt;&gt;();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  public void addEdge(int s, int t) &#123; // s 先于 t，添加边 s-&gt;t</span><br><span class="line">    adj[s].add(t);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>拓扑排序有两种实现方法：Kahn 算法和 DFS 深度优先搜索算法</p>
+<h4 id="Kahn-算法"><a href="#Kahn-算法" class="headerlink" title="Kahn 算法"></a>Kahn 算法</h4><p>Kahn 算法实际上用的是贪心算法思想，如果某个顶点的入度为 0，即没有其他顶点先于这个顶点执行，那么就可以从这个顶点开始执行，遍历该顶点所有的边。将所有入度为 0 的顶点都遍历一遍，即完成本次算法。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">public void topoSortByKahn() &#123;</span><br><span class="line">  int[] inDegree = new int[v]; // 统计每个顶点的入度</span><br><span class="line">  for (int i = 0; i &lt; v; ++i) &#123;</span><br><span class="line">    for (int j = 0; j &lt; adj[i].size(); ++j) &#123;</span><br><span class="line">      int w = adj[i].get(j); // 如果有 i-&gt;w</span><br><span class="line">      inDegree[w]++;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  LinkedList&lt;Integer&gt; queue = new LinkedList&lt;&gt;();</span><br><span class="line">  for (int i = 0; i &lt; v; ++i) &#123;</span><br><span class="line">    if (inDegree[i] == 0) queue.add(i); // 链表中记录入度为 0 的顶点</span><br><span class="line">  &#125;</span><br><span class="line">  while (!queue.isEmpty()) &#123; // 按照链表顺序执行顶点</span><br><span class="line">    int i = queue.remove(); // 从链表中移除该顶点</span><br><span class="line">    System.out.print(&quot;-&gt;&quot; + i);</span><br><span class="line">    for (int j = 0; j &lt; adj[i].size(); ++j) &#123; // 遍历打印顶点所有的边</span><br><span class="line">      int k = adj[i].get(j);</span><br><span class="line">      inDegree[k]--;</span><br><span class="line">      if (inDegree[k] == 0) queue.add(k); // 入度为 0 时加入队列，类似 BFS 算法</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>每个顶点被访问了一次，每个边也都被访问了一次，则其时间复杂度是 O(V+E)（V 表示顶点个数，E 表示边的个数）</p>
+<h4 id="DFS-算法"><a href="#DFS-算法" class="headerlink" title="DFS 算法"></a>DFS 算法</h4><p>深度优先遍历思路：<br>1、先通过邻接表构造逆邻接表。邻接表中，边 s-&gt;t 表示 s 先于 t 执行；逆邻接表中，边 s-&gt;t 表示 s 依赖于 t，t 先于 s 执行<br>2、递归处理每个顶点。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">public void topoSortByDFS() &#123;</span><br><span class="line">  // 先构建逆邻接表</span><br><span class="line">  LinkedList&lt;Integer&gt; inverseAdj[] = new LinkedList[v];</span><br><span class="line">  for (int i = 0; i &lt; v; ++i) &#123; // 申请空间</span><br><span class="line">    inverseAdj[i] = new LinkedList&lt;&gt;();</span><br><span class="line">  &#125;</span><br><span class="line">  for (int i = 0; i &lt; v; ++i) &#123; // 通过邻接表填充逆邻接表</span><br><span class="line">    for (int j = 0; j &lt; adj[i].size(); ++j) &#123;</span><br><span class="line">      int w = adj[i].get(j); // i-&gt;w</span><br><span class="line">      inverseAdj[w].add(i); // w-&gt;i</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  boolean[] visited = new boolean[v];</span><br><span class="line">  for (int i = 0; i &lt; v; ++i) &#123; // 深度优先遍历图，要遍历所有顶点</span><br><span class="line">    if (visited[i] == false) &#123;</span><br><span class="line">      visited[i] = true;</span><br><span class="line">      dfs(i, inverseAdj, visited);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">// vertex：顶点索引；inverseAdj：逆邻接表；visited：是否访问的标识数组</span><br><span class="line">private void dfs(int vertex, LinkedList&lt;Integer&gt; inverseAdj[], boolean[] visited) &#123;</span><br><span class="line">  for (int i = 0; i &lt; inverseAdj[vertex].size(); ++i) &#123;</span><br><span class="line">    int w = inverseAdj[vertex].get(i);</span><br><span class="line">    if (visited[w] == true) continue; // 跳过访问过的顶点</span><br><span class="line">    visited[w] = true;</span><br><span class="line">    dfs(w, inverseAdj, visited); // 递归进入相连的顶点</span><br><span class="line">  &#125;</span><br><span class="line">  // 把 vertex 这个顶点可达的所有顶点都打印出来之后，再打印它自己</span><br><span class="line">  System.out.print(&quot;-&gt;&quot; + vertex);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>每个顶点被访问两次（去一次，来一次），每条边都被访问一次，所以时间复杂度也是 O(V+E)</p>
+
       
 
       
@@ -346,15 +352,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">工具</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Flex</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">HTML</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">工具</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -390,15 +396,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">【Vue】</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">AlloyFinger</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Swiper</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">【Vue】</a>
               </li>
              
               <li class="article-tag-list-item">
