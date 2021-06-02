@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="https://niuxiaokui.github.io">
   <title>《数据结构与算法之美》实战篇笔记 | 奔跑的牛</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="摘要：极客时间《数据结构与算法之美》实战篇笔记">
+  <meta name="description" content="摘要：极客时间《数据结构与算法之美》实战篇笔记，Redis、搜索引擎涉及到的数据结构">
 <meta name="keywords" content="数据结构与算法">
 <meta property="og:type" content="article">
 <meta property="og:title" content="《数据结构与算法之美》实战篇笔记">
 <meta property="og:url" content="https://niuxiaokui.github.io/2021/06/01/《数据结构与算法之美》实战篇笔记/index.html">
 <meta property="og:site_name" content="奔跑的牛">
-<meta property="og:description" content="摘要：极客时间《数据结构与算法之美》实战篇笔记">
+<meta property="og:description" content="摘要：极客时间《数据结构与算法之美》实战篇笔记，Redis、搜索引擎涉及到的数据结构">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2021-06-01T16:26:31.896Z">
+<meta property="og:updated_time" content="2021-06-02T13:57:16.606Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《数据结构与算法之美》实战篇笔记">
-<meta name="twitter:description" content="摘要：极客时间《数据结构与算法之美》实战篇笔记">
+<meta name="twitter:description" content="摘要：极客时间《数据结构与算法之美》实战篇笔记，Redis、搜索引擎涉及到的数据结构">
   
     <link rel="alternative" href="/atom.xml" title="奔跑的牛" type="application/atom+xml">
   
@@ -177,9 +177,21 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>摘要：极客时间<a href="https://time.geekbang.org/column/intro/126" target="_blank" rel="noopener">《数据结构与算法之美》</a>实战篇笔记<a id="more"></a></p>
+        <p>摘要：极客时间<a href="https://time.geekbang.org/column/intro/126" target="_blank" rel="noopener">《数据结构与算法之美》</a>实战篇笔记，Redis、搜索引擎涉及到的数据结构<a id="more"></a></p>
 <h1 id="Redis"><a href="#Redis" class="headerlink" title="Redis"></a>Redis</h1><h4 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h4><p>Redis 数据库是一种键值（Key-Value）非关系型数据库。它只能通过“键”来查询“值”，也让 Redis 的读写效率非常高。键的数据类型是字符串，值的数据类型有很多，常用的有：字符串、列表、字典、集合、有序集合。Redis 主要是作为内存数据库来使用，数据主要是存储在内存中的，但也支持将数据存储在硬盘中。</p>
-<h4 id="列表（List"><a href="#列表（List" class="headerlink" title="列表（List"></a>列表（List</h4><p>列表对应两种实现方法：<br>1、压缩列表<br>2、双向循环列表</p>
+<h4 id="列表（List"><a href="#列表（List" class="headerlink" title="列表（List"></a>列表（List</h4><p>列表对应两种实现方法：压缩列表（ziplist）和双向循环列表<br>1、压缩列表<br>当列表中存储的数据量比较小，且满足两点要求：1、列表中保存的单个数据（有可能是字符串类型的）小于 64 字节；2、列表中数据个数少于 512 个。这时会使用压缩列表。<br>压缩列表相较于数组的存储思路而言更节省内存。数组要求每个元素的大小相同，如果要存储不同长度的字符串，那就需要用最大长度的字符串大小作为元素的大小。压缩数组是通过一片连续的内存空间，来存储数据，且允许存储的数据大小不同。但压缩数组不支持随机访问，一般是通过 key 获取整个 value 的值，也就是整个压缩列表的数据。<br>2、双向循环列表<br>不满足压缩列表的要求时就会使用双向循环列表来存储数据。Redis 额外定义一个 list 结构体，来组织链表的首、尾指针和和长度等信息</p>
+<h4 id="字典（hash）"><a href="#字典（hash）" class="headerlink" title="字典（hash）"></a>字典（hash）</h4><p>字典类型用来存储一组数据对，每个数据对又包含键值两部分。字典也有两种实现方法：压缩列表和散列表<br>1、压缩列表<br>当数据量比较小，满足两点要求：1、字典中的键和值都小于 64 字节；2、字典中键值对的个数小于 512 个。<br>2、散列表<br>不满足压缩列表的要求时就会使用散列表存储数据。Redis 使用 MurmurHash2 作为哈希函数，使用链表法解决哈希冲突问题，并且支持渐进式扩容缩容策略，将数据的搬移分批进行</p>
+<h4 id="集合（set）"><a href="#集合（set）" class="headerlink" title="集合（set）"></a>集合（set）</h4><p>集合用来存储一组不重复的数据。有两种实现方法：1、有序数组；2、散列表<br>1、有序数组<br>当数据满足两点要求：1、存储的数据都是整数；2、存储的数据元素个数不超过 512 个。就会使用有序数组<br>2、散列表<br>当数据不满足有序数组要求时，就会使用散列表</p>
+<h4 id="有序集合（sortedset）"><a href="#有序集合（sortedset）" class="headerlink" title="有序集合（sortedset）"></a>有序集合（sortedset）</h4><p>有序集合用来存储一组数据，并且每个数据会附带一个得分。通过得分大小，将数据组织成跳表，以支持快速地按照得分值、得分区间获取数据。两种实现方法：1、压缩列表；2、跳表<br>1、压缩列表<br>当数据量比较小，且满足两点要求：1、所有数据的大小都要小于 64 字节；2、元素个数要小于 128 个。会使用压缩列表实现有序集合。<br>2、跳表<br>不满压缩列表的要求时会使用跳表</p>
+<h4 id="数据结构持久化"><a href="#数据结构持久化" class="headerlink" title="数据结构持久化"></a>数据结构持久化</h4><p>“持久化”可以笼统地理解为“存储到磁盘”。一般有两种方法将数据结构持久化到硬盘：<br>1、Redis 采用的持久化思路，清除原有的存储结构，只将数据存储到磁盘中。但数据从硬盘还原到内存的过程，会耗用比较多的时间。<br>2、保留原来的存储格式，将数据按照原有的格式存储在磁盘中</p>
+<h1 id="搜索引擎"><a href="#搜索引擎" class="headerlink" title="搜索引擎"></a>搜索引擎</h1><p>搜索引擎大致可以分为四个部分：搜集、分析、索引、查询。</p>
+<h4 id="搜集"><a href="#搜集" class="headerlink" title="搜集"></a>搜集</h4><p>搜集就是利用爬虫爬取网页。搜索引擎把整个互联网看作数据结构中的有向图，把每个页面看作一个顶点。如果页面包含包含另一个页面的链接，那就在两个顶点之间连一条有向边，然后利用图的广度优先搜索来遍历整个互联网中的网页。广度优先搜索策略，将权重比较高的页面链接作为种子链接放入队列，不停的出队、爬取页面，再将页面中的新链接入队<br>关键技术细节：<br>1、待爬取网页链接文件：links.bin<br>用一个存储在磁盘中的文件（links.bin）来作为广度优先搜索中的队列，爬虫从 links.bin 文件中，取出链接去爬取对应的页面。将页面解析出来的链接，再存储到 links.bin 文件中。这样硬盘可以存储比内存更多的链接，也支持断点续爬。<br>2、网页判重文件：bloom_filter.bin<br>使用布隆过滤器避免重复爬取相同的网页，且定期地将布隆过滤器持久化到磁盘中，存储在 bloom_filter.bin 文件中。发生机器宕机也可以在重启后，从磁盘中读取 bloom_filter.bin 文件，将数据恢复到内存中<br>3、原始网页存储文件：doc_raw.bin<br>爬取网页后，要将其存储下来，以供后面的分析、索引操作使用。如果每个页面单独保存为一个文件，这样数量会很多。使用一个文件存储多个页面数据，每个个网页之间，通过一定的标识进行分隔（<code>\t\r\n</code>等）、索引（doc_id），方便后续读取。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 网页编号 网页大小 网页内容 分隔符</span><br><span class="line">doc1_id \t doc1_size \t doc1 \r\n\r\n</span><br><span class="line">doc2_id \t doc2_size \t doc2 \r\n\r\n</span><br><span class="line">...</span><br></pre></td></tr></table></figure></p>
+<p>当这个文件大于一定数值时，可以新建一个文件来存储新爬取的页面数据<br>4、网页链接及其编号的对应文件：doc_id.bin<br>按照网页被爬取的先后顺序，从小到大依次为文件中的网页数据编号，并将网页链接跟编号（doc_id）之间的对应关系，存储在 doc_id.bin 文件中。</p>
+<h4 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h4><p>爬虫爬取网页后，需要对网页进行离线分析。分析主要包括两部分：<br>1、抽取网页文本信息<br>先去掉<code>&lt;style&gt;&lt;/style&gt;&lt;script&gt;&lt;/script&gt;&lt;option&gt;&lt;/option&gt;</code>这三组标签中的内容（可以利用 AC 自动机），再去掉所有 HTML 标签<br>2、分词并创建临时索引<br>得到网页的文本内容后，需要进行分词并创建临时索引。如果是英文网页，通过空格、标点符号等分隔符就可以将每个单词分割开来。如果是中文，简单的方法：基于字典和规则的分词方法。借助词库并采用最长匹配规则，比如将词库中的单词，构建成 Trie 树结构，然后拿网页文本在 Trie 树中匹配。每个网页匹配后都得到一组单词列表，然后使用一个散列表维护单词编号与单词之间的关系。再将单词编号与网页之间的对应关系（doc_id）写入到临时索引文件 tmp_Index.bin 中，像这样存储单词编号更节省存储空间。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 单词编号 网页编号 分隔符</span><br><span class="line">term1_id \t doc_id \r\n</span><br><span class="line">term2_id \t doc_id \r\n</span><br><span class="line">...</span><br></pre></td></tr></table></figure></p>
+<p>处理完所有网页后，再将单词与编号之间的对应关系写到文件 term_id.bin 中。<br>分析阶段最后得到两个文件：临时索引文件（tmp_index.bin）和单词编号文件（term_id.bin）</p>
+<h4 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h4><p>索引阶段主要负责将分析阶段产生的临时索引，构建成倒排索引（Inverted index）。倒排索引中记录了每个单词以及包含它的网页列表，例如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// 单词编号 包含该单词的网页列表 分隔符</span><br><span class="line">term1_id \t did1,did2,...,didn \r\n</span><br><span class="line">term2_id \t did1,did2,...,didn \r\n</span><br><span class="line">...</span><br><span class="line">``` </span><br><span class="line">通过临时索引文件，使用多路归并排序的方法来构建出倒排索引文件。将临时索引文件分割成多个小文件，先对每个小文件独立排序，相同的单词就被排列到了一起。之后顺序地遍历排好序的小文件，将每个单词对应的网页编号列表找出来，然后把它们存储在小份倒排索引文件中，最后将所有小份倒排索引文件合成最终的倒排索引文件。同时，将每个单词编号在倒排索引文件中的偏移位置存储在文件 term_offset.bin 中，以便快速地查找某个单词编号在倒排索引中存储的位置，进而快速地从倒排索引中读取单词编号对应的网页编号列表。</span><br></pre></td></tr></table></figure></p>
+<p>// 单词编号 偏移位置 分隔符<br>term1_id \t offset1 \r\n<br>term2_id \t offset2 \r\n<br><code>`</code><br>索引阶段得到两个文件：倒排索引文件（index.bin）和单词编号在索引文件中的偏移位置的文件（term_offset.bin）</p>
+<h4 id="查询"><a href="#查询" class="headerlink" title="查询"></a>查询</h4><p>经过前面三个阶段的处理，得到四个文件：<br>1、doc_id.bin：记录网页链接和编号之间的对应关系。<br>2、term_id.bin：记录单词和编号之间的对应关系。<br>3、index.bin：记录每个单词编号以及对应包含它的网页编号列表。<br>4、term_offsert.bin：记录每个单词编号在倒排索引文件中的偏移位置。<br>这四个文件中，除了倒排索引文件（index.bin）比较大之外，其他的都比较小。为了方便快速查找数据，将其他三个文件加载到内存中，并组织成散列表存储对应数据。<br>搜索的过程：<br>1、对用户输入的文本进行分词，得到 k 个关键词<br>2、去 term_id.bin 对应的散列表中匹配这 k 个关键词，得到 k 个单词对应的单词编号<br>3、去 term_offset.bin 对应的散列表中，查找每个单词编号在倒排索引文件中的偏移位置，得到 k 个偏移位置<br>4、去倒排索引 index.bin 中，查找 k 个单词对应的包含它的网页编号列表，得到 k 个网页编号列表<br>5、针对这 k 个网页编号列表，借助散列表来统计每个网页编号出现的次数。按照出现次数的多少，从小到大排序，得到一组网页编号。出现次数越多，说明网页跟查询内容的相关度越大<br>6、在 doc_id.bin 文件中查找这组网页编号对应的网页链接，然后分页展示给用户</p>
 
       
 
@@ -348,11 +360,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Flex</a>
+                <a href="javascript:void(0)" class="js-tag color5">HTML</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">HTML</a>
+                <a href="javascript:void(0)" class="js-tag color5">Flex</a>
               </li>
              
               <li class="article-tag-list-item">
