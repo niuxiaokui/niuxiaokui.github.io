@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="https://niuxiaokui.github.io">
   <title>《数据结构与算法之美》实战篇笔记 | 奔跑的牛</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="摘要：极客时间《数据结构与算法之美》实战篇笔记，Redis、搜索引擎涉及到的数据结构">
+  <meta name="description" content="摘要：极客时间《数据结构与算法之美》实战篇笔记，Redis、搜索引擎、Disruptor、鉴权限流、短网址服务涉及到的数据结构">
 <meta name="keywords" content="数据结构与算法">
 <meta property="og:type" content="article">
 <meta property="og:title" content="《数据结构与算法之美》实战篇笔记">
 <meta property="og:url" content="https://niuxiaokui.github.io/2021/06/01/《数据结构与算法之美》实战篇笔记/index.html">
 <meta property="og:site_name" content="奔跑的牛">
-<meta property="og:description" content="摘要：极客时间《数据结构与算法之美》实战篇笔记，Redis、搜索引擎涉及到的数据结构">
+<meta property="og:description" content="摘要：极客时间《数据结构与算法之美》实战篇笔记，Redis、搜索引擎、Disruptor、鉴权限流、短网址服务涉及到的数据结构">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2021-06-11T16:27:32.972Z">
+<meta property="og:updated_time" content="2021-06-12T17:00:55.661Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《数据结构与算法之美》实战篇笔记">
-<meta name="twitter:description" content="摘要：极客时间《数据结构与算法之美》实战篇笔记，Redis、搜索引擎涉及到的数据结构">
+<meta name="twitter:description" content="摘要：极客时间《数据结构与算法之美》实战篇笔记，Redis、搜索引擎、Disruptor、鉴权限流、短网址服务涉及到的数据结构">
   
     <link rel="alternative" href="/atom.xml" title="奔跑的牛" type="application/atom+xml">
   
@@ -177,7 +177,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>摘要：极客时间<a href="https://time.geekbang.org/column/intro/126" target="_blank" rel="noopener">《数据结构与算法之美》</a>实战篇笔记，Redis、搜索引擎涉及到的数据结构<a id="more"></a></p>
+        <p>摘要：极客时间<a href="https://time.geekbang.org/column/intro/126" target="_blank" rel="noopener">《数据结构与算法之美》</a>实战篇笔记，Redis、搜索引擎、Disruptor、鉴权限流、短网址服务涉及到的数据结构<a id="more"></a></p>
 <h1 id="Redis"><a href="#Redis" class="headerlink" title="Redis"></a>Redis</h1><h4 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h4><p>Redis 数据库是一种键值（Key-Value）非关系型数据库。它只能通过“键”来查询“值”，也让 Redis 的读写效率非常高。键的数据类型是字符串，值的数据类型有很多，常用的有：字符串、列表、字典、集合、有序集合。Redis 主要是作为内存数据库来使用，数据主要是存储在内存中的，但也支持将数据存储在硬盘中。</p>
 <h4 id="列表（List"><a href="#列表（List" class="headerlink" title="列表（List"></a>列表（List</h4><p>列表对应两种实现方法：压缩列表（ziplist）和双向循环列表<br>1、压缩列表<br>当列表中存储的数据量比较小，且满足两点要求：1、列表中保存的单个数据（有可能是字符串类型的）小于 64 字节；2、列表中数据个数少于 512 个。这时会使用压缩列表。<br>压缩列表相较于数组的存储思路而言更节省内存。数组要求每个元素的大小相同，如果要存储不同长度的字符串，那就需要用最大长度的字符串大小作为元素的大小。压缩数组是通过一片连续的内存空间，来存储数据，且允许存储的数据大小不同。但压缩数组不支持随机访问，一般是通过 key 获取整个 value 的值，也就是整个压缩列表的数据。<br>2、双向循环列表<br>不满足压缩列表的要求时就会使用双向循环列表来存储数据。Redis 额外定义一个 list 结构体，来组织链表的首、尾指针和和长度等信息</p>
 <h4 id="字典（hash）"><a href="#字典（hash）" class="headerlink" title="字典（hash）"></a>字典（hash）</h4><p>字典类型用来存储一组数据对，每个数据对又包含键值两部分。字典也有两种实现方法：压缩列表和散列表<br>1、压缩列表<br>当数据量比较小，满足两点要求：1、字典中的键和值都小于 64 字节；2、字典中键值对的个数小于 512 个。<br>2、散列表<br>不满足压缩列表的要求时就会使用散列表存储数据。Redis 使用 MurmurHash2 作为哈希函数，使用链表法解决哈希冲突问题，并且支持渐进式扩容缩容策略，将数据的搬移分批进行</p>
@@ -198,6 +198,9 @@
 <h4 id="基于无锁的并发“生产者-消费者模型”"><a href="#基于无锁的并发“生产者-消费者模型”" class="headerlink" title="基于无锁的并发“生产者 - 消费者模型”"></a>基于无锁的并发“生产者 - 消费者模型”</h4><p>Disruptor 的思路：往队列中添加数据之前，先申请可用空闲存储单元，并且是批量地申请连续的 n 个（n≥1）存储单元，申请存储单元的过程是需要加锁的，每组存储单元是都是一个线程独享的。读取数据时，先去申请一批连续可读的存储单元，这个申请的过程也是需要加锁的，当申请到这批存储单元之后，后续的读取操作就可以不用加锁了。<br>Disruptor 有个弊端：前面线程申请一组存储单位在没有完全写入数据之前，后面的数据会被机制忽略而无法读取的。</p>
 <h1 id="鉴权限流"><a href="#鉴权限流" class="headerlink" title="鉴权限流"></a>鉴权限流</h1><h4 id="快速鉴权"><a href="#快速鉴权" class="headerlink" title="快速鉴权"></a>快速鉴权</h4><p>1、精确匹配规则<br>只有当请求 URL 跟规则中配置的某个接口精确匹配时，这个请求才会被接受、处理。不同的应用对应不同的规则集合，采用散列表来存储这种对应关系。每个应用对应的规则集合都存储在一个字符串数组中，将用户请求的 URL 跟这个数组元素遍历匹配。规则不会经常变动，可以将字符串按照大小规则排序，将其组织成有序数组，这样匹配时可以使用二分查找算法来加快匹配速度。<br>2、前缀匹配规则<br>只要某条规则可以匹配请求 URL 的前缀，这个请求就会被处理。不同的应用对应不同的规则集合，采用散列表来存储这种对应关系。Trie 树非常适合用来做前缀匹配，可以将每个应用的规则集合组织成 Trie 树这种数据结构。Trie 树中的每个节点存储接口被“/”分割之后的子目录：“/user/name”被分割为“user”和“name”两个子目录。同时把每个节点的子节点们，组织成有序数组这种数据结构，可以利用二分查找算法，决定从一个节点应该跳到哪一个子节点。<br>3、模糊匹配规则<br>如果规则中包含通配符，比如“*<em>”表示匹配任意多个子目录，“</em>”表示匹配任意一个子目录。如果请求 URL 可以跟某条规则模糊匹配，那么这个请求就会被处理。不同的应用对应不同的规则集合，还是使用散列表来存储对应关系。存储规则集合则可以把不包含通配符的规则和包含通配符的规则分开处理，把不包含通配符的规则类似上面两类的，组织成有序数组或者 Trie 树。剩下包含通配符的规则存储在一个数组中，采用回溯算法，拿请求 URL 跟每条规则逐一进行模糊匹配。先匹配不包含通配符的有序数组或 Trie 树，不匹配后再匹配数组中包含通配符的规则。</p>
 <h4 id="精准限流"><a href="#精准限流" class="headerlink" title="精准限流"></a>精准限流</h4><p>最简单的限流算法叫固定时间窗口限流算法：选定一个时间起点，之后每当有接口请求到来就将计数器加一。当出现累加访问次数超过限流值的情况时，我们就拒绝后续的访问请求。当进入下一个时间窗口之后，计数器就清零重新计数。固定时间窗口限流算法的限流策略过于粗略，稍加改造成滑动时间窗口限流算法：限制任意时间窗口内，接口请求数都不能超过某个阈值。<br>实现滑动时间窗口限流算法：假设限流的规则是在任意 1s 内，接口的请求次数都不能大于 K 次。维护一个 K+1 大小的循环队列，用来记录 1s 内到来的请求。当有新的请求到来时，将队列中与这个新请求的时间间隔超过 1s 的请求从队列中删除。然后再来看循环队列中是否有空闲位置，如果有位置，将这个请求排在队尾；如果没有，说明请求数量已经超限制，这个请求被拒绝。</p>
+<h1 id="短网址服务"><a href="#短网址服务" class="headerlink" title="短网址服务"></a>短网址服务</h1><p>短网址服务利用哈希算法把一个长的网址转化成一个短的网址，访问这个短网址获取到原始网址，之后就跳转到原始网址。</p>
+<h4 id="MurmurHash-算法"><a href="#MurmurHash-算法" class="headerlink" title="MurmurHash 算法"></a>MurmurHash 算法</h4><p>MurmurHash 算法提供了两种长度的哈希值，一种是 32bits，一种是 128bits。为了让最终生成的网址尽可能的短，选用 32bits 的哈希值。<br>1、让短网址更短<br>将 10 进制的哈希值转化成更高进制的哈希值，这样哈希值就变短了。在网址 URL 中，常用的合法字符有 0～9、a～z、A～Z 这样 62 个字符。将 10 进制的哈希值转化成 62 进制的哈希值，然后拼接到短网址服务的域名后面。<br>2、解决哈希冲突问题<br>一般情况下，需要保存短网址跟原始网址之间的对应关系。得到短网址后，现在库中查询是否已经有对应的短网址。如果没有，将短网址与原始网址之间的对应关系存入库中；如果有，需要判断原网址是否一样，如果一样则还可以使用该短网址；如果不一样，说明冲突了。此时可以给原始网址拼接一串特殊字符，然后再计算哈希值。如果还冲突，可以更换特殊字符继续计算哈希值，直到不冲突，最后将短网址与原网址的对应关系存入库中。当用户查询时，将查询到的原网址去除特殊字符后返回即可。<br>3、优化哈希算法生成短网址的性能<br>当库中数据很大时，在库中判断是否冲突时会很慢。有几种方法可以提高性能：<br>1）可以给短网址字段添加 B+ 树索引，这样通过短网址查询原始网址的速度就提高了。<br>2）在短网址生成的过程中，会执行两条 SQL 语句。第一个是通过短网址查询短网址与原始网址的对应关系，第二个是将新生成的短网址和原始网址之间的对应关系存储到数据库。这种 IO 通信耗时以及 SQL 语句的执行，才是整个短网址服务的性能瓶颈所在。为了减少 SQL语句，在库的表中添加一个唯一索引，直接尝试将短网址和原网址写入库中，如果能写入，说明没有违反唯一索引，即没有冲突。如果反馈违反唯一索引引发异常，说明发生了冲突，需要重新处理冲突，然后写入短网址和原网址的对应关系。<br>3）使用布隆过滤器，把已经生成的短网址，构建成布隆过滤器。如果新生成的网址没有在布隆过滤器中找到，说明没有发生冲突，将短网址和原网址关系入库即可</p>
+<h4 id="通过-ID-生成器生成短网址"><a href="#通过-ID-生成器生成短网址" class="headerlink" title="通过 ID 生成器生成短网址"></a>通过 ID 生成器生成短网址</h4><p>除了使用哈希算法生成短网址，还可以通过 ID 生成器生成短网址。ID 自增生成器选一个号码，将其转化成 62 进制表示法后拼接到短网址服务的域名后面，生成最终的短网址。最后将短网址和原网址的关系存入库中。这样做会有些问题：<br>1、相同的原始网址可能会对应不同的短网址<br>每来一个原始网址就生成一个短网址，一个原始网址可能多次生成不同的短网址，一般有两种处理方法：<br>1）不处理，不会影响到用户体验<br>2）借助哈希算法生成短网址的处理思想，先查询库中是否存在原网址，如果有就直接将短网址返回。但这样做会添加一个查询原网址的索引，内存增加的同时，索引的增加会使插入、删除等操作的性能下降<br>2、实现高性能的 ID 生成器<br>思路：批量生成 ID<br>1）给 ID 生成器装多个前置发号器，给每个 ID 生成器批量的发号（每个一个 100 个）。每次接受到短网址生成请求时，就选择一个 ID 生成器发号，多个前置发号器可以明显提高发号效率<br>2）直接实现多个 ID 生成器同时服务，要求每个服务按照一定规则生成 ID ，以保证所有 ID 不重复。比如 10 个服务，每个服务只生成尾号是 0~9 某一个数字的 ID。</p>
 
       
 
@@ -366,11 +369,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">HTML</a>
+                <a href="javascript:void(0)" class="js-tag color5">Flex</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Flex</a>
+                <a href="javascript:void(0)" class="js-tag color5">HTML</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -446,15 +449,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">压缩</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">总结</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">目标</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">压缩</a>
               </li>
              
               <li class="article-tag-list-item">
