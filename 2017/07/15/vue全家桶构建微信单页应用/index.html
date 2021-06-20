@@ -9,14 +9,14 @@
   <title>vue全家桶构建微信单页应用 | 奔跑的牛</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="摘要：vue全家桶搭建公众号“墨品书坛”">
-<meta name="keywords" content="【Vue】">
+<meta name="keywords" content="Vue">
 <meta property="og:type" content="article">
 <meta property="og:title" content="vue全家桶构建微信单页应用">
 <meta property="og:url" content="https://niuxiaokui.github.io/2017/07/15/vue全家桶构建微信单页应用/index.html">
 <meta property="og:site_name" content="奔跑的牛">
 <meta property="og:description" content="摘要：vue全家桶搭建公众号“墨品书坛”">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-11-29T14:58:56.297Z">
+<meta property="og:updated_time" content="2021-06-20T02:45:47.581Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="vue全家桶构建微信单页应用">
 <meta name="twitter:description" content="摘要：vue全家桶搭建公众号“墨品书坛”">
@@ -179,9 +179,9 @@
       
         <p>摘要：vue全家桶搭建公众号“墨品书坛”<a id="more"></a></p>
 <h4 id="项目简介"><a href="#项目简介" class="headerlink" title="项目简介"></a>项目简介</h4><p>该项目是开发一个可以发表文章、类似于论坛的社交类微信公众号。</p>
-<h4 id="技术栈"><a href="#技术栈" class="headerlink" title="技术栈"></a>技术栈</h4><p>前端主要是vue、vue-router、vuex、axios、stylus、Mint UI，大部分使用vue-cli + webpack构建单页应用并实现前后端分离，使用手淘的flexible方案布局。因为部分页面要使用非模块化标准的js插件（技术有限未考虑修改源码），所以还是使用jQuery，并且前后端未分离。<br>后端php使用Lavaral框架，集成了七牛云图片服务器和环信IM即时通讯云</p>
+<h4 id="技术栈"><a href="#技术栈" class="headerlink" title="技术栈"></a>技术栈</h4><p>前端主要是 vue、vue-router、vuex、axios、stylus、Mint UI，大部分使用 vue-cli + webpack 构建单页应用并实现前后端分离，使用手淘的 flexible 方案布局。因为部分页面要使用非模块化标准的 js 插件（技术有限未考虑修改源码），所以还是使用 jQuery，并且前后端未分离。<br>后端 php 使用 Lavaral 框架，集成了七牛云图片服务器和环信 IM 即时通讯云</p>
 <h4 id="主要需求"><a href="#主要需求" class="headerlink" title="主要需求"></a>主要需求</h4><p>1.微信授权登录<br>2.发表文章（图文）、评论、点赞及相应的通知等一系列功能<br>3.用户可以修改自身信息，并有关注、聊天、拉黑等功能<br>4.站内关键字搜索用户和文章<br>5.微信分享给朋友及朋友圈<br>6.制作文章海报图片，可识别海报上的二维码查看文章详情</p>
-<h4 id="遇到的那些坑"><a href="#遇到的那些坑" class="headerlink" title="遇到的那些坑"></a>遇到的那些坑</h4><p>整个项目不算小，前端只有我一个人。整个项目下来，对微信和vue都有了更深的理解<br>1.<a href="https://niuxiaokui.github.io/2017/08/10/vue单页应用（history模式）微信授权后跳转/">vue单页应用（history模式）微信授权后跳转</a><br>2.<a href="https://niuxiaokui.github.io/2017/08/11/vue单页应用（history模式）获取微信签名/">vue单页应用（history模式）获取微信签名</a><br>3.<a href="https://niuxiaokui.github.io/2017/08/15/微信前端图片压缩预览上传/">微信前端图片压缩预览上传</a><br>4.<a href="https://niuxiaokui.github.io/2017/08/30/textarea换行/">textarea换行</a><br>5.<a href="https://niuxiaokui.github.io/2017/08/30/vue-router动态路由匹配相同组件连续跳转时视图不更新/">vue-router动态 路由匹配相同组件连续跳转时视图不更新</a><br>6.<a href="https://niuxiaokui.github.io/2017/09/01/使用Mint UI出现的问题/">使用Mint UI出现的问题</a><br>7.<a href="https://niuxiaokui.github.io/2017/09/02/集成环信web-im出现的问题/">集成环信web-im出现的问题</a></p>
+<h4 id="遇到的那些坑"><a href="#遇到的那些坑" class="headerlink" title="遇到的那些坑"></a>遇到的那些坑</h4><p>整个项目不算小，前端只有我一个人。整个项目下来，对微信和 vue都有了更深的理解<br>1.<a href="https://niuxiaokui.github.io/2017/08/10/vue单页应用（history模式）微信授权后跳转/">vue单页应用（history模式）微信授权后跳转</a><br>2.<a href="https://niuxiaokui.github.io/2017/08/11/vue单页应用（history模式）获取微信签名/">vue单页应用（history模式）获取微信签名</a><br>3.<a href="https://niuxiaokui.github.io/2017/08/15/微信前端图片压缩预览上传/">微信前端图片压缩预览上传</a><br>4.<a href="https://niuxiaokui.github.io/2017/08/30/textarea换行/">textarea换行</a><br>5.<a href="https://niuxiaokui.github.io/2017/08/30/vue-router动态路由匹配相同组件连续跳转时视图不更新/">vue-router动态 路由匹配相同组件连续跳转时视图不更新</a><br>6.<a href="https://niuxiaokui.github.io/2017/09/01/使用Mint UI出现的问题/">使用Mint UI出现的问题</a><br>7.<a href="https://niuxiaokui.github.io/2017/09/02/集成环信web-im出现的问题/">集成环信web-im出现的问题</a></p>
 
       
 
@@ -195,7 +195,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">【Vue】</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Vue</a>
         		</li>
       		
 		</ul>
@@ -355,11 +355,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">AJAX</a>
+                <a href="javascript:void(0)" class="js-tag color5">Flex</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Flex</a>
+                <a href="javascript:void(0)" class="js-tag color3">工具</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -367,11 +367,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">工具</a>
+                <a href="javascript:void(0)" class="js-tag color4">浏览器</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -383,19 +379,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">node</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">MongoDB</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">【安全】</a>
+                <a href="javascript:void(0)" class="js-tag color5">node</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">jade</a>
+                <a href="javascript:void(0)" class="js-tag color3">安全</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -403,35 +395,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">【Vue】</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">AlloyFinger</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Swiper</a>
+                <a href="javascript:void(0)" class="js-tag color3">正则</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">数据结构与算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">regex</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">浏览器</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Chrome</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">调试</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -452,10 +420,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">目标</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">web-im</a>
               </li>
             
             <div class="clearfix"></div>

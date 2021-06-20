@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="https://niuxiaokui.github.io">
   <title>HTML与CSS规范 | 奔跑的牛</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="摘要：入坑前端后，css书写向来随意——没人要求，自己也不在意。最近看了篇文章如何写出优雅的css代码？，感觉是时候规范一下了（挑部分常用的记下）。详细点这里NEC">
+  <meta name="description" content="摘要：入坑前端后，css 书写向来随意——没人要求，自己也不在意。最近看了篇文章如何写出优雅的css代码？，感觉是时候规范一下了（挑部分常用的记下）。详细点这里NEC">
 <meta name="keywords" content="CSS,HTML">
 <meta property="og:type" content="article">
 <meta property="og:title" content="HTML与CSS规范">
 <meta property="og:url" content="https://niuxiaokui.github.io/2016/12/31/HTML与CSS规范/index.html">
 <meta property="og:site_name" content="奔跑的牛">
-<meta property="og:description" content="摘要：入坑前端后，css书写向来随意——没人要求，自己也不在意。最近看了篇文章如何写出优雅的css代码？，感觉是时候规范一下了（挑部分常用的记下）。详细点这里NEC">
+<meta property="og:description" content="摘要：入坑前端后，css 书写向来随意——没人要求，自己也不在意。最近看了篇文章如何写出优雅的css代码？，感觉是时候规范一下了（挑部分常用的记下）。详细点这里NEC">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-05-19T13:09:18.738Z">
+<meta property="og:updated_time" content="2021-06-20T02:20:29.031Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="HTML与CSS规范">
-<meta name="twitter:description" content="摘要：入坑前端后，css书写向来随意——没人要求，自己也不在意。最近看了篇文章如何写出优雅的css代码？，感觉是时候规范一下了（挑部分常用的记下）。详细点这里NEC">
+<meta name="twitter:description" content="摘要：入坑前端后，css 书写向来随意——没人要求，自己也不在意。最近看了篇文章如何写出优雅的css代码？，感觉是时候规范一下了（挑部分常用的记下）。详细点这里NEC">
   
     <link rel="alternative" href="/atom.xml" title="奔跑的牛" type="application/atom+xml">
   
@@ -177,9 +177,9 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>摘要：入坑前端后，css书写向来随意——没人要求，自己也不在意。最近看了篇文章<a href="https://www.cnblogs.com/zhuzhenwei918/p/6104065.html#项目" target="_blank" rel="noopener">如何写出优雅的css代码？</a>，感觉是时候规范一下了（挑部分常用的记下）。详细点这里<a href="https://nec.netease.com/standard" target="_blank" rel="noopener">NEC</a> <a id="more"></a></p>
+        <p>摘要：入坑前端后，css 书写向来随意——没人要求，自己也不在意。最近看了篇文章<a href="https://www.cnblogs.com/zhuzhenwei918/p/6104065.html#项目" target="_blank" rel="noopener">如何写出优雅的css代码？</a>，感觉是时候规范一下了（挑部分常用的记下）。详细点这里<a href="https://nec.netease.com/standard" target="_blank" rel="noopener">NEC</a> <a id="more"></a></p>
 <h4 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h4><p>1.注释方法<br>开始注释：<code>&lt;!-- 注释文案 --&gt;</code>（文案两头空格）<br>结束注释：<code>&lt;!-- /注释文案 --&gt;</code>（文案前加“/”符号，类似标签的闭合）<br>允许只有开始注释<br>单行代码的注释也保持同行，两端空格<br>多行代码的注释起始和结尾都另起一行并左缩进对齐。<br>2.根据HTML5规范，在引入CSS和JavaScript文件时一般不需要指定type属性，因为text/css和text/javascript分别是它们的默认值<br>3.属性顺序<br>class<br>id, name<br>data-<br>src, for, type, href<br>title, alt<br>aria-, role<br>4.对于属性的定义，确保全部使用双引号，绝不要使用单引号<br>5.用两个空格来代替制表符<code>tab</code>——这是唯一能保证在所有环境下获得一致展现的方法(早已习惯了tab键)</p>
-<h4 id="CSS"><a href="#CSS" class="headerlink" title="CSS"></a>CSS</h4><p>1.语法规范<br>为选择器分组时，将单独的选择器单独放在一行<br>长名称或词组可以使用中横线-来为选择器命名<br>为选择器中的属性添加双引号<br>在每个声明块的左花括号前添加一个空格<br>声明块的右花括号应当单独成行<br>每条声明语句的冒号:后应该插入一个空格<br>为了获得更准确的错误报告，每条声明都应该独占一行（只包含一条声明的要放在同一行）<br>所有声明语句都应当以分号结尾<br>对于以逗号分隔的属性值，每个逗号后面都应该插入一个空格<br>不要在rgb()、rgba()、hsl()、hsla()或rect()值的内部的逗号后面插入空格<br>合理使用CSS缩写属性<br>对于属性值或颜色参数，省略小于1的小数前面的0<br>十六进制值应该全部小写并尽量使用简写形式<br>避免为0值指定单位<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">.selector,</span><br><span class="line">.selector-secondary,</span><br><span class="line">.selector[type=&quot;text&quot;] &#123;</span><br><span class="line">  padding: 15px;</span><br><span class="line">  margin-bottom: 15px;</span><br><span class="line">  background-color: rgba(0,0,0,.5);</span><br><span class="line">  box-shadow: 0 1px 2px #ccc, inset 0 1px 0 #fff;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="CSS"><a href="#CSS" class="headerlink" title="CSS"></a>CSS</h4><p>1.语法规范<br>为选择器分组时，将单独的选择器单独放在一行<br>长名称或词组可以使用中横线-来为选择器命名<br>为选择器中的属性添加双引号<br>在每个声明块的左花括号前添加一个空格<br>声明块的右花括号应当单独成行<br>每条声明语句的冒号:后应该插入一个空格<br>为了获得更准确的错误报告，每条声明都应该独占一行（只包含一条声明的要放在同一行）<br>所有声明语句都应当以分号结尾<br>对于以逗号分隔的属性值，每个逗号后面都应该插入一个空格<br>不要在 rgb()、rgba()、hsl()、hsla() 或 rect( )值的内部的逗号后面插入空格<br>合理使用 CSS 缩写属性<br>对于属性值或颜色参数，省略小于1的小数前面的0<br>十六进制值应该全部小写并尽量使用简写形式<br>避免为0值指定单位<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">.selector,</span><br><span class="line">.selector-secondary,</span><br><span class="line">.selector[type=&quot;text&quot;] &#123;</span><br><span class="line">  padding: 15px;</span><br><span class="line">  margin-bottom: 15px;</span><br><span class="line">  background-color: rgba(0,0,0,.5);</span><br><span class="line">  box-shadow: 0 1px 2px #ccc, inset 0 1px 0 #fff;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>2.声明顺序<br>先是位置布局，然后是盒模型大小，接着是文字属性，再是背景边框，其他排最后<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">.declaration-order &#123;</span><br><span class="line">  /* Positioning */</span><br><span class="line">  position: absolute;</span><br><span class="line">  top: 0;</span><br><span class="line">  right: 0;</span><br><span class="line">  bottom: 0;</span><br><span class="line">  left: 0;</span><br><span class="line">  z-index: 100;</span><br><span class="line"></span><br><span class="line">  /* Box-model */</span><br><span class="line">  display: block;</span><br><span class="line">  float: right;</span><br><span class="line">  width: 100px;</span><br><span class="line">  height: 100px;</span><br><span class="line"></span><br><span class="line">  /* Typography */</span><br><span class="line">  font: normal 13px &quot;Helvetica Neue&quot;, sans-serif;</span><br><span class="line">  line-height: 1.5;</span><br><span class="line">  color: #333;</span><br><span class="line">  text-align: center;</span><br><span class="line"></span><br><span class="line">  /* Visual */</span><br><span class="line">  background-color: #f5f5f5;</span><br><span class="line">  border: 1px solid #e5e5e5;</span><br><span class="line">  border-radius: 3px;</span><br><span class="line"></span><br><span class="line">  /* Misc */</span><br><span class="line">  opacity: 1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>使用特定厂商的带有前缀的属性时，要先写带有浏览器私有标志的属性，每个属性的值在垂直方向对齐<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">.selector &#123;</span><br><span class="line">  -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.15);</span><br><span class="line">          box-shadow: 0 1px 2px rgba(0,0,0,.15);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>将媒体查询放在尽可能相关规则的附近（防止被遗忘）</p>
@@ -362,11 +362,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">AJAX</a>
+                <a href="javascript:void(0)" class="js-tag color5">Flex</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Flex</a>
+                <a href="javascript:void(0)" class="js-tag color3">工具</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -374,11 +374,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">工具</a>
+                <a href="javascript:void(0)" class="js-tag color4">浏览器</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -390,19 +386,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">node</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">MongoDB</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">【安全】</a>
+                <a href="javascript:void(0)" class="js-tag color5">node</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">jade</a>
+                <a href="javascript:void(0)" class="js-tag color3">安全</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -410,35 +402,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">【Vue】</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">AlloyFinger</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Swiper</a>
+                <a href="javascript:void(0)" class="js-tag color3">正则</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">数据结构与算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">regex</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">浏览器</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Chrome</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">调试</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -459,10 +427,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">目标</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">web-im</a>
               </li>
             
             <div class="clearfix"></div>

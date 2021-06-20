@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="https://niuxiaokui.github.io">
   <title>小程序爬坑记录 | 奔跑的牛</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="摘要：最近一直在学习小程序，记录一些坑和Tip">
+  <meta name="description" content="摘要：最近一直在学习小程序，记录一些坑和 Tip">
 <meta name="keywords" content="小程序">
 <meta property="og:type" content="article">
 <meta property="og:title" content="小程序爬坑记录">
 <meta property="og:url" content="https://niuxiaokui.github.io/2017/01/24/小程序爬坑记录/index.html">
 <meta property="og:site_name" content="奔跑的牛">
-<meta property="og:description" content="摘要：最近一直在学习小程序，记录一些坑和Tip">
+<meta property="og:description" content="摘要：最近一直在学习小程序，记录一些坑和 Tip">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-09-05T01:30:29.588Z">
+<meta property="og:updated_time" content="2021-06-20T06:07:38.805Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="小程序爬坑记录">
-<meta name="twitter:description" content="摘要：最近一直在学习小程序，记录一些坑和Tip">
+<meta name="twitter:description" content="摘要：最近一直在学习小程序，记录一些坑和 Tip">
   
     <link rel="alternative" href="/atom.xml" title="奔跑的牛" type="application/atom+xml">
   
@@ -177,8 +177,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>摘要：最近一直在学习小程序，记录一些坑和Tip<a id="more"></a></p>
-<p>1.app.json可以配置全局的属性，页面本身的xx.json只能够配置本页的window项<br>2.小程序的配置是按就近原则执行的，本页的配置会覆盖app.json中的同一属性<br>3.在app.json中配置pages属性注册页面可以直接生成相应的文件夹和其四个文件<br>4.app.json中有tabBar配置项时，跳到tabBar页面（底部有tab）要使用<code>wx.switchTab</code><br>5.tabBar中的图片路径要使用相对路径，使用绝对路径预览等操作时会报错<br>6.页面空的json文件要保存空对象，json文件中还不可以有注释，空的js文件要调用Page方法，否则报错<br>7.使用rpx作为单位可以根据屏幕宽度进行自适应，用iPhone6作为视觉稿的标准：750rpx = 375px = 750物理像素<br>8.<code>&lt;scroll-view&gt;</code>无法触发<code>onPullDownRefresh</code>,使用<code>onReachBottom</code>替代。详细请看这个<a href="https://zhuanlan.zhihu.com/p/24739728?refer=oldtimes" target="_blank" rel="noopener">哎呀，脸好疼。130400版本更新导致下拉刷新和scroll-view不能同时使用</a><br>9.引入外部js文件使用require(‘相对路径’)<br>10.使用template时，只拥有wxml和wxss两种文件格式，js仍需要写在页面中（不像vue模板可以将html、js、css写在一个x.vue的文件中）。引入wxml使用<code>&lt;import src=&quot;xx/xx.wxml&quot; /&gt;</code>（斜杠/不可缺少），引入wxss使用<code>@import &quot;xx/.wxss&quot;</code>;<br>11.输入框input的value清空操作，需要将其value与某个数据绑定，再将这个数据清空即可<br>12.开发时注意将工具的项目选项中的选线进行勾选（尤其是“开发环境不校验请求域名以及TLS版本”这一项）<br>13.条件渲染<code>wx:if=&quot;false&quot;</code>的判断值为true，因为其中的false为字符串类型而不是布尔类型，wx:if=”{ {false}}”才为false<br>14.列表渲染<code>wx:for=&quot;&quot;</code>中的array必须为数组（vue中的指令”v-for”可以是其他类型）<br>15.自定义属性的属性名在使用时会转化成峰驼形式，如<code>data-abc-ID=&quot;&quot;</code>获取时<code>event.currentTarget.dataset.abcId</code><br>16.使用<code>wx.request</code>发起HTTPS请求时，配置<code>header: {&#39;content-type&#39;: &#39;json&#39;}</code>请求json数据（也是哭了好久），method的值必须大写<br>17.小程序大小不能超过1M</p>
+        <p>摘要：最近一直在学习小程序，记录一些坑和 Tip<a id="more"></a></p>
+<p>1.app.json 可以配置全局的属性，页面本身的 xx.json 只能够配置本页的 window 项<br>2.小程序的配置是按就近原则执行的，本页的配置会覆盖 app.json 中的同一属性<br>3.在 app.json 中配置 pages 属性注册页面可以直接生成相应的文件夹和其四个文件<br>4.app.json中 有 tabBar 配置项时，跳到 tabBar 页面（底部有 tab）要使用<code>wx.switchTab</code><br>5.tabBar 中的图片路径要使用相对路径，使用绝对路径预览等操作时会报错<br>6.页面空的 json 文件要保存空对象，json 文件中还不可以有注释，空的 js 文件要调用 Page 方法，否则报错<br>7.使用 rpx 作为单位可以根据屏幕宽度进行自适应，用 iPhone6 作为视觉稿的标准：750rpx = 375px = 750 物理像素<br>8.<code>&lt;scroll-view&gt;</code>无法触发<code>onPullDownRefresh</code>,使用<code>onReachBottom</code>替代。详细请看这个<a href="https://zhuanlan.zhihu.com/p/24739728?refer=oldtimes" target="_blank" rel="noopener">哎呀，脸好疼。130400版本更新导致下拉刷新和scroll-view不能同时使用</a><br>9.引入外部 js 文件使用 require(‘相对路径’)<br>10.使用 template 时，只拥有 wxml 和 wxss 两种文件格式，js 仍需要写在页面中（不像 vue 模板可以将 html、js、css 写在一个后缀 .vue 的文件中）。引入 wxml 使用<code>&lt;import src=&quot;xx/xx.wxml&quot; /&gt;</code>（斜杠/不可缺少），引入 wxss 使用<code>@import &quot;xx/.wxss&quot;</code>;<br>11.输入框 input 的 value 清空操作，需要将其 value 与某个数据绑定，再将这个数据清空即可<br>12.开发时注意将工具的项目选项中的选线进行勾选（尤其是“开发环境不校验请求域名以及TLS版本”这一项）<br>13.条件渲染<code>wx:if=&quot;false&quot;</code>的判断值为 true，因为其中的 false 为字符串类型而不是布尔类型，wx:if=”false“才为false<br>14.列表渲染<code>wx:for=&quot;&quot;</code>中的array必须为数组（vue 中的指令”v-for”可以是其他类型）<br>15.自定义属性的属性名在使用时会转化成峰驼形式，如<code>data-abc-ID=&quot;&quot;</code>获取时<code>event.currentTarget.dataset.abcId</code><br>16.使用<code>wx.request</code>发起 HTTP S请求时，配置<code>header: {&#39;content-type&#39;: &#39;json&#39;}</code>请求 json 数据（也是哭了好久），method 的值必须大写<br>17.小程序大小不能超过 1M</p>
 
       
 
@@ -352,11 +352,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">AJAX</a>
+                <a href="javascript:void(0)" class="js-tag color5">Flex</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Flex</a>
+                <a href="javascript:void(0)" class="js-tag color3">工具</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -364,11 +364,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">工具</a>
+                <a href="javascript:void(0)" class="js-tag color4">浏览器</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -380,19 +376,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">node</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">MongoDB</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">【安全】</a>
+                <a href="javascript:void(0)" class="js-tag color5">node</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">jade</a>
+                <a href="javascript:void(0)" class="js-tag color3">安全</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -400,35 +392,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">【Vue】</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">AlloyFinger</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Swiper</a>
+                <a href="javascript:void(0)" class="js-tag color3">正则</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">数据结构与算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">regex</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">浏览器</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Chrome</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">调试</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -449,10 +417,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">目标</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">web-im</a>
               </li>
             
             <div class="clearfix"></div>

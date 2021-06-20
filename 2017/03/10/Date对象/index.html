@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="https://niuxiaokui.github.io">
   <title>Date对象 | 奔跑的牛</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="摘要：JavaScript中的Date对象总结">
+  <meta name="description" content="摘要：JavaScript 中的 Date对象总结">
 <meta name="keywords" content="JavaScript">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Date对象">
 <meta property="og:url" content="https://niuxiaokui.github.io/2017/03/10/Date对象/index.html">
 <meta property="og:site_name" content="奔跑的牛">
-<meta property="og:description" content="摘要：JavaScript中的Date对象总结">
+<meta property="og:description" content="摘要：JavaScript 中的 Date对象总结">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-05-19T13:09:18.743Z">
+<meta property="og:updated_time" content="2021-06-20T02:23:29.604Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Date对象">
-<meta name="twitter:description" content="摘要：JavaScript中的Date对象总结">
+<meta name="twitter:description" content="摘要：JavaScript 中的 Date对象总结">
   
     <link rel="alternative" href="/atom.xml" title="奔跑的牛" type="application/atom+xml">
   
@@ -177,21 +177,21 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>摘要：JavaScript中的Date对象总结<a id="more"></a></p>
-<h4 id="Date对象"><a href="#Date对象" class="headerlink" title="Date对象"></a>Date对象</h4><p>Date对象是JavaScript提供的日期和时间的操作接口,直接调用<code>Date()</code>会返回代表当前时间的字符串<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Date() // &quot;Fri Mar 10 2017 10:19:03 GMT+0800 (中国标准时间)&quot;</span><br></pre></td></tr></table></figure></p>
-<h4 id="静态方法"><a href="#静态方法" class="headerlink" title="静态方法"></a>静态方法</h4><p>Date.now返回当前距离1970年1月1日 00:00:00 UTC的毫秒数<br>Date.parse方法用来解析日期字符串，返回距离1970年1月1日 00:00:00的毫秒数，解析失败返回NaN。格式：YYYY-MM-DDTHH:mm:ss.sssZ，Z表示时区<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">// 以下均可</span><br><span class="line">Date.parse(&apos;Aug 9, 1995&apos;)</span><br><span class="line">Date.parse(&apos;January 26, 2011 13:51:50&apos;)</span><br><span class="line">Date.parse(&apos;Mon, 25 Dec 1995 13:30:00 GMT&apos;)</span><br><span class="line">Date.parse(&apos;Mon, 25 Dec 1995 13:30:00 +0430&apos;)</span><br><span class="line">Date.parse(&apos;2011-10-10&apos;)</span><br><span class="line">Date.parse(&apos;2011-10-10T14:48:00&apos;)</span><br></pre></td></tr></table></figure></p>
+        <p>摘要：JavaScript 中的 Date对象总结<a id="more"></a></p>
+<h4 id="Date对象"><a href="#Date对象" class="headerlink" title="Date对象"></a>Date对象</h4><p>Date 对象是 JavaScript 提供的日期和时间的操作接口,直接调用<code>Date()</code>会返回代表当前时间的字符串<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Date() // &quot;Fri Mar 10 2017 10:19:03 GMT+0800 (中国标准时间)&quot;</span><br></pre></td></tr></table></figure></p>
+<h4 id="静态方法"><a href="#静态方法" class="headerlink" title="静态方法"></a>静态方法</h4><p>Date.now 返回当前距离 1970 年 1 月 1 日 00:00:00 UTC 的毫秒数<br>Date.parse 方法用来解析日期字符串，返回距离 1970 年 1 月 1 日 00:00:00 的毫秒数，解析失败返回 NaN。格式：YYYY-MM-DDTHH:mm:ss.sssZ，Z表示时区<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">// 以下均可</span><br><span class="line">Date.parse(&apos;Aug 9, 1995&apos;)</span><br><span class="line">Date.parse(&apos;January 26, 2011 13:51:50&apos;)</span><br><span class="line">Date.parse(&apos;Mon, 25 Dec 1995 13:30:00 GMT&apos;)</span><br><span class="line">Date.parse(&apos;Mon, 25 Dec 1995 13:30:00 +0430&apos;)</span><br><span class="line">Date.parse(&apos;2011-10-10&apos;)</span><br><span class="line">Date.parse(&apos;2011-10-10T14:48:00&apos;)</span><br></pre></td></tr></table></figure></p>
 <p>Date.UTC方法可以返回UTC时间（世界标准时间）,格式：<code>Date.UTC(year, month[, date[, hrs[, min[, sec[, ms]]]]])</code></p>
 <h4 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h4><p>使用<code>new</code>返回实例对象，如果不带参数就默认为当前时间，带参数则为指定的时间<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">new Date() // &quot;Fri Mar 10 2017 10:22:58 GMT+0800 (中国标准时间)&quot;</span><br></pre></td></tr></table></figure></p>
-<h4 id="参数类型"><a href="#参数类型" class="headerlink" title="参数类型"></a>参数类型</h4><p>1.接收一个整数作为参数（从1970年1月1日00:00:00 UTC开始计算的毫秒数），当参数是一个负数时，表示1970年1月1日之前的时间<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">new Date(1489100000000) // &quot;Fri Mar 10 2017 06:53:20 GMT+0800 (中国标准时间)&quot;</span><br><span class="line">new Date(-24 * 60 * 60 * 1000) // &quot;Wed Dec 31 1969 08:00:00 GMT+0800 (中国标准时间)&quot;</span><br></pre></td></tr></table></figure></p>
-<p>2.接受一个日期字符串作为参数，返回所对应的时间。日期字符串的完整格式：month day, year hours:minutes:second，如果省略了小时、分钟或秒数，这些值会被设为0。其他格式的日期字符串，也可以被解析（同Date.parse）。只要是YYYY-MM-DD形式的字符串，采用格林尼治时区作为计时标准<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">new Date(&apos;March  10, 2017 10&apos;) // &quot;Fri Mar 10 2017 00:00:00 GMT+0800 (中国标准时间)&quot;</span><br><span class="line">new Date(&apos;2017/3/10&apos;) // &quot;Fri Mar 10 2017 00:00:00 GMT+0800 (中国标准时间)&quot;</span><br><span class="line">new Date(&apos;2017-3-10&apos;) // &quot;Fri Mar 10 2017 00:00:00 GMT+0800 (中国标准时间)&quot;</span><br><span class="line">new Date(&apos;2017-03-10&apos;) // &quot;Fri Mar 10 2017 08:00:00 GMT+0800 (中国标准时间)&quot;</span><br></pre></td></tr></table></figure></p>
+<h4 id="参数类型"><a href="#参数类型" class="headerlink" title="参数类型"></a>参数类型</h4><p>1.接收一个整数作为参数（从 1970 年 1 月 1 日 00:00:00 UTC 开始计算的毫秒数），当参数是一个负数时，表示 1970 年 1 月 1 日之前的时间<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">new Date(1489100000000) // &quot;Fri Mar 10 2017 06:53:20 GMT+0800 (中国标准时间)&quot;</span><br><span class="line">new Date(-24 * 60 * 60 * 1000) // &quot;Wed Dec 31 1969 08:00:00 GMT+0800 (中国标准时间)&quot;</span><br></pre></td></tr></table></figure></p>
+<p>2.接受一个日期字符串作为参数，返回所对应的时间。日期字符串的完整格式：month day, year hours:minutes:second，如果省略了小时、分钟或秒数，这些值会被设为0。其他格式的日期字符串，也可以被解析（同Date.parse）。只要是 YYYY-MM-DD 形式的字符串，采用格林尼治时区作为计时标准<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">new Date(&apos;March  10, 2017 10&apos;) // &quot;Fri Mar 10 2017 00:00:00 GMT+0800 (中国标准时间)&quot;</span><br><span class="line">new Date(&apos;2017/3/10&apos;) // &quot;Fri Mar 10 2017 00:00:00 GMT+0800 (中国标准时间)&quot;</span><br><span class="line">new Date(&apos;2017-3-10&apos;) // &quot;Fri Mar 10 2017 00:00:00 GMT+0800 (中国标准时间)&quot;</span><br><span class="line">new Date(&apos;2017-03-10&apos;) // &quot;Fri Mar 10 2017 08:00:00 GMT+0800 (中国标准时间)&quot;</span><br></pre></td></tr></table></figure></p>
 <p>3.接受多个整数作为参数，依次表示年、月、日、小时、分钟、秒和毫秒。最少需要提供两个参数（年和月），其他默认为零。参数使用负数，表示扣去的时间</p>
 <blockquote>
 <p>year：四位年份，如果写成两位数，则加上1900<br>month：表示月份，0表示一月，11表示12月<br>date：表示日期，1到31<br>hour：表示小时，0到23<br>minute：表示分钟，0到59<br>second：表示秒钟，0到59<br>ms：表示毫秒，0到999</p>
 </blockquote>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">new Date(2017, 2) // &quot;Wed Mar 01 2017 00:00:00 GMT+0800 (中国标准时间)&quot;</span><br><span class="line">new Date(2017, 2, 10) // &quot;Fri Mar 10 2017 00:00:00 GMT+0800 (中国标准时间)&quot;</span><br><span class="line">new Date(2017, 2, -1)  // &quot;Mon Feb 27 2017 00:00:00 GMT+0800 (中国标准时间)&quot;</span><br></pre></td></tr></table></figure>
-<h4 id="日期运算"><a href="#日期运算" class="headerlink" title="日期运算"></a>日期运算</h4><p>两个Date对象相减，返回相差的毫秒数，相加则为两个字符串拼接<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var date1 = new Date(2017, 2, 10, 10);</span><br><span class="line">var date2 = new Date(2017, 2, 10, 9);</span><br><span class="line">console.log(date1 - date2); // 3600000</span><br><span class="line">console.log(date1 + date2); // “Fri Mar 10 2017 10:00:00 GMT+0800 (中国标准时间)Fri Mar 10 2017 09:00:00 GMT+0800 (中国标准时间)”</span><br></pre></td></tr></table></figure></p>
-<h4 id="实例方法"><a href="#实例方法" class="headerlink" title="实例方法"></a>实例方法</h4><p>valueOf方法返回实例对象距离1970年1月1日00:00:00 UTC对应的毫秒数，同于getTime方法<br>to类方法：改变显示格式<br>1.toString方法返回一个完整的日期字符串。它是默认的调用方法，所以如果直接读取Date对象实例，就相当于调用这个方法<br>2.toUTCString方法返回对应的UTC时间，也就是比北京时间晚8个小时<br>3.toISOString方法返回对应时间的ISO8601写法<br>4.toJSON方法返回一个符合JSON格式的ISO格式的日期字符串，与toISOString方法的返回结果完全相同<br>5.toDateString方法返回日期字符串<br>6.toTimeString方法返回时间字符串<br>7.toLocaleDateString方法返回一个字符串，代表日期的当地写法<br>8.toLocaleTimeString方法返回一个字符串，代表时间的当地写法</p>
-<p>get类方法：获取实例对象某个方面的值<br>1.getTime：返回距离1970年1月1日00:00:00的毫秒数，等同于valueOf方法<br>2.getDate：返回实例对象对应每个月的几号（从1开始）<br>3.getDay：返回星期几，星期日为0，星期六为6<br>4.getYear：返回距离1900的年数<br>5.getFullYear：返回四位的年份<br>6.getMonth：返回月份（0-11）<br>7.getHours：返回小时（0-23）<br>8.getMilliseconds：返回毫秒（0-999）<br>9.getMinutes：返回分钟（0-59）<br>10.getSeconds：返回秒（0-59）<br>11.getTimezoneOffset：返回当前时间与UTC的时区差异，以分钟表示，返回结果考虑到了夏令时因素</p>
+<h4 id="日期运算"><a href="#日期运算" class="headerlink" title="日期运算"></a>日期运算</h4><p>两个 Date 对象相减，返回相差的毫秒数，相加则为两个字符串拼接<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var date1 = new Date(2017, 2, 10, 10);</span><br><span class="line">var date2 = new Date(2017, 2, 10, 9);</span><br><span class="line">console.log(date1 - date2); // 3600000</span><br><span class="line">console.log(date1 + date2); // “Fri Mar 10 2017 10:00:00 GMT+0800 (中国标准时间)Fri Mar 10 2017 09:00:00 GMT+0800 (中国标准时间)”</span><br></pre></td></tr></table></figure></p>
+<h4 id="实例方法"><a href="#实例方法" class="headerlink" title="实例方法"></a>实例方法</h4><p>valueOf 方法返回实例对象距离 1970 年 1 月 1 日 00:00:00 UTC 对应的毫秒数，同于 getTime 方法<br>to类方法：改变显示格式<br>1.toString 方法返回一个完整的日期字符串。它是默认的调用方法，所以如果直接读取Date对象实例，就相当于调用这个方法<br>2.toUTCString 方法返回对应的UTC时间，也就是比北京时间晚8个小时<br>3.toISOString 方法返回对应时间的ISO8601写法<br>4.toJSON 方法返回一个符合JSON格式的ISO格式的日期字符串，与 toISOString 方法的返回结果完全相同<br>5.toDateString 方法返回日期字符串<br>6.toTimeString 方法返回时间字符串<br>7.toLocaleDateString 方法返回一个字符串，代表日期的当地写法<br>8.toLocaleTimeString 方法返回一个字符串，代表时间的当地写法</p>
+<p>get类方法：获取实例对象某个方面的值<br>1.getTime：返回距离 1970 年 1 月 1 日 00:00:0 的毫秒数，等同于 valueOf 方法<br>2.getDate：返回实例对象对应每个月的几号（从1开始）<br>3.getDay：返回星期几，星期日为 0，星期六为 6<br>4.getYear：返回距离 1900 的年数<br>5.getFullYear：返回四位的年份<br>6.getMonth：返回月份（0-11）<br>7.getHours：返回小时（0-23）<br>8.getMilliseconds：返回毫秒（0-999）<br>9.getMinutes：返回分钟（0-59）<br>10.getSeconds：返回秒（0-59）<br>11.getTimezoneOffset：返回当前时间与 UTC 的时区差异，以分钟表示，返回结果考虑到了夏令时因素</p>
 <p>UTC版本</p>
 <blockquote>
 <p>getUTCDate<br>getUTCFullYear<br>getUTCMonth<br>getUTCDay<br>getUTCHours<br>getUTCMinutes<br>getUTCSeconds<br>getUTCMilliseconds</p>
@@ -375,11 +375,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">AJAX</a>
+                <a href="javascript:void(0)" class="js-tag color5">Flex</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Flex</a>
+                <a href="javascript:void(0)" class="js-tag color3">工具</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -387,11 +387,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">工具</a>
+                <a href="javascript:void(0)" class="js-tag color4">浏览器</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -403,19 +399,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">node</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">MongoDB</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">【安全】</a>
+                <a href="javascript:void(0)" class="js-tag color5">node</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">jade</a>
+                <a href="javascript:void(0)" class="js-tag color3">安全</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -423,35 +415,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">【Vue】</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">AlloyFinger</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Swiper</a>
+                <a href="javascript:void(0)" class="js-tag color3">正则</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">数据结构与算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">regex</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">浏览器</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Chrome</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">调试</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -472,10 +440,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">目标</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">web-im</a>
               </li>
             
             <div class="clearfix"></div>

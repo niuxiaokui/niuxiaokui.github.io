@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="https://niuxiaokui.github.io">
-  <title>同源策略与跨域 | 奔跑的牛</title>
+  <title>同源策略与跨域方法 | 奔跑的牛</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="摘要：同源策略（Same origin policy）是一种约定，它是浏览器最核心也最基本的安全功能，如果缺少了同源策略，则浏览器的正常功能可能都会受到影响。可以说Web是构建在同源策略基础之上的，浏览器只是针对同源策略的一种实现。所谓同源是指，域名，协议，端口相同。">
-<meta name="keywords" content="Chrome">
+  <meta name="description" content="摘要：浏览器同源策略与跨域方法">
+<meta name="keywords" content="浏览器">
 <meta property="og:type" content="article">
-<meta property="og:title" content="同源策略与跨域">
+<meta property="og:title" content="同源策略与跨域方法">
 <meta property="og:url" content="https://niuxiaokui.github.io/2016/12/01/同源策略与跨域/index.html">
 <meta property="og:site_name" content="奔跑的牛">
-<meta property="og:description" content="摘要：同源策略（Same origin policy）是一种约定，它是浏览器最核心也最基本的安全功能，如果缺少了同源策略，则浏览器的正常功能可能都会受到影响。可以说Web是构建在同源策略基础之上的，浏览器只是针对同源策略的一种实现。所谓同源是指，域名，协议，端口相同。">
+<meta property="og:description" content="摘要：浏览器同源策略与跨域方法">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-11-29T15:12:31.747Z">
+<meta property="og:updated_time" content="2021-06-20T05:52:08.214Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="同源策略与跨域">
-<meta name="twitter:description" content="摘要：同源策略（Same origin policy）是一种约定，它是浏览器最核心也最基本的安全功能，如果缺少了同源策略，则浏览器的正常功能可能都会受到影响。可以说Web是构建在同源策略基础之上的，浏览器只是针对同源策略的一种实现。所谓同源是指，域名，协议，端口相同。">
+<meta name="twitter:title" content="同源策略与跨域方法">
+<meta name="twitter:description" content="摘要：浏览器同源策略与跨域方法">
   
     <link rel="alternative" href="/atom.xml" title="奔跑的牛" type="application/atom+xml">
   
@@ -164,7 +164,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      同源策略与跨域
+      同源策略与跨域方法
     </h1>
   
 
@@ -177,7 +177,13 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>摘要：同源策略（Same origin policy）是一种约定，它是浏览器最核心也最基本的安全功能，如果缺少了同源策略，则浏览器的正常功能可能都会受到影响。可以说Web是构建在同源策略基础之上的，浏览器只是针对同源策略的一种实现。所谓同源是指，域名，协议，端口相同。<a id="more"></a><br>一个域名地址的组成：<br><code>http://</code> <code>www</code> . <code>abc.com</code> : <code>8080</code> / <code>scripts/jquery.js</code><br>依次是：协议 子域名 主域名 端口号 请求资源地址<br>当协议、子域名、主域名、端口号中任意一个不相同时，都算作不同域。不同域之间相互请求资源就是“跨域”<br>可以跨域的三个标签：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;img src=&quot;xxx&quot; alt=&quot;xxx&quot;&gt;</span><br><span class="line">&lt;link rel=&quot;stylesheet&quot; href=&quot;xxx&quot;&gt;</span><br><span class="line">&lt;script src=&quot;xxx&quot;&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure></p>
+        <p>摘要：浏览器同源策略与跨域方法<a id="more"></a></p>
+<h1 id="同源策略"><a href="#同源策略" class="headerlink" title="同源策略"></a>同源策略</h1><p>（同源策略Same origin policy）是一种约定，它是浏览器最核心也最基本的安全功能，如果缺少了同源策略，则浏览器的正常功能可能都会受到影响。可以说 Web 是构建在同源策略基础之上的，浏览器只是针对同源策略的一种实现。所谓同源是指，域名，协议，端口相同。<br>一个域名地址的组成：<br><code>http://</code> <code>www</code> . <code>abc.com</code> : <code>8080</code> / <code>scripts/jquery.js</code><br>依次是：协议 子域名 主域名 端口号 请求资源地址<br>当协议、子域名、主域名、端口号中任意一个不相同时，都算作不同域。不同域之间相互请求资源就是“跨域”<br>可以跨域的三个标签：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;img src=&quot;xxx&quot; alt=&quot;xxx&quot;&gt;</span><br><span class="line">&lt;link rel=&quot;stylesheet&quot; href=&quot;xxx&quot;&gt;</span><br><span class="line">&lt;script src=&quot;xxx&quot;&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure></p>
+<p>跨域并不是 http 请求发送不出去，请求可以发出去，服务端也能接受并正常返回结果，只是结果被浏览器拦截了。在跨域的情况下，不论请求是否成功，控制台都会显示跨域问题。</p>
+<h1 id="跨域方法"><a href="#跨域方法" class="headerlink" title="跨域方法"></a>跨域方法</h1><h4 id="1、JSONP"><a href="#1、JSONP" class="headerlink" title="1、JSONP"></a>1、JSONP</h4><p>简单的 GET 请求可以使用 JSONP，具体使用查看<a href="/2016/11/30/JSON与JSONP/">JSON与JSONP</a></p>
+<h4 id="2、CORS"><a href="#2、CORS" class="headerlink" title="2、CORS"></a>2、CORS</h4><p>CORS 即允许当前域的资源被其他域的脚本请求访问的机制，服务端设置<code>Access-Control-Allow-Origin: *</code>或者<code>Access-Control-Allow-Origin: &#39;http://www.yourwebsite.com&#39;</code>就可以开启。<br>使用 CORS 发送请求时，会出现两种情况：<br>一、简单请求<br>符合以下要求：<br>1、请求方法：GET、POST、HEAD<br>2、没有自定义的请求头，且仅有这些请求头字段：Accept、Accept-Language、Content-Language、Content-Type、DPR、Downlink、Save-Data、Viewport-Width、Width<br>3、POST 的 Content-Type 为 text/plain、 multipart/form-data、 application/x-www-form-urlencoded 其中之一<br>4、不能为 XMLHttpRequestUpdate 注册监听器<br>5、请求中没有使用 readableStream 对象<br>二、复杂请求<br>除了简单请求，其他都属于复杂请求。复杂请求会先发送一次类型为 OPTIONS 的预检请求，从而获知服务端是否允许该跨域请求、是否需要携带身份凭证。</p>
+<h4 id="反向代理"><a href="#反向代理" class="headerlink" title="反向代理"></a>反向代理</h4><p>同源策略是浏览器的标准，而如果服务端向服务端请求就无需遵循同源策略。浏览器的请求先发给同域的代理服务器，代理服务器将请求转发给服务器，代理服务器收到服务器的响应后再转发给浏览器。通常使用 node 或者 nginx 提供代理服务</p>
+<h4 id="postMessage"><a href="#postMessage" class="headerlink" title="postMessage"></a>postMessage</h4><p>前面都是解决浏览器与服务端跨域通信的方法，而 postMessage 主要用于浏览器中不同域页面之间跨域通信</p>
 
       
 
@@ -191,7 +197,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Chrome</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">浏览器</a>
         		</li>
       		
 		</ul>
@@ -351,11 +357,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">AJAX</a>
+                <a href="javascript:void(0)" class="js-tag color5">Flex</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Flex</a>
+                <a href="javascript:void(0)" class="js-tag color3">工具</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -363,11 +369,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">工具</a>
+                <a href="javascript:void(0)" class="js-tag color4">浏览器</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -379,19 +381,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">node</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">MongoDB</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">【安全】</a>
+                <a href="javascript:void(0)" class="js-tag color5">node</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">jade</a>
+                <a href="javascript:void(0)" class="js-tag color3">安全</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -399,35 +397,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">【Vue】</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">AlloyFinger</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Swiper</a>
+                <a href="javascript:void(0)" class="js-tag color3">正则</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">数据结构与算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">regex</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">浏览器</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Chrome</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">调试</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -448,10 +422,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">目标</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">web-im</a>
               </li>
             
             <div class="clearfix"></div>

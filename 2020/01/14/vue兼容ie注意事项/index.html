@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="https://niuxiaokui.github.io">
   <title>vue兼容IE注意事项 | 奔跑的牛</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="摘要：使用 vue、vue-cli4 开发后台管理系统兼容 IE 总结">
+  <meta name="description" content="摘要：使用 vue 全家桶开发后台管理系统兼容 IE 总结">
 <meta name="keywords" content="Vue">
 <meta property="og:type" content="article">
 <meta property="og:title" content="vue兼容IE注意事项">
 <meta property="og:url" content="https://niuxiaokui.github.io/2020/01/14/vue兼容ie注意事项/index.html">
 <meta property="og:site_name" content="奔跑的牛">
-<meta property="og:description" content="摘要：使用 vue、vue-cli4 开发后台管理系统兼容 IE 总结">
+<meta property="og:description" content="摘要：使用 vue 全家桶开发后台管理系统兼容 IE 总结">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-11-29T14:59:04.452Z">
+<meta property="og:updated_time" content="2021-06-20T02:12:16.045Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="vue兼容IE注意事项">
-<meta name="twitter:description" content="摘要：使用 vue、vue-cli4 开发后台管理系统兼容 IE 总结">
+<meta name="twitter:description" content="摘要：使用 vue 全家桶开发后台管理系统兼容 IE 总结">
   
     <link rel="alternative" href="/atom.xml" title="奔跑的牛" type="application/atom+xml">
   
@@ -177,14 +177,14 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>摘要：使用 vue、vue-cli4 开发后台管理系统兼容 IE 总结<a id="more"></a></p>
+        <p>摘要：使用 vue 全家桶开发后台管理系统兼容 IE 总结<a id="more"></a></p>
 <h4 id="问题一"><a href="#问题一" class="headerlink" title="问题一"></a>问题一</h4><p>问题：兼容IE浏览器配置，es6 转 es5<br>解决方法：<br>1、安装 @babel/polyfill 包<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install @babel/polyfill --save-dev</span><br></pre></td></tr></table></figure></p>
 <p>2、在 main.js 中引入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import &apos;@babel/polyfill&apos;</span><br></pre></td></tr></table></figure></p>
 <p>3、配置 babel.config.js<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">module.exports = &#123;</span><br><span class="line">  presets: [</span><br><span class="line">    [</span><br><span class="line">      &apos;@vue/app&apos;,</span><br><span class="line">      &#123;</span><br><span class="line">        useBuiltIns: &apos;entry&apos;</span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>4、配置 package.json 中的 browserslist 属性，或者 .browserslistrc 文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">// package.json</span><br><span class="line">&#123;</span><br><span class="line">  ...,</span><br><span class="line">  &quot;browserslist&quot;: [</span><br><span class="line">    &quot;&gt; 1%&quot;,</span><br><span class="line">    &quot;last 2 versions&quot;,</span><br><span class="line">    &quot;ie &gt; 9&quot;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// .browserslistrc 文件</span><br><span class="line"># Browsers that we support</span><br><span class="line"></span><br><span class="line">&gt; 1%</span><br><span class="line">last 2 version</span><br><span class="line">ie &gt; 9</span><br></pre></td></tr></table></figure></p>
 <p>此时，使用命令 <code>npx browserslist</code> 可以查看当前支持的浏览器版本</p>
 <h4 id="问题二"><a href="#问题二" class="headerlink" title="问题二"></a>问题二</h4><p>问题：配置问题1后，cli 默认不转换 node_module 中的模块，比如只在登录页引入的 vue-particles<br>解决方法：<br>在 vue.config.js 中修改 transpileDependencies 属性，对没有转换的依赖包单独进行转换配置，或者强制转换所有包<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">module.exports = &#123;</span><br><span class="line">  ...,</span><br><span class="line">  transpileDependencies: [&apos;vue-particles&apos;]</span><br><span class="line">  // transpileDependencies: [&apos;/.*/&apos;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h4 id="问题三"><a href="#问题三" class="headerlink" title="问题三"></a>问题三</h4><p>问题：IE浏览器下 GET 请求的参数一样时会直接使用缓存数据<br>解决方法：<br>方法一、添加一个动态变化的参数，比如时间戳： <code>t = new Date().getTime()</code><br>方法二、在请求头里设置两个属性，修改缓存策略<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[&apos;Cache-Control&apos;] = &apos;no-cache&apos;</span><br><span class="line">[&apos;Pragma&apos;] = &apos;no-cache&apos;</span><br></pre></td></tr></table></figure></p>
+<h4 id="问题三"><a href="#问题三" class="headerlink" title="问题三"></a>问题三</h4><p>问题：IE 浏览器下 GET 请求的参数一样时会直接使用缓存数据<br>解决方法：<br>方法一、添加一个动态变化的参数，比如时间戳： <code>t = new Date().getTime()</code><br>方法二、在请求头里设置两个属性，修改缓存策略<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[&apos;Cache-Control&apos;] = &apos;no-cache&apos;</span><br><span class="line">[&apos;Pragma&apos;] = &apos;no-cache&apos;</span><br></pre></td></tr></table></figure></p>
 
       
 
@@ -358,11 +358,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">AJAX</a>
+                <a href="javascript:void(0)" class="js-tag color5">Flex</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Flex</a>
+                <a href="javascript:void(0)" class="js-tag color3">工具</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -370,11 +370,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">工具</a>
+                <a href="javascript:void(0)" class="js-tag color4">浏览器</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -386,19 +382,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">node</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">MongoDB</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">【安全】</a>
+                <a href="javascript:void(0)" class="js-tag color5">node</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">jade</a>
+                <a href="javascript:void(0)" class="js-tag color3">安全</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -406,35 +398,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">【Vue】</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">AlloyFinger</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Swiper</a>
+                <a href="javascript:void(0)" class="js-tag color3">正则</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">数据结构与算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">regex</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">浏览器</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Chrome</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">调试</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -455,10 +423,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">目标</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">web-im</a>
               </li>
             
             <div class="clearfix"></div>

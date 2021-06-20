@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="奔跑的牛">
 <meta property="og:description" content="摘要：冴羽的博客学习乱序">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-11-29T15:00:21.676Z">
+<meta property="og:updated_time" content="2021-06-20T02:10:05.402Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="乱序">
 <meta name="twitter:description" content="摘要：冴羽的博客学习乱序">
@@ -178,8 +178,8 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>摘要：<a href="https://github.com/mqyqingfeng/Blog" target="_blank" rel="noopener">冴羽的博客</a>学习乱序<a id="more"></a></p>
-<h4 id="Math-random"><a href="#Math-random" class="headerlink" title="Math.random"></a>Math.random</h4><p>常见的写法是使用Math.random()：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var values = [1, 2, 3, 4, 5];</span><br><span class="line">values.sort(function()&#123;</span><br><span class="line">  return Math.random() - 0.5;</span><br><span class="line">&#125;);</span><br><span class="line">console.log(values)</span><br></pre></td></tr></table></figure></p>
-<p>但sort返回的是伪随机数，不同浏览器实现sort函数的方式还不一样，以v8为例，v8在处理sort方法时，当目标数组长度小于10时，使用插入排序；反之，使用快速排序和插入排序的混合排序</p>
+<h4 id="Math-random"><a href="#Math-random" class="headerlink" title="Math.random"></a>Math.random</h4><p>常见的写法是使用 Math.random()：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var values = [1, 2, 3, 4, 5];</span><br><span class="line">values.sort(function()&#123;</span><br><span class="line">  return Math.random() - 0.5;</span><br><span class="line">&#125;);</span><br><span class="line">console.log(values)</span><br></pre></td></tr></table></figure></p>
+<p>但 sort 返回的是伪随机数，不同浏览器实现 sort 函数的方式还不一样，以 v8 为例，v8 在处理 sort 方法时，当目标数组长度小于 10 时，使用插入排序；反之，使用快速排序和插入排序的混合排序</p>
 <h4 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h4><p>插入排序的源码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">function comparefn(x, y) &#123;</span><br><span class="line">  // 忽略其他转换等代码，判断大小并返回-1或0或1</span><br><span class="line">  if (x == y) return 0;</span><br><span class="line">  else return x &lt; y ? -1 : 1;</span><br><span class="line">&#125;</span><br><span class="line">function InsertionSort(a, from, to) &#123;</span><br><span class="line">  for (var i = from + 1; i &lt; to; i++) &#123;</span><br><span class="line">    var element = a[i];</span><br><span class="line">    for (var j = i - 1; j &gt;= from; j--) &#123;</span><br><span class="line">      var tmp = a[j];</span><br><span class="line">      // 每个元素都与当前元素进行比较，确保比当前元素大的元素都在右面</span><br><span class="line">      var order = comparefn(tmp, element);</span><br><span class="line">      if (order &gt; 0) &#123; </span><br><span class="line">        a[j + 1] = tmp;</span><br><span class="line">      &#125; else &#123;</span><br><span class="line">        break;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    a[j + 1] = element;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
 <h4 id="分析原因"><a href="#分析原因" class="headerlink" title="分析原因"></a>分析原因</h4><p>示例代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var values = [1, 2, 3];</span><br><span class="line">values.sort(function() &#123;</span><br><span class="line">  return Math.random() - 0.5;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
 <p>数组长度小于10，此时sort函数底层是使用插入排序实现，InsertionSort函数的from的值为0，to的值为3，comparefn为传入的匿名函数。<code>Math.random() - 0.5</code>的结果有50%的概率小于0（位置不变），有50%的概率大于0（交换位置），即每次比较都有一半的可能性保持位置不变。</p>
@@ -360,11 +360,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">AJAX</a>
+                <a href="javascript:void(0)" class="js-tag color5">Flex</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Flex</a>
+                <a href="javascript:void(0)" class="js-tag color3">工具</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -372,11 +372,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">工具</a>
+                <a href="javascript:void(0)" class="js-tag color4">浏览器</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -388,19 +384,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">node</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">MongoDB</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">【安全】</a>
+                <a href="javascript:void(0)" class="js-tag color5">node</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">jade</a>
+                <a href="javascript:void(0)" class="js-tag color3">安全</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -408,35 +400,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">【Vue】</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">AlloyFinger</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Swiper</a>
+                <a href="javascript:void(0)" class="js-tag color3">正则</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">数据结构与算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">regex</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">浏览器</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Chrome</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">调试</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -457,10 +425,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">目标</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">web-im</a>
               </li>
             
             <div class="clearfix"></div>
